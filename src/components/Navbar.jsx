@@ -7,7 +7,7 @@ const Navbar = () => {
     console.log('Logging out...');
   }
   return (
-    <div className='w-full px-2 py-6 flex justify-evenly items-center absolute top-0 bg-slate-50 shadow-md'> 
+    <div className='w-full tracking-widest px-16 py-6 flex justify-between items-center absolute top-0 bg-slate-50 shadow-md'> 
     <Link to="/" className='cursor-pointer font-extrabold text-4xl '>Hirely</Link>
     {!currentUser ? (
       <Link to="/signin" className='text-xl text-primary-700 hover:bg-primary-100 bg-primary-50 font-medium px-4 py-2 rounded-md  transition-colors duration-200 ease-in-out'>Login</Link>

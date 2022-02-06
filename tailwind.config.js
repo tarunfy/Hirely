@@ -37,6 +37,21 @@ module.exports = {
       },
       width:{
         '128': '32rem'
+      },
+      animation: {
+        'gradient-x':'gradient-x 6s ease infinite',
+      },
+      keyframes: {
+        'gradient-x': {
+          '0%, 100%': {
+              'background-size':'200% 200%',
+              'background-position': 'left center'
+          },
+          '50%': {
+              'background-size':'200% 200%',
+              'background-position': 'right center'
+          }
+      },
       }
     },
   },
