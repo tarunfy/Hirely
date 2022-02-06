@@ -7,7 +7,7 @@ import {Route, Switch, Redirect} from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(true);
+  const [currentUser, setCurrentUser] = useState(false);
 
   return (
    <>
