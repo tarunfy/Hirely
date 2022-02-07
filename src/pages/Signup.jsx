@@ -13,9 +13,13 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="flex h-screen justify-between items-center bg-slate-50">
-      <div className="px-4 py-8 ml-16 mt-10 w-128 rounded-lg shadow-material bg-slate-50">
+      <div className="px-4 py-8 ml-16 mt-24 w-128 rounded-lg shadow-material bg-slate-50">
         <div className="flex w-full items-center justify-evenly mb-5">
           <div className="flex items-center space-x-1">
             <input
@@ -42,11 +46,11 @@ const Signup = () => {
             </label>
           </div>
         </div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="input-container mb-5">
             <input
               type="text"
-              className="border-2 p-2 w-full rounded-md"
+              className="border-2 p-2 w-full rounded-md "
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               placeholder="Full Name"
@@ -95,17 +99,8 @@ const Signup = () => {
               />
             )}
           </div>
-          <div className="input-container mb-5">
-            {role === "Recruiter" ? (
-              <input
-                type="email"
-                className="border-2 p-2 w-full rounded-md"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-                required
-              />
-            ) : (
+          {role === "Applicant" && (
+            <div className="input-container mb-5">
               <input
                 type="date"
                 className="border-2 p-2 w-full rounded-md"
@@ -114,30 +109,42 @@ const Signup = () => {
                 placeholder="Date of birth"
                 required
               />
-            )}
+            </div>
+          )}
+          <div className="input-container mb-5">
+            <input
+              type="number"
+              className="border-2 p-2 w-full rounded-md"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              placeholder="Phone Number"
+              required
+            />
           </div>
           <div className="input-container mb-5">
-            {role === "Recruiter" ? (
-              <input
-                type="password"
-                className="border-2 p-2 w-full rounded-md"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                required
-              />
-            ) : (
-              <input
-                type="number"
-                className="border-2 p-2 w-full rounded-md"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                placeholder="Phone Number"
-                required
-              />
-            )}
+            <input
+              type="email"
+              className="border-2 p-2 w-full rounded-md"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              required
+            />
           </div>
-          <button className="bg-primary-600 uppercase hover:bg-primary-700 transition-colors duration-300 ease-in-out w-full text-lg font-bold px-5 py-2 rounded-md shadow-md shadow-primary-400 text-white">
+          <div className="input-container mb-5">
+            <input
+              type="password"
+              className="border-2 p-2 w-full rounded-md"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="bg-primary-600 uppercase hover:bg-primary-700 transition-colors duration-300 ease-in-out w-full text-lg font-bold px-5 py-2 rounded-md shadow-md shadow-primary-400 text-white"
+          >
             Register
           </button>
         </form>
