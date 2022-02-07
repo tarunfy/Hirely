@@ -52,6 +52,9 @@ module.exports = {
               'background-position': 'right center'
           }
       },
+      },
+      boxShadow: {
+        'material': 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'
       }
     },
   },
