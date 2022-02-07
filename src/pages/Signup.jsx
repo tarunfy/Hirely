@@ -89,14 +89,20 @@ const Signup = () => {
                 required
               />
             ) : (
-              <input
-                type="text"
+              <select
+                name="gender"
+                id="gender"
                 className="border-2 p-2 w-full rounded-md"
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
-                placeholder="Gender"
-                required
-              />
+              >
+                <option value="none" selected>
+                  Gender
+                </option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
             )}
           </div>
           {role === "Applicant" && (
