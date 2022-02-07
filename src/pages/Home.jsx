@@ -20,7 +20,7 @@ const Home = () => {
         </div>
         <Link
           to="/signup"
-          className="text-white hover:shadow-lg transition-shadow duration-200 ease-in-out shadow-primary-400 font-bold text-xl bg-primary-700 px-8 py-3 rounded-md"
+          className="text-white uppercase hover:shadow-lg transition-shadows duration-300 ease-in-out shadow-primary-400 font-bold text-xl bg-primary-700 px-8 py-3 rounded-md"
         >
           Start Hiring
         </Link>
