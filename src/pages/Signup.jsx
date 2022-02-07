@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Grid from "../assets/grid.svg";
+import { FaPencilAlt } from "react-icons/fa";
 
 const Signup = () => {
   const [role, setRole] = useState("Recruiter");
@@ -149,9 +150,9 @@ const Signup = () => {
           </div>
           <button
             type="submit"
-            className="bg-primary-600 uppercase hover:bg-primary-700 transition-colors duration-300 ease-in-out w-full text-lg font-bold px-5 py-2 rounded-md shadow-md shadow-primary-400 text-white"
+            className="bg-primary-600 flex justify-center items-center uppercase hover:bg-primary-700 transition-colors duration-300 ease-in-out w-full text-lg font-bold px-5 py-2 rounded-md shadow-md shadow-primary-400 text-white"
           >
-            Register
+            <FaPencilAlt className="mr-2" /> Register
           </button>
         </form>
       </div>

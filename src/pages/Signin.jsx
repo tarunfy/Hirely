@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Blob from "../assets/blob.svg";
+import { FiLogIn } from "react-icons/fi";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -14,7 +15,7 @@ const Signup = () => {
 
   return (
     <div className="flex h-screen justify-center items-center bg-slate-50">
-      <div className="px-8 py-12 ml-16 mt-10 w-128  z-20 rounded-lg shadow-material bg-slate-50">
+      <div className="px-8 py-12 ml-16 w-128  z-20 rounded-lg shadow-material bg-slate-50">
         <form onSubmit={handleSubmit}>
           <h1 className="text-center mb-6 font-bold text-5xl">
             Welcome Back 👋
@@ -41,13 +42,14 @@ const Signup = () => {
           </div>
           <button
             type="submit"
-            className="bg-primary-600 uppercase hover:bg-primary-700 transition-colors duration-300 ease-in-out w-full text-lg font-bold px-5 py-2 rounded-md shadow-md shadow-primary-400 text-white"
+            className="bg-primary-600 flex justify-center items-center uppercase hover:bg-primary-700 transition-colors duration-300 ease-in-out w-full text-lg font-bold px-5 py-2 rounded-md shadow-md shadow-primary-400 text-white"
           >
+            <FiLogIn className="mr-2 text-xl" />
             Login
           </button>
         </form>
       </div>
-      <img className="absolute top-10 z-0 h-screen" src={Blob} alt="blob" />
+      <img className="absolute z-0 w-screen h-screen" src={Blob} alt="blob" />
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import Hero from "../assets/hero.svg";
 import Waves from "../assets/waves.svg";
 import { Link } from "react-router-dom";
+import { MdPeopleAlt } from "react-icons/md";
 
 const Home = () => {
   return (
@@ -22,6 +23,7 @@ const Home = () => {
           to="/signup"
           className="text-white uppercase hover:shadow-material hover:shadow-primary-400 transition-shadows duration-300 ease-in-out font-bold text-xl bg-primary-700 px-8 py-3 rounded-md"
         >
+          <MdPeopleAlt className="mr-2 inline text-white" />
           Start Hiring
         </Link>
       </div>
@@ -29,7 +31,7 @@ const Home = () => {
       <img
         src={Waves}
         alt="Waves"
-        className="absolute overflow-hidden bottom-0 w-full z-0"
+        className="absolute overflow-hidden  bottom-0 w-full z-0"
       />
     </div>
   );
