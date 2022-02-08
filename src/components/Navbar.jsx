@@ -14,14 +14,14 @@ const Navbar = () => {
       {!currentUser ? (
         <Link
           to="/signin"
-          className="text-xl text-primary-800 border-2 border-primary-800  bg-slate-50 font-medium px-6 py-1 rounded-md hover:scale-95  transition-transform duration-200 ease-in-out"
+          className="text-base uppercase font-Montserrat text-primary-800 border-2 border-primary-800  bg-slate-50 font-medium px-6 py-1 rounded-md hover:scale-95  transition-transform duration-200 ease-in-out"
         >
           Login
         </Link>
       ) : (
         <button
           onClick={handleLogout}
-          className="text-xl text-primary-700 hover:bg-primary-100 bg-primary-50 font-medium px-4 py-2 rounded-md  transition-colors duration-200 ease-in-out"
+          className="text-base uppercase font-Montserrat text-primary-800 border-2 border-primary-800  bg-slate-50 font-medium px-6 py-1 rounded-md hover:scale-95  transition-transform duration-200 ease-in-out"
         >
           Logout
         </button>
