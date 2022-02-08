@@ -49,7 +49,7 @@ const Signup = () => {
           </button>
         </form>
       </div>
-      <img className="absolute z-0 w-screen h-screen" src={Blob} alt="blob" />
+      <img className="absolute z-0  h-screen" src={Blob} alt="blob" />
     </div>
   );
 };
