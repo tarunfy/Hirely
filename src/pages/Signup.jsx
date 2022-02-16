@@ -19,7 +19,24 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signup(email, password);
+    if (role === "Recruiter") {
+      signup(email, password, {
+        role,
+        fullName,
+        company,
+        designation,
+        phoneNumber,
+      });
+    } else {
+      signup(email, password, {
+        role,
+        fullName,
+        gender,
+        experienceLevel,
+        dob,
+        phoneNumber,
+      });
+    }
   };
 
   return (

@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
+import { auth } from "../services/firebase";
 
 const Navbar = () => {
-  const [currentUser, setCurrentUser] = useState(false);
+  const { currentUser } = useContext(AuthContext);
+
   const handleLogout = () => {
-    console.log("Logging out...");
+    auth.signOut();
   };
+
   return (
     <div className="w-full z-20 tracking-widest px-16 py-6 flex justify-between items-center absolute top-0 bg-slate-50 shadow-md">
       <Link to="/" className="cursor-pointer font-extrabold text-4xl">
