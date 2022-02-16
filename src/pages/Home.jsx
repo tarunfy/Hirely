@@ -3,7 +3,6 @@ import Hero from "../assets/hero.svg";
 import Waves from "../assets/waves.svg";
 import { Link } from "react-router-dom";
 import { MdPeopleAlt } from "react-icons/md";
-import { auth } from "../services/firebase";
 
 const Home = () => {
   return (
