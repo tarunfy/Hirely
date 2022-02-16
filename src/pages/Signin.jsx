@@ -7,13 +7,12 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login, isFetching } = useContext(AuthContext);
+  const { login, isFetching, error, setError } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError("");
     login(email, password);
-    setEmail("");
-    setPassword("");
   };
 
   return (
@@ -43,6 +42,11 @@ const Signup = () => {
               required
             />
           </div>
+          {error && (
+            <div className="text-center text-red-600 font-medium my-2">
+              {error}
+            </div>
+          )}
           <button
             type="submit"
             disabled={isFetching}

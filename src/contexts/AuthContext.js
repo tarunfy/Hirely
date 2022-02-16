@@ -6,16 +6,19 @@ export const AuthContext = createContext(null);
 export const AuthProvider = ({children}) => {
   const [isFetching, setIsFetching] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [error, setError] = useState('');
 
-  auth.onAuthStateChanged(async (user)=>{
-    if(!user){
-      setCurrentUser(null);
-    };
-    const snapshot = await db.collection('users').where('userId', '==', user.uid).get();
-    snapshot.docs.forEach(doc=>{
-      setCurrentUser(doc.data());
+  useEffect(()=>{
+    auth.onAuthStateChanged(async (user)=>{
+      if(!user){
+        setCurrentUser(null);
+      };
+      const snapshot = await db.collection('users').where('userId', '==', user.uid).get();
+      snapshot.docs.forEach(doc=>{
+        setCurrentUser(doc.data());
+      });
     });
-  });
+  },[])
 
   const signup = async (email, password, userInfo) => {
     setIsFetching(true);
@@ -44,7 +47,7 @@ export const AuthProvider = ({children}) => {
         setIsFetching(false);
       }   
     }catch(err){
-      console.log(err.message);
+      setError(err.message);
       setIsFetching(false);
       return;
     };
@@ -54,17 +57,17 @@ export const AuthProvider = ({children}) => {
       setIsFetching(true);
       try{
         const response = await auth.signInWithEmailAndPassword(email, password);
-        console.log('logged in', response.user);
         setIsFetching(false);
+        return;
       }catch(err){
-        console.log(err.message)
+        setError(err.message);
         setIsFetching(false);
         return;
       };
   };
 
   return (
-        <AuthContext.Provider value={{isFetching, currentUser, signup, login}}>
+        <AuthContext.Provider value={{isFetching, currentUser, signup, login, error, setError}}>
             {children}
         </AuthContext.Provider>
   )
