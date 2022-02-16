@@ -15,10 +15,11 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { signup, isFetching } = useContext(AuthContext);
+  const { signup, isFetching, error, setError } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError("");
     if (role === "Recruiter") {
       signup(email, password, {
         role,
@@ -169,6 +170,11 @@ const Signup = () => {
               required
             />
           </div>
+          {error && (
+            <div className="text-center text-red-600 font-medium my-1">
+              {error}
+            </div>
+          )}
           <button
             type="submit"
             disabled={isFetching}
