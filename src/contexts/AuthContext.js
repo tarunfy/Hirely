@@ -78,6 +78,7 @@ export const AuthProvider = ({ children }) => {
         error,
         setError,
         isLoading,
+        setIsLoading,
       }}
     >
       {!isLoading && children}
