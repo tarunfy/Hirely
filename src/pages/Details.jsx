@@ -7,7 +7,7 @@ const Details = () => {
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <div className="h-screen flex justify-center items-center bg-slate-50 text-3xl">
+    <div className="h-screen flex flex-col justify-center items-center bg-slate-50">
       {currentUser.role === "Recruiter" ? <JobDetails /> : <WorkDetails />}
     </div>
   );
