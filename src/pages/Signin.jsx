@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import Blob from "../assets/blob.svg";
-import { FiLogIn } from "react-icons/fi";
+import { RiUserSharedFill } from "react-icons/ri";
 import { AuthContext } from "../contexts/AuthContext";
 
 const Signup = () => {
@@ -17,7 +17,7 @@ const Signup = () => {
 
   return (
     <div className="flex h-screen justify-center items-center bg-slate-50">
-      <div className="px-8 py-12 ml-16 w-128  z-20 rounded-lg shadow-material bg-slate-50">
+      <div className="px-8 py-12 ml-16 w-128 z-20 rounded-lg shadow-material form-container">
         <form onSubmit={handleSubmit}>
           <h1 className="text-center mb-6 font-bold text-5xl">
             Welcome Back 👋
@@ -25,7 +25,7 @@ const Signup = () => {
           <div className="input-container mb-5">
             <input
               type="email"
-              className="border-2 p-2 w-full rounded-md text-lg"
+              className="p-2 focus:outline-none w-full rounded-md text-lg"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
@@ -35,7 +35,7 @@ const Signup = () => {
           <div className="input-container mb-5">
             <input
               type="password"
-              className="border-2 p-2 w-full rounded-md text-lg"
+              className=" focus:outline-none p-2 w-full rounded-md text-lg"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
@@ -58,7 +58,7 @@ const Signup = () => {
           >
             {!isFetching ? (
               <>
-                <FiLogIn className="mr-2 text-xl" />
+                <RiUserSharedFill className="mr-2 text-xl" />
                 Login
               </>
             ) : (
@@ -85,7 +85,7 @@ const Signup = () => {
           </button>
         </form>
       </div>
-      <img className="absolute z-0  h-screen" src={Blob} alt="blob" />
+      <img className="absolute z-0 blob  h-screen" src={Blob} alt="blob" />
     </div>
   );
 };

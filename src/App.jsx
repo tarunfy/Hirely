@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
@@ -13,7 +13,13 @@ function App() {
     <>
       <Navbar />
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route
+          exact
+          path="/"
+          render={(props) =>
+            !currentUser ? <Home {...props} /> : <Redirect to="/dashboard" />
+          }
+        />
         <Route
           exact
           path="/signin"

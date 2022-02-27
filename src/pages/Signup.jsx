@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import Grid from "../assets/grid.svg";
 import { FaPencilAlt } from "react-icons/fa";
 import { AuthContext } from "../contexts/AuthContext";
 
@@ -40,31 +39,47 @@ const Signup = () => {
     }
   };
 
+  const handleRole = (e) => {
+    if (role == e.target.id) {
+      return;
+    }
+    setRole(e.target.id);
+    setEmail("");
+    setFullName("");
+    setPassword("");
+    setPhoneNumber("");
+    setDesignation("");
+    setDob("");
+    setExperienceLevel("");
+    setGender("");
+    setCompany("");
+  };
+
   return (
-    <div className="flex h-screen justify-between items-center bg-slate-50">
-      <div className="px-4 py-8 ml-16 mt-24 w-128 rounded-lg shadow-material bg-slate-50">
-        <div className="flex w-full items-center justify-evenly mb-5">
+    <div className="flex h-screen justify-center items-center bg-slate-100">
+      <div className="px-4 py-8 ml-16 mt-24 w-128 rounded-lg shadow-material form-container">
+        <div className="flex w-full items-center justify-evenly mb-5 ">
           <div className="flex items-center space-x-1">
             <input
               type="radio"
               checked={role === "Recruiter"}
-              id="recruiter"
-              onClick={() => setRole("Recruiter")}
+              id="Recruiter"
+              onClick={(e) => handleRole(e)}
               name="role"
             />
-            <label htmlFor="recruiter" className="text-lg">
+            <label htmlFor="recruiter" className="text-xl font-medium">
               Register as recruiter
             </label>
           </div>
           <div className="flex items-center space-x-1">
             <input
               type="radio"
-              id="applicant"
+              id="Applicant"
               name="role"
-              onClick={() => setRole("Applicant")}
+              onClick={(e) => handleRole(e)}
               checked={role === "Applicant"}
             />
-            <label htmlFor="applicant" className="text-lg">
+            <label htmlFor="applicant" className="text-xl font-medium">
               Register as applicant
             </label>
           </div>
@@ -73,7 +88,7 @@ const Signup = () => {
           <div className="input-container mb-5">
             <input
               type="text"
-              className="border-2 p-2 w-full rounded-md "
+              className="focus:outline-primary-400 p-2 w-full rounded-md "
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               placeholder="Full Name"
@@ -84,7 +99,7 @@ const Signup = () => {
             {role === "Recruiter" ? (
               <input
                 type="text"
-                className="border-2 p-2 w-full rounded-md"
+                className="focus:outline-primary-400  p-2 w-full rounded-md"
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
                 placeholder="My Company"
@@ -93,7 +108,7 @@ const Signup = () => {
             ) : (
               <input
                 type="text"
-                className="border-2 p-2 w-full rounded-md"
+                className="focus:outline-primary-400 p-2 w-full rounded-md"
                 value={experienceLevel}
                 onChange={(e) => setExperienceLevel(e.target.value)}
                 placeholder="Experience Level"
@@ -105,7 +120,7 @@ const Signup = () => {
             {role === "Recruiter" ? (
               <input
                 type="text"
-                className="border-2 p-2 w-full rounded-md"
+                className="focus:outline-primary-400 p-2 w-full rounded-md"
                 value={designation}
                 onChange={(e) => setDesignation(e.target.value)}
                 placeholder="Designation"
@@ -115,7 +130,7 @@ const Signup = () => {
               <select
                 name="gender"
                 id="gender"
-                className="border-2 p-2 w-full rounded-md"
+                className="focus:outline-primary-400 p-2 w-full rounded-md"
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
               >
@@ -132,7 +147,7 @@ const Signup = () => {
             <div className="input-container mb-5">
               <input
                 type="date"
-                className="border-2 p-2 w-full rounded-md"
+                className="focus:outline-primary-400 p-2 w-full rounded-md"
                 value={dob}
                 onChange={(e) => setDob(e.target.value)}
                 placeholder="Date of birth"
@@ -142,8 +157,10 @@ const Signup = () => {
           )}
           <div className="input-container mb-5">
             <input
-              type="number"
-              className="border-2 p-2 w-full rounded-md"
+              type="tel"
+              maxLength={10}
+              pattern="[0-9]{10}"
+              className="focus:outline-primary-400 p-2 w-full rounded-md"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
               placeholder="Phone Number"
@@ -153,7 +170,7 @@ const Signup = () => {
           <div className="input-container mb-5">
             <input
               type="email"
-              className="border-2 p-2 w-full rounded-md"
+              className="focus:outline-primary-400 p-2 w-full rounded-md"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
@@ -163,7 +180,7 @@ const Signup = () => {
           <div className="input-container mb-5">
             <input
               type="password"
-              className="border-2 p-2 w-full rounded-md"
+              className="focus:outline-primary-400 p-2 w-full rounded-md"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
@@ -171,7 +188,7 @@ const Signup = () => {
             />
           </div>
           {error && (
-            <div className="text-center text-red-600 font-medium my-1">
+            <div className="text-center text-secondary-600 font-medium my-1">
               {error}
             </div>
           )}
@@ -212,7 +229,6 @@ const Signup = () => {
           </button>
         </form>
       </div>
-      <img className="absolute right-0 z-0 h-screen" src={Grid} alt="" />
     </div>
   );
 };

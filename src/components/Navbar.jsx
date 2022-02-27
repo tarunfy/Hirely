@@ -12,9 +12,13 @@ const Navbar = () => {
 
   return (
     <div className="w-full z-20 tracking-widest px-16 py-6 flex justify-between items-center absolute top-0 bg-slate-50 shadow-md">
-      <Link to="/" className="cursor-pointer font-extrabold text-4xl">
-        Hirely
-      </Link>
+      {currentUser ? (
+        <div className="cursor-default font-extrabold text-4xl">Hirely</div>
+      ) : (
+        <Link to="/" className="cursor-pointer font-extrabold text-4xl">
+          Hirely
+        </Link>
+      )}
       {!currentUser ? (
         <Link
           to="/signin"

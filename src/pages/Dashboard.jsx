@@ -6,7 +6,7 @@ const Dashboard = () => {
   console.log(currentUser);
   return (
     <div className="flex justify-center items-center h-screen bg-slate-50">
-      Dashboard
+      <p className="text-9xl font-extrabold">Dashboard</p>
     </div>
   );
 };
