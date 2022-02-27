@@ -106,3 +106,10 @@
     transform: scale(1);
   }
 }
+
+#login-container,
+#signup-container {
+  background-color: #f1f5fa;
+  background-image: radial-gradient(#f43f5f 0.75px, #f1f5fa 0.75px);
+  background-size: 15px 15px;
+}

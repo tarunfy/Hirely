@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { RiUserSharedFill } from "react-icons/ri";
 import { AuthContext } from "../contexts/AuthContext";
 import { MdDelete } from "react-icons/md";
+import Login from "../assets/login.svg";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -20,13 +21,16 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex h-screen justify-center items-center bg-slate-50">
-      <div className="px-8 py-12 ml-16 w-[28rem] z-20 rounded-lg shadow-material">
+    <div
+      id="login-container"
+      className="flex h-screen justify-between px-10 items-center bg-slate-50"
+    >
+      <div className="px-8 py-12 ml-16 w-[28rem] z-20 rounded-lg shadow-material bg-slate-50">
         <form onSubmit={handleSubmit}>
           <div className="input-container mb-5">
             <input
               type="email"
-              className="p-2 focus:outline-primary-400 w-full rounded-md text-lg"
+              className="p-2 border-[1px] border-gray-200 focus:outline-primary-400 w-full rounded-md text-lg"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
@@ -36,7 +40,7 @@ const Signup = () => {
           <div className="input-container mb-5">
             <input
               type="password"
-              className=" focus:outline-primary-400 p-2 w-full rounded-md text-lg"
+              className=" focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md text-lg"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
@@ -94,6 +98,7 @@ const Signup = () => {
           </button>
         </form>
       </div>
+      <img src={Login} alt="login-img" className="w-128 h-128" />
     </div>
   );
 };

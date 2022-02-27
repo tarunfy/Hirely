@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import { FaPencilAlt } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { AuthContext } from "../contexts/AuthContext";
+import Recruiter from "../assets/recruiter.svg";
+import Applicant from "../assets/applicant.svg";
 
 const Signup = () => {
   const [role, setRole] = useState("Recruiter");
@@ -69,8 +71,11 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex h-screen justify-center items-center bg-slate-100">
-      <div className="px-4 py-8 ml-16 mt-24 w-128 rounded-lg shadow-material form-container">
+    <div
+      id="signup-container"
+      className="flex h-screen justify-between items-center bg-slate-100 px-10"
+    >
+      <div className="px-4 py-8 ml-16 mt-24 w-128 rounded-lg shadow-material bg-slate-50 form-container">
         <div className="flex w-full items-center justify-evenly mb-5 ">
           <div className="flex items-center space-x-1">
             <input
@@ -101,7 +106,7 @@ const Signup = () => {
           <div className="input-container mb-5">
             <input
               type="text"
-              className="focus:outline-primary-400 p-2 w-full rounded-md "
+              className="focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md "
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               placeholder="Full Name"
@@ -112,7 +117,7 @@ const Signup = () => {
             {role === "Recruiter" ? (
               <input
                 type="text"
-                className="focus:outline-primary-400  p-2 w-full rounded-md"
+                className="focus:outline-primary-400  border-[1px] border-gray-200 p-2 w-full rounded-md"
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
                 placeholder="My Company"
@@ -121,7 +126,7 @@ const Signup = () => {
             ) : (
               <input
                 type="text"
-                className="focus:outline-primary-400 p-2 w-full rounded-md"
+                className="focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
                 value={experienceLevel}
                 onChange={(e) => setExperienceLevel(e.target.value)}
                 placeholder="Experience Level"
@@ -133,7 +138,7 @@ const Signup = () => {
             {role === "Recruiter" ? (
               <input
                 type="text"
-                className="focus:outline-primary-400 p-2 w-full rounded-md"
+                className="focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
                 value={designation}
                 onChange={(e) => setDesignation(e.target.value)}
                 placeholder="Designation"
@@ -143,7 +148,7 @@ const Signup = () => {
               <select
                 name="gender"
                 id="gender"
-                className="focus:outline-primary-400 p-2 w-full rounded-md"
+                className="focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
               >
@@ -160,7 +165,7 @@ const Signup = () => {
             <div className="input-container mb-5">
               <input
                 type="date"
-                className="focus:outline-primary-400 p-2 w-full rounded-md"
+                className="focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
                 value={dob}
                 onChange={(e) => setDob(e.target.value)}
                 placeholder="Date of birth"
@@ -173,7 +178,7 @@ const Signup = () => {
               type="tel"
               maxLength={10}
               pattern="[0-9]{10}"
-              className="focus:outline-primary-400 p-2 w-full rounded-md"
+              className="focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
               placeholder="Phone Number"
@@ -183,7 +188,7 @@ const Signup = () => {
           <div className="input-container mb-5">
             <input
               type="email"
-              className="focus:outline-primary-400 p-2 w-full rounded-md"
+              className="focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
@@ -193,7 +198,7 @@ const Signup = () => {
           <div className="input-container mb-5">
             <input
               type="password"
-              className="focus:outline-primary-400 p-2 w-full rounded-md"
+              className="focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
@@ -250,6 +255,11 @@ const Signup = () => {
           </button>
         </form>
       </div>
+      <img
+        src={role === "Recruiter" ? Recruiter : Applicant}
+        alt="img"
+        className="w-128 h-128"
+      />
     </div>
   );
 };
