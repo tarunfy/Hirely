@@ -7,8 +7,10 @@ export const AuthProvider = ({ children }) => {
   const [isFetching, setIsFetching] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     auth.onAuthStateChanged(async (user) => {
       if (!user) {
         setCurrentUser(null);
@@ -16,6 +18,7 @@ export const AuthProvider = ({ children }) => {
       const snapshot = await db.collection("users").doc(user.uid).get();
       setCurrentUser(snapshot.data());
     });
+    setIsLoading(false);
   }, []);
 
   const signup = async (email, password, userInfo) => {
@@ -67,9 +70,17 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ isFetching, currentUser, signup, login, error, setError }}
+      value={{
+        isFetching,
+        currentUser,
+        signup,
+        login,
+        error,
+        setError,
+        isLoading,
+      }}
     >
-      {children}
+      {!isLoading && children}
     </AuthContext.Provider>
   );
 };

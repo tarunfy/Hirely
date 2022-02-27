@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { FaPencilAlt } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 import { AuthContext } from "../contexts/AuthContext";
 
 const Signup = () => {
@@ -16,11 +17,11 @@ const Signup = () => {
 
   const { signup, isFetching, error, setError } = useContext(AuthContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     if (role === "Recruiter") {
-      signup(email, password, {
+      await signup(email, password, {
         role,
         fullName,
         company,
@@ -28,7 +29,7 @@ const Signup = () => {
         phoneNumber,
       });
     } else {
-      signup(email, password, {
+      await signup(email, password, {
         role,
         fullName,
         gender,
@@ -44,6 +45,18 @@ const Signup = () => {
       return;
     }
     setRole(e.target.id);
+    setEmail("");
+    setFullName("");
+    setPassword("");
+    setPhoneNumber("");
+    setDesignation("");
+    setDob("");
+    setExperienceLevel("");
+    setGender("");
+    setCompany("");
+  };
+
+  const handleClear = () => {
     setEmail("");
     setFullName("");
     setPassword("");
@@ -199,11 +212,11 @@ const Signup = () => {
               !isFetching
                 ? "bg-primary-600 hover:bg-primary-700"
                 : "bg-primary-400 cursor-default"
-            } flex justify-center items-center uppercase  transition-colors duration-300 ease-in-out w-full text-lg font-bold px-5 py-2 rounded-md shadow-md shadow-primary-400 text-white`}
+            } flex justify-center items-center uppercase  transition-colors duration-300 ease-in-out w-full text-lg font-bold px-5 py-2 rounded-md  text-white`}
           >
             {!isFetching ? (
               <>
-                <FaPencilAlt className="mr-2" /> Register
+                <FaPencilAlt className="mr-2 h-4 w-4" /> Register
               </>
             ) : (
               <>
@@ -226,6 +239,14 @@ const Signup = () => {
                 Registering...
               </>
             )}
+          </button>
+          <button
+            onClick={handleClear}
+            type="reset"
+            className="flex justify-center items-center border-primary-600 border-2 text-center uppercase text-primary-600 w-full px-5 py-2 font-bold text-lg mt-4 rounded-md transition-colors duration-300 ease-in-out  hover:bg-primary-50"
+          >
+            <MdDelete className="mr-2 h-5 w-5" />
+            Clear
           </button>
         </form>
       </div>

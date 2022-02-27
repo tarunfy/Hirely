@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-import Blob from "../assets/blob.svg";
 import { RiUserSharedFill } from "react-icons/ri";
 import { AuthContext } from "../contexts/AuthContext";
+import { MdDelete } from "react-icons/md";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -14,18 +14,19 @@ const Signup = () => {
     setError("");
     login(email, password);
   };
+  const handleClear = () => {
+    setEmail("");
+    setPassword("");
+  };
 
   return (
     <div className="flex h-screen justify-center items-center bg-slate-50">
-      <div className="px-8 py-12 ml-16 w-128 z-20 rounded-lg shadow-material form-container">
+      <div className="px-8 py-12 ml-16 w-[28rem] z-20 rounded-lg shadow-material">
         <form onSubmit={handleSubmit}>
-          <h1 className="text-center mb-6 font-bold text-5xl">
-            Welcome Back 👋
-          </h1>
           <div className="input-container mb-5">
             <input
               type="email"
-              className="p-2 focus:outline-none w-full rounded-md text-lg"
+              className="p-2 focus:outline-primary-400 w-full rounded-md text-lg"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
@@ -35,7 +36,7 @@ const Signup = () => {
           <div className="input-container mb-5">
             <input
               type="password"
-              className=" focus:outline-none p-2 w-full rounded-md text-lg"
+              className=" focus:outline-primary-400 p-2 w-full rounded-md text-lg"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
@@ -54,11 +55,11 @@ const Signup = () => {
               !isFetching
                 ? "bg-primary-600 hover:bg-primary-700"
                 : "bg-primary-400 cursor-default"
-            } flex justify-center items-center uppercase  transition-colors duration-300 ease-in-out w-full text-lg font-bold px-5 py-2 rounded-md shadow-md shadow-primary-400 text-white`}
+            } flex justify-center items-center uppercase  transition-colors duration-300 ease-in-out w-full text-lg font-bold px-5 py-2 rounded-md shadow-md  text-white`}
           >
             {!isFetching ? (
               <>
-                <RiUserSharedFill className="mr-2 text-xl" />
+                <RiUserSharedFill className="mr-2 h-5 w-5" />
                 Login
               </>
             ) : (
@@ -83,9 +84,16 @@ const Signup = () => {
               </>
             )}
           </button>
+          <button
+            onClick={handleClear}
+            type="reset"
+            className="border-primary-600 border-2 flex justify-center items-center text-center uppercase text-primary-600 w-full px-5 py-2 font-bold text-lg mt-4 rounded-md transition-colors duration-300 ease-in-out  hover:bg-primary-50"
+          >
+            <MdDelete className="mr-2 h-5 w-5" fill="#4f46e5" />
+            Clear
+          </button>
         </form>
       </div>
-      <img className="absolute z-0 blob  h-screen" src={Blob} alt="blob" />
     </div>
   );
 };
