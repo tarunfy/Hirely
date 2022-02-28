@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 const Dashboard = () => {
   const { currentUser, isLoading, getCurrentUser } = useContext(AuthContext);
   const history = useHistory();
-  console.log(currentUser);
 
   useEffect(() => {
     getCurrentUser();
@@ -17,7 +16,6 @@ const Dashboard = () => {
       currentUser.jobDetails === undefined) ||
     (currentUser.role === "Applicant" && currentUser.workDetails === undefined)
   ) {
-    console.log("currentUser", currentUser);
     history.push("/add-details");
   }
 

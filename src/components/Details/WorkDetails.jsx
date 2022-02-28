@@ -3,7 +3,6 @@ import { HiDocumentAdd } from "react-icons/hi";
 import { MdDelete } from "react-icons/md";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useHistory } from "react-router";
-import Spinner from "../../components/Spinner";
 
 const WorkDetails = () => {
   const [workDetails, setWorkDetails] = useState({
@@ -15,8 +14,7 @@ const WorkDetails = () => {
 
   const history = useHistory();
 
-  const { addDetails, currentUser, isLoading, isFetching } =
-    useContext(AuthContext);
+  const { addDetails, currentUser } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setWorkDetails({ ...workDetails, [e.target.id]: e.target.value });
@@ -37,8 +35,6 @@ const WorkDetails = () => {
       bio: "",
     });
   };
-
-  if (isLoading || isFetching) return <Spinner />;
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { HiDocumentAdd } from "react-icons/hi";
 import { MdDelete } from "react-icons/md";
 
@@ -38,9 +38,7 @@ const JobDetails = () => {
                   id="experience"
                   className="p-1 border-[1px] text-sm rounded-md border-gray-200 focus:outline-primary-300"
                 >
-                  <option value="" selected>
-                    Select
-                  </option>
+                  <option defaultValue={""}>Select</option>
                   <option value="Any Experience">Any Experience</option>
                   <option value="Fresher">Fresher</option>
                   <option value="0-1">0-1 Year</option>
@@ -60,9 +58,7 @@ const JobDetails = () => {
                   required
                   className="p-1 border-[1px] text-sm rounded-md border-gray-200 focus:outline-primary-300"
                 >
-                  <option value="" selected>
-                    Select
-                  </option>
+                  <option defaultValue={""}>Select</option>
                   <option value="Rs 1 - 1 LPA">Rs 1 - 1 LPA</option>
                   <option value="Rs 2 - 5 LPA">Rs 2 - 5 LPA</option>
                   <option value="Rs 3 - 7 LPA">Rs 3 - 7 LPA</option>
@@ -82,9 +78,7 @@ const JobDetails = () => {
                   required
                   className="p-1 border-[1px] text-sm rounded-md border-gray-200 focus:outline-primary-300"
                 >
-                  <option value="" selected>
-                    Select
-                  </option>
+                  <option defaultValue={""}>Select</option>
                   <option value="Doctorate">Doctorate</option>
                   <option value="Post-Graduation">Post-Graduation</option>
                   <option value="Graduation/Diploma">Graduation</option>
