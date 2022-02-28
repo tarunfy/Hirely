@@ -1,4 +1,3 @@
-import { useDeprecatedInvertedScale } from "framer-motion";
 import React, { useEffect, useState, createContext } from "react";
 import { auth, db } from "../services/firebase";
 
@@ -6,31 +5,32 @@ export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [isFetching, setIsFetching] = useState(false);
+  const [fetchingUser, setFetchingUser] = useState(true);
   const [currentUser, setCurrentUser] = useState(null);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
     auth.onAuthStateChanged(async (user) => {
-      if (!user) {
+      if (user) {
+        const snapshot = await db.collection("users").doc(user.uid).get();
+        setCurrentUser(snapshot.data());
+      } else {
         setCurrentUser(null);
       }
-      const snapshot = await db.collection("users").doc(user.uid).get();
-      setCurrentUser(snapshot.data());
+      setFetchingUser(false);
     });
-    setIsLoading(false);
   }, []);
 
   const signup = async (email, password, userInfo) => {
-    setIsFetching(true);
+    setIsLoading(true);
     try {
       const response = await auth.createUserWithEmailAndPassword(
         email,
         password
       );
       if (userInfo.role === "Recruiter") {
-        const user = await db.collection("users").doc(response.user.uid).set({
+        await db.collection("users").doc(response.user.uid).set({
           userId: response.user.uid,
           role: userInfo.role,
           fullName: userInfo.fullName,
@@ -38,9 +38,8 @@ export const AuthProvider = ({ children }) => {
           designation: userInfo.designation,
           phoneNumber: userInfo.phoneNumber,
         });
-        setIsFetching(false);
       } else {
-        const user = await db.collection("users").doc(response.user.uid).set({
+        await db.collection("users").doc(response.user.uid).set({
           userId: response.user.uid,
           role: userInfo.role,
           fullName: userInfo.fullName,
@@ -49,30 +48,25 @@ export const AuthProvider = ({ children }) => {
           dob: userInfo.dob,
           phoneNumber: userInfo.phoneNumber,
         });
-        setIsFetching(false);
       }
     } catch (err) {
       setError(err.message);
-      setIsFetching(false);
-      return;
     }
+    setIsLoading(false);
   };
 
   const login = async (email, password) => {
-    setIsFetching(true);
+    setIsLoading(true);
     try {
-      const response = await auth.signInWithEmailAndPassword(email, password);
-      setIsFetching(false);
-      return;
+      await auth.signInWithEmailAndPassword(email, password);
     } catch (err) {
       setError(err.message);
-      setIsFetching(false);
-      return;
     }
+    setIsLoading(false);
   };
 
   const addDetails = async (docId, data) => {
-    setIsFetching(true);
+    setIsLoading(true);
     try {
       await db
         .collection("users")
@@ -93,7 +87,7 @@ export const AuthProvider = ({ children }) => {
     } catch (err) {
       console.log(err);
     }
-    setIsFetching(false);
+    setIsLoading(false);
   };
 
   const getCurrentUser = async () => {
@@ -113,6 +107,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const logout = () => {
+    auth.signOut();
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -126,9 +124,10 @@ export const AuthProvider = ({ children }) => {
         setIsLoading,
         addDetails,
         getCurrentUser,
+        logout,
       }}
     >
-      {!isLoading && children}
+      {!fetchingUser && children}
     </AuthContext.Provider>
   );
 };

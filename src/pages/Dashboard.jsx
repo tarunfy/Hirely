@@ -4,10 +4,9 @@ import Spinner from "../components/Spinner";
 import { useHistory } from "react-router-dom";
 
 const Dashboard = () => {
-  const { currentUser, isLoading, getCurrentUser, isFetching } =
-    useContext(AuthContext);
+  const { isLoading, getCurrentUser, isFetching } = useContext(AuthContext);
+
   const history = useHistory();
-  console.log(currentUser);
 
   useEffect(() => {
     async function fetchUser() {

@@ -3,12 +3,14 @@ import { RiUserSharedFill } from "react-icons/ri";
 import { AuthContext } from "../contexts/AuthContext";
 import { MdDelete } from "react-icons/md";
 import Login from "../assets/login.svg";
+import Spinner from "../components/Spinner";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login, isFetching, error, setError } = useContext(AuthContext);
+  const { login, isFetching, error, setError, isLoading } =
+    useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,6 +21,8 @@ const Signup = () => {
     setEmail("");
     setPassword("");
   };
+
+  if (isFetching) return <Spinner />;
 
   return (
     <div
@@ -54,14 +58,14 @@ const Signup = () => {
           )}
           <button
             type="submit"
-            disabled={isFetching}
+            disabled={isLoading}
             className={`${
-              !isFetching
+              !isLoading
                 ? "bg-primary-600 hover:bg-primary-700"
                 : "bg-primary-400 cursor-default"
             } flex justify-center items-center uppercase  transition-colors duration-300 ease-in-out w-full text-lg font-bold px-5 py-2 rounded-md shadow-md  text-white`}
           >
-            {!isFetching ? (
+            {!isLoading ? (
               <>
                 <RiUserSharedFill className="mr-2 h-5 w-5" />
                 Login

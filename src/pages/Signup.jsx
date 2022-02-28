@@ -4,6 +4,7 @@ import { MdDelete } from "react-icons/md";
 import { AuthContext } from "../contexts/AuthContext";
 import Recruiter from "../assets/recruiter.svg";
 import Applicant from "../assets/applicant.svg";
+import Spinner from "../components/Spinner";
 
 const Signup = () => {
   const [role, setRole] = useState("Recruiter");
@@ -17,7 +18,8 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { signup, isFetching, error, setError } = useContext(AuthContext);
+  const { signup, isFetching, error, setError, isLoading } =
+    useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,6 +71,8 @@ const Signup = () => {
     setGender("");
     setCompany("");
   };
+
+  if (isFetching) return <Spinner />;
 
   return (
     <div
@@ -212,14 +216,14 @@ const Signup = () => {
           )}
           <button
             type="submit"
-            disabled={isFetching}
+            disabled={isLoading}
             className={`${
-              !isFetching
+              !isLoading
                 ? "bg-primary-600 hover:bg-primary-700"
                 : "bg-primary-400 cursor-default"
             } flex justify-center items-center uppercase  transition-colors duration-300 ease-in-out w-full text-lg font-bold px-5 py-2 rounded-md  text-white`}
           >
-            {!isFetching ? (
+            {!isLoading ? (
               <>
                 <FaPencilAlt className="mr-2 h-4 w-4" /> Register
               </>
