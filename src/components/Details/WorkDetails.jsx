@@ -5,7 +5,7 @@ import { MdDelete } from "react-icons/md";
 const WorkDetails = () => {
   return (
     <>
-      <h1 className="text-6xl font-bold mb-10 mt-10">Add your work details</h1>
+      <h1 className="text-7xl font-bold mb-10 mt-10">Add your work details</h1>
       <div className="px-6 py-8 bg-slate-50 w-[28rem] shadow-material2 rounded-md">
         <form className="w-full">
           <div className="input-div mb-4">
