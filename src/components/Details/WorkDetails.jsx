@@ -1,13 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { HiDocumentAdd } from "react-icons/hi";
 import { MdDelete } from "react-icons/md";
 
 const WorkDetails = () => {
+  const [workDetails, setWorkDetails] = useState({
+    skills: "",
+    education: "",
+    linkedinUsername: "",
+    bio: "",
+  });
+
+  const handleChange = (e) => {
+    setWorkDetails({ ...workDetails, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(workDetails.skills.split(","));
+    console.log(workDetails);
+  };
+
+  const handleReset = () => {
+    setWorkDetails({
+      skills: "",
+      education: "",
+      linkedinUsername: "",
+      bio: "",
+    });
+  };
+
   return (
     <>
       <h1 className="text-7xl font-bold mb-10 mt-10">Add your work details</h1>
       <div className="px-6 py-8 bg-slate-50 w-[28rem] shadow-material2 rounded-md">
-        <form className="w-full">
+        <form className="w-full" onSubmit={handleSubmit}>
           <div className="input-div mb-4">
             <label
               htmlFor="skills"
@@ -21,6 +47,8 @@ const WorkDetails = () => {
             <input
               type="text"
               autoComplete="off"
+              onChange={handleChange}
+              value={workDetails.skills}
               id="skills"
               required
               className="p-2 w-full border-[1px] text-lg rounded-md border-gray-200 focus:outline-primary-300"
@@ -32,9 +60,11 @@ const WorkDetails = () => {
             </label>
             <input
               type="text"
+              value={workDetails.education}
+              onChange={handleChange}
               autoComplete="off"
               required
-              if="education"
+              id="education"
               className="p-2 w-full border-[1px] text-lg rounded-md border-gray-200 focus:outline-primary-300"
             />
           </div>
@@ -45,8 +75,10 @@ const WorkDetails = () => {
             <input
               type="text"
               autoComplete="off"
+              value={workDetails.linkedinUsername}
+              onChange={handleChange}
               required
-              id="username"
+              id="linkedinUsername"
               className="p-2 w-full font-normal border-[1px] text-lg rounded-md border-gray-200 focus:outline-primary-300"
             />
           </div>
@@ -57,6 +89,8 @@ const WorkDetails = () => {
             <textarea
               id="bio"
               autoComplete="off"
+              value={workDetails.bio}
+              onChange={handleChange}
               required
               className="p-2 w-full border-[1px] text-lg rounded-md  border-gray-200 focus:outline-primary-300"
             />
@@ -69,7 +103,8 @@ const WorkDetails = () => {
               <HiDocumentAdd className="h-5 w-5 mr-1" /> Add
             </button>
             <button
-              type="submit"
+              type="reset"
+              onClick={handleReset}
               className="uppercase flex justify-center  shadow-primary-500 transition-all hover:bg-primary-50 duration-500 ease-in-out bg-white  items-center py-2 px-4 text-primary-600 border-[1px] border-primary-600 rounded-md font-semibold text-lg"
             >
               <MdDelete className="h-5 w-5 mr-1" /> Clear
