@@ -78,12 +78,16 @@ export const AuthProvider = ({ children }) => {
         .collection("users")
         .doc(docId)
         .set(
-          {
-            workDetails: {
-              ...data,
-              skills: data.skills.split(","),
-            },
-          },
+          currentUser.role == "Applicant"
+            ? {
+                details: {
+                  ...data,
+                  skills: data.skills.split(","),
+                },
+              }
+            : {
+                details: data,
+              },
           { merge: true }
         );
     } catch (err) {
@@ -100,10 +104,13 @@ export const AuthProvider = ({ children }) => {
         .doc(currentUser.userId)
         .get();
       setCurrentUser(userRef.data());
+      setIsFetching(false);
+      return currentUser.details ? true : false;
     } catch (err) {
       console.log(err);
+      setIsFetching(false);
+      return false;
     }
-    setIsFetching(false);
   };
 
   return (

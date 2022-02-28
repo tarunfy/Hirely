@@ -3,9 +3,14 @@ import { AuthContext } from "../contexts/AuthContext";
 import JobDetails from "../components/Details/JobDetails";
 import WorkDetails from "../components/Details/WorkDetails";
 import Spinner from "../components/Spinner";
+import { useHistory } from "react-router-dom";
 
 const Details = () => {
   const { currentUser, isLoading, isFetching } = useContext(AuthContext);
+
+  const history = useHistory();
+
+  if (currentUser.details) history.push("/dashboard");
 
   if (isLoading || isFetching) return <Spinner />;
 

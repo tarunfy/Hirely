@@ -4,22 +4,22 @@ import Spinner from "../components/Spinner";
 import { useHistory } from "react-router-dom";
 
 const Dashboard = () => {
-  const { currentUser, isLoading, getCurrentUser } = useContext(AuthContext);
+  const { currentUser, isLoading, getCurrentUser, isFetching } =
+    useContext(AuthContext);
   const history = useHistory();
+  console.log(currentUser);
 
   useEffect(() => {
-    getCurrentUser();
+    async function fetchUser() {
+      const res = await getCurrentUser();
+      if (!res) {
+        history.push("/add-details");
+      }
+    }
+    fetchUser();
   }, []);
 
-  if (
-    (currentUser.role === "Recruiter" &&
-      currentUser.jobDetails === undefined) ||
-    (currentUser.role === "Applicant" && currentUser.workDetails === undefined)
-  ) {
-    history.push("/add-details");
-  }
-
-  if (isLoading) return <Spinner />;
+  if (isLoading || isFetching) return <Spinner />;
 
   return (
     <div className="flex justify-center items-center h-screen bg-slate-50">

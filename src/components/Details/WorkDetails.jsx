@@ -40,7 +40,7 @@ const WorkDetails = () => {
     <>
       <h1 className="text-7xl font-bold mb-10 mt-10">Add your work details</h1>
       <div className="px-6 py-8 bg-slate-50 w-[28rem] shadow-material2 rounded-md">
-        <form className="w-full" onSubmit={handleSubmit}>
+        <form className="w-full" onSubmit={(e) => handleSubmit(e)}>
           <div className="input-div mb-4">
             <label
               htmlFor="skills"
@@ -54,7 +54,7 @@ const WorkDetails = () => {
             <input
               type="text"
               autoComplete="off"
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
               value={workDetails.skills}
               id="skills"
               required
@@ -68,7 +68,7 @@ const WorkDetails = () => {
             <input
               type="text"
               value={workDetails.education}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
               autoComplete="off"
               required
               id="education"
@@ -83,7 +83,7 @@ const WorkDetails = () => {
               type="text"
               autoComplete="off"
               value={workDetails.linkedinUsername}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
               required
               id="linkedinUsername"
               className="p-2 w-full font-normal border-[1px] text-lg rounded-md border-gray-200 focus:outline-primary-300"
@@ -97,7 +97,7 @@ const WorkDetails = () => {
               id="bio"
               autoComplete="off"
               value={workDetails.bio}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
               required
               className="p-2 w-full border-[1px] text-lg rounded-md  border-gray-200 focus:outline-primary-300"
             />
@@ -111,7 +111,7 @@ const WorkDetails = () => {
             </button>
             <button
               type="reset"
-              onClick={handleReset}
+              onClick={() => handleReset()}
               className="uppercase flex justify-center  shadow-primary-500 transition-all hover:bg-primary-50 duration-500 ease-in-out bg-white  items-center py-2 px-4 text-primary-600 border-[1px] border-primary-600 rounded-md font-semibold text-lg"
             >
               <MdDelete className="h-5 w-5 mr-1" /> Clear
