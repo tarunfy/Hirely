@@ -1,3 +1,4 @@
+import { useDeprecatedInvertedScale } from "framer-motion";
 import React, { useEffect, useState, createContext } from "react";
 import { auth, db } from "../services/firebase";
 
@@ -30,6 +31,7 @@ export const AuthProvider = ({ children }) => {
       );
       if (userInfo.role === "Recruiter") {
         const user = await db.collection("users").doc(response.user.uid).set({
+          userId: response.user.uid,
           role: userInfo.role,
           fullName: userInfo.fullName,
           company: userInfo.company,
@@ -39,6 +41,7 @@ export const AuthProvider = ({ children }) => {
         setIsFetching(false);
       } else {
         const user = await db.collection("users").doc(response.user.uid).set({
+          userId: response.user.uid,
           role: userInfo.role,
           fullName: userInfo.fullName,
           gender: userInfo.gender,
@@ -68,6 +71,41 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const addDetails = async (docId, data) => {
+    setIsFetching(true);
+    try {
+      await db
+        .collection("users")
+        .doc(docId)
+        .set(
+          {
+            workDetails: {
+              ...data,
+              skills: data.skills.split(","),
+            },
+          },
+          { merge: true }
+        );
+    } catch (err) {
+      console.log(err);
+    }
+    setIsFetching(false);
+  };
+
+  const getCurrentUser = async () => {
+    setIsFetching(true);
+    try {
+      const userRef = await db
+        .collection("users")
+        .doc(currentUser.userId)
+        .get();
+      setCurrentUser(userRef.data());
+    } catch (err) {
+      console.log(err);
+    }
+    setIsFetching(false);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -79,6 +117,8 @@ export const AuthProvider = ({ children }) => {
         setError,
         isLoading,
         setIsLoading,
+        addDetails,
+        getCurrentUser,
       }}
     >
       {!isLoading && children}

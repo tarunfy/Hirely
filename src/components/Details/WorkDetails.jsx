@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { HiDocumentAdd } from "react-icons/hi";
 import { MdDelete } from "react-icons/md";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useHistory } from "react-router";
+import Spinner from "../../components/Spinner";
 
 const WorkDetails = () => {
   const [workDetails, setWorkDetails] = useState({
@@ -10,14 +13,20 @@ const WorkDetails = () => {
     bio: "",
   });
 
+  const history = useHistory();
+
+  const { addDetails, currentUser, isLoading, isFetching } =
+    useContext(AuthContext);
+
   const handleChange = (e) => {
     setWorkDetails({ ...workDetails, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(workDetails.skills.split(","));
-    console.log(workDetails);
+    await addDetails(currentUser.userId, workDetails);
+    handleReset();
+    history.push("/dashboard");
   };
 
   const handleReset = () => {
@@ -28,6 +37,8 @@ const WorkDetails = () => {
       bio: "",
     });
   };
+
+  if (isLoading || isFetching) return <Spinner />;
 
   return (
     <>
