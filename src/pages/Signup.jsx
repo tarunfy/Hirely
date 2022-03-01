@@ -5,8 +5,12 @@ import { AuthContext } from "../contexts/AuthContext";
 import Recruiter from "../assets/recruiter.svg";
 import Applicant from "../assets/applicant.svg";
 import Spinner from "../components/Spinner";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
+  const { signup, isFetching, error, setError, isLoading } =
+    useContext(AuthContext);
+
   const [role, setRole] = useState("Recruiter");
   const [gender, setGender] = useState("");
   const [experienceLevel, setExperienceLevel] = useState("");
@@ -17,9 +21,23 @@ const Signup = () => {
   const [designation, setDesignation] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const { signup, isFetching, error, setError, isLoading } =
-    useContext(AuthContext);
+  const isDisabled =
+    role === "Recruiter"
+      ? isLoading ||
+        !email ||
+        !password ||
+        !company ||
+        !designation ||
+        !phoneNumber ||
+        !fullName
+      : isLoading ||
+        !email ||
+        !password ||
+        !experienceLevel ||
+        !gender ||
+        !phoneNumber ||
+        !fullName ||
+        !dob;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,6 +76,7 @@ const Signup = () => {
     setExperienceLevel("");
     setGender("");
     setCompany("");
+    setError("");
   };
 
   const handleClear = () => {
@@ -79,8 +98,8 @@ const Signup = () => {
       id="signup-container"
       className="flex h-screen justify-between items-center bg-slate-100 px-10"
     >
-      <div className="px-4 py-8 ml-16 mt-24 w-128 rounded-lg shadow-material bg-slate-50 form-container">
-        <div className="flex w-full items-center justify-evenly mb-5 ">
+      <div className="px-4 py-8 ml-16 w-128 rounded-lg shadow-material bg-slate-50 form-container">
+        <div className="flex w-full items-center justify-evenly mb-5">
           <div className="flex items-center space-x-1">
             <input
               type="radio"
@@ -210,22 +229,22 @@ const Signup = () => {
             />
           </div>
           {error && (
-            <div className="text-center text-secondary-600 font-medium my-1">
+            <div className="text-center text-secondary-600 font-medium my-4">
               {error}
             </div>
           )}
           <button
             type="submit"
-            disabled={isLoading}
+            disabled={isDisabled}
             className={`${
-              !isLoading
-                ? "bg-primary-600 hover:bg-primary-700"
-                : "bg-primary-400 cursor-default"
-            } flex justify-center items-center uppercase  transition-colors duration-300 ease-in-out w-full text-lg font-bold px-5 py-2 rounded-md  text-white`}
+              isDisabled
+                ? "bg-primary-400 cursor-default"
+                : "bg-primary-600 hover:bg-primary-700"
+            } flex justify-center items-center  transition-colors duration-300 ease-in-out w-full text-xl font-medium px-5 py-2 rounded-md  text-white`}
           >
             {!isLoading ? (
               <>
-                <FaPencilAlt className="mr-2 h-4 w-4" /> Register
+                <FaPencilAlt className="mr-1 h-4 w-4" /> Register
               </>
             ) : (
               <>
@@ -252,11 +271,17 @@ const Signup = () => {
           <button
             onClick={handleClear}
             type="reset"
-            className="flex justify-center items-center border-primary-600 border-2 text-center uppercase text-primary-600 w-full px-5 py-2 font-bold text-lg mt-4 rounded-md transition-colors duration-300 ease-in-out  hover:bg-primary-50"
+            className="flex justify-center items-center border-primary-600 border-2 text-center  text-primary-600 w-full px-5 py-2 font-medium text-xl mt-4 rounded-md transition-colors duration-300 ease-in-out  hover:bg-primary-50"
           >
-            <MdDelete className="mr-2 h-5 w-5" />
+            <MdDelete className="mr-1 h-5 w-5" />
             Clear
           </button>
+          <p className="text-center text-base mt-4">
+            Already have an account?{" "}
+            <Link to="/signin" className="text-primary-500 font-semibold">
+              Sign in
+            </Link>{" "}
+          </p>
         </form>
       </div>
       <img

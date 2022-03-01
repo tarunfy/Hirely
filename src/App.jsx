@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Navbar from "./components/Navbar";
+
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
@@ -12,7 +12,6 @@ function App() {
   const { currentUser } = useContext(AuthContext);
   return (
     <>
-      <Navbar />
       <Switch>
         <Route
           exact

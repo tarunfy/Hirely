@@ -4,7 +4,8 @@ import Spinner from "../components/Spinner";
 import { useHistory } from "react-router-dom";
 
 const Dashboard = () => {
-  const { isLoading, getCurrentUser, isFetching } = useContext(AuthContext);
+  const { isLoading, getCurrentUser, isFetching, logout } =
+    useContext(AuthContext);
 
   const history = useHistory();
 
@@ -23,6 +24,12 @@ const Dashboard = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-slate-50">
       <p className="text-9xl font-extrabold">Dashboard</p>
+      <button
+        onClick={() => logout()}
+        className="text-base text-primary-800 border-2 border-primary-800  bg-slate-50 font-medium px-6 py-1 rounded-md hover:scale-95  transition-transform duration-200 ease-in-out"
+      >
+        Logout
+      </button>
     </div>
   );
 };

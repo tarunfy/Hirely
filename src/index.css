@@ -113,3 +113,29 @@
   background-image: radial-gradient(#f43f5f 0.75px, #f1f5fa 0.75px);
   background-size: 15px 15px;
 }
+
+input[type="radio"]:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+}
+
+input[type="radio"]:checked:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -4px;
+  left: -1px;
+  position: relative;
+  background-color: #e11d48;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}

@@ -4,6 +4,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { MdDelete } from "react-icons/md";
 import Login from "../assets/login.svg";
 import Spinner from "../components/Spinner";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -58,16 +59,16 @@ const Signup = () => {
           )}
           <button
             type="submit"
-            disabled={isLoading}
+            disabled={isLoading || !email || !password}
             className={`${
-              !isLoading
-                ? "bg-primary-600 hover:bg-primary-700"
-                : "bg-primary-400 cursor-default"
-            } flex justify-center items-center uppercase  transition-colors duration-300 ease-in-out w-full text-lg font-bold px-5 py-2 rounded-md shadow-md  text-white`}
+              isLoading || !email || !password
+                ? "bg-primary-400 cursor-default"
+                : "bg-primary-600 hover:bg-primary-700"
+            } flex justify-center items-center  transition-colors duration-300 ease-in-out w-full text-xl font-medium px-5 py-2 rounded-md shadow-md  text-white`}
           >
             {!isLoading ? (
               <>
-                <RiUserSharedFill className="mr-2 h-5 w-5" />
+                <RiUserSharedFill className="mr-1 h-5 w-5" />
                 Login
               </>
             ) : (
@@ -95,11 +96,17 @@ const Signup = () => {
           <button
             onClick={handleClear}
             type="reset"
-            className="border-primary-600 border-2 flex justify-center items-center text-center uppercase text-primary-600 w-full px-5 py-2 font-bold text-lg mt-4 rounded-md transition-colors duration-300 ease-in-out  hover:bg-primary-50"
+            className="border-primary-600 border-2 flex justify-center items-center text-center text-primary-600 w-full px-5 py-2 font-medium text-xl mt-4 rounded-md transition-colors duration-300 ease-in-out  hover:bg-primary-50"
           >
-            <MdDelete className="mr-2 h-5 w-5" fill="#4f46e5" />
+            <MdDelete className="mr-1 h-5 w-5" fill="#4f46e5" />
             Clear
           </button>
+          <p className="text-center text-base mt-4">
+            Don't have an account?{" "}
+            <Link to="/signup" className="text-primary-500 font-semibold">
+              Sign up
+            </Link>{" "}
+          </p>
         </form>
       </div>
       <img src={Login} alt="login-img" className="w-128 h-128" />

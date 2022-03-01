@@ -20,10 +20,10 @@ const Home = () => {
           </span>
         </div>
         <Link
-          to="/signup"
+          to="/signin"
           className="text-white uppercase hover:shadow-material hover:shadow-primary-400 transition-shadows duration-300 ease-in-out font-bold text-xl bg-primary-700 px-8 py-3 rounded-md"
         >
-          <MdPeopleAlt className="mr-2 inline text-white" />
+          <MdPeopleAlt className="mr-2 h-6 w-6 inline text-white" />
           Start Hiring
         </Link>
       </div>
