@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+@import url("http://fonts.cdnfonts.com/css/sofia-pro");
 
 * {
   margin: 0;
@@ -14,6 +14,10 @@
   /* Code for Firefox */
   color: black;
   background: #e11d48;
+}
+
+#cta-btn {
+  font-family: "Sofia Pro", sans-serif;
 }
 
 ::selection {
@@ -138,4 +142,42 @@ input[type="radio"]:checked:after {
   display: inline-block;
   visibility: visible;
   border: 2px solid white;
+}
+
+#blurry-gradient {
+  position: fixed;
+  top: 70%;
+  left: -10%;
+  transform: translate(-4%, -55%);
+  width: 600px;
+  height: 600px;
+  border-radius: 50% 22% 40% 80%;
+  filter: blur(100px);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(225, 29, 72),
+    rgba(76, 0, 255, 0)
+  );
+  opacity: 0.4;
+}
+
+#blurry-gradient2 {
+  position: fixed;
+  top: 70%;
+  right: -10%;
+  transform: translate(-4%, -55%);
+  width: 600px;
+  height: 600px;
+  border-radius: 50% 22% 40% 80%;
+  filter: blur(100px);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(225, 29, 72),
+    rgba(76, 0, 255, 0)
+  );
+  opacity: 0.4;
+}
+
+.candidate {
+  transform: scaleX(-1);
 }

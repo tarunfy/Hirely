@@ -1,39 +1,51 @@
 import React from "react";
-import Hero from "../assets/hero.svg";
 import Waves from "../assets/waves.svg";
+import candidate from "../assets/candidate.svg";
+import recruiter from "../assets/recruiter2.svg";
 import { Link } from "react-router-dom";
-import { MdPeopleAlt } from "react-icons/md";
 
 const Home = () => {
   return (
-    <div className="w-full overflow-hidden flex justify-around bg-slate-50 items-center h-screen z-50">
-      <div>
-        <div className="line">
-          <span className="text-7xl font-extrabold">The best platform</span>
-        </div>
-        <div className="line">
-          <span className="text-7xl font-extrabold">to get hired by the</span>
-        </div>
-        <div className="line mb-10">
-          <span className="text-7xl font-extrabold animate-gradient-x from-purple-400 via-primary-800 bg-gradient-to-r bg-clip-text text-transparent to-secondary-700">
-            upcoming startups.
+    <>
+      <div id="blurry-gradient"></div>
+      <div id="blurry-gradient2"></div>
+      <div className="w-full flex justify-center flex-col bg-slate-50 items-center h-screen">
+        <h1 className="z-30 text-center">
+          <span className="text-8xl font-extrabold">
+            The best platform to <br /> get hired by the upcoming <br />{" "}
+            startups.
           </span>
-        </div>
+        </h1>
+        <p className="text-center cursor-default leading-8 text-2xl z-30 font-semibold text-gray-700 my-10">
+          Hirely, India's first job platform, connects startup founders,
+          business owners, <br /> recruiters, and HR heads directly to job{" "}
+          <br /> seekers and candidates.
+        </p>
         <Link
+          id="cta-btn"
           to="/signin"
-          className="text-white uppercase hover:shadow-material hover:shadow-primary-400 transition-shadows duration-300 ease-in-out font-bold text-xl bg-primary-700 px-8 py-3 rounded-md"
+          className="text-white animate-gradient-x from-purple-400 via-primary-800 bg-gradient-to-r z-40 uppercase flex justify-center to-secondary-700 items-center  hover:shadow-2xl hover:shadow-primary-900 transition-all duration-300 ease-in-out font-bold text-3xl px-5 py-3 rounded-md"
         >
-          <MdPeopleAlt className="mr-2 h-6 w-6 inline text-white" />
           Start Hiring
         </Link>
+        <img
+          src={Waves}
+          alt="Waves"
+          className="fixed overflow-hidden z-40  bottom-0 w-full"
+        />
+        <img
+          src={Waves}
+          alt="Waves"
+          className="fixed overflow-hidden z-40 rotate-180  top-0 w-full"
+        />
+        <img src={recruiter} alt="img" className="fixed top-[25rem] left-10 " />
+        <img
+          src={candidate}
+          alt="img"
+          className="fixed top-[25rem] right-10 candidate"
+        />
       </div>
-      <img src={Hero} alt="Hero" className="w-128 h-128" />
-      <img
-        src={Waves}
-        alt="Waves"
-        className="absolute overflow-hidden  bottom-0 w-full z-0"
-      />
-    </div>
+    </>
   );
 };
 
