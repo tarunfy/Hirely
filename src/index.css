@@ -113,9 +113,17 @@
 
 #login-container,
 #signup-container {
-  background-color: #f1f5fa;
-  background-image: radial-gradient(#f43f5f 0.75px, #f1f5fa 0.75px);
-  background-size: 15px 15px;
+  background-image: url("./assets/download.svg");
+  background-repeat: repeat;
+  background-position: bottom 1px center;
+  mask-image: linear-gradient(to top, transparent, black);
+  -webkit-mask-image: linear-gradient(to top, transparent, black);
+  z-index: -10;
+}
+
+.form-container {
+  backdrop-filter: blur(16px);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 input[type="radio"]:after {
