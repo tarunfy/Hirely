@@ -8,13 +8,16 @@ const Sidebar = () => {
   const { logout } = useContext(AuthContext);
 
   return (
-    <div className="h-screen absolute left-0 top-0 w-56 bg-secondary-800 flex justify-start flex-col">
-      <div id="top" className="bg-secondary-900 py-3 mb-10 text-center">
-        <h2 className="text-white font-extrabold underline text-2xl  cursor-default">
+    <div className="h-screen absolute left-0 top-0 w-56 bg-secondary-800 flex justify-between py-10 flex-col">
+      <div id="top" className="py-3 text-center">
+        <h2 className="text-white font-extrabold  text-3xl  cursor-default">
           Hirely
         </h2>
       </div>
-      <div id="mid" className="flex flex-col items-center justify-center">
+      <div
+        id="mid"
+        className="flex flex-col items-center justify-center space-y-2"
+      >
         {SidebarData.map((value, index) => (
           <Link
             to={value.link}
@@ -22,26 +25,22 @@ const Sidebar = () => {
             className={`${
               window.location.pathname == value.link
                 ? "bg-secondary-600 py-4 w-full flex justify-evenly items-center cursor-pointer"
-                : "hover:bg-secondary-500 py-4 w-full flex justify-evenly items-center cursor-pointer"
+                : "hover:bg-white hover:text-secondary-500 hover:shadow-2xl text-white transition-all duration-500 ease-in-out py-4 w-full flex justify-evenly items-center cursor-pointer"
             }  `}
           >
-            <div className="text-white flex w-2/5 justify-end px-3">
-              {value.icon}
-            </div>
-            <h4 className="text-white text-lg font-medium flex w-3/5">
-              {value.title}
-            </h4>
+            <div className=" flex w-2/5 justify-end px-3">{value.icon}</div>
+            <h4 className=" text-lg font-medium flex w-3/5">{value.title}</h4>
           </Link>
         ))}
-        <div
-          className=" mt-10 text-slate-300 hover:text-white  transition-colors duration-300 ease-in-out  py-4 w-full flex justify-evenly items-center cursor-pointer"
-          onClick={logout}
-        >
-          <div className="flex w-2/5 justify-end px-3">
-            <MdOutlineLogout className="h-5 w-5" />
-          </div>
-          <h4 className="text-lg font-medium flex w-3/5">Logout</h4>
+      </div>
+      <div
+        className="text-slate-300 hover:text-white  transition-colors duration-300 ease-in-out  py-4 w-full flex justify-evenly items-center cursor-pointer"
+        onClick={logout}
+      >
+        <div className="flex w-2/5 justify-end px-3">
+          <MdOutlineLogout className="h-5 w-5" />
         </div>
+        <h4 className="text-lg font-medium flex w-3/5">Logout</h4>
       </div>
     </div>
   );
