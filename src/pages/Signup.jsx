@@ -16,7 +16,7 @@ const Signup = () => {
   const [gender, setGender] = useState("");
   const [experienceLevel, setExperienceLevel] = useState("");
   const [dob, setDob] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [fullName, setFullName] = useState("");
   const [company, setCompany] = useState("");
   const [designation, setDesignation] = useState("");

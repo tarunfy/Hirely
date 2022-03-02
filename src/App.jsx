@@ -5,6 +5,7 @@ import Signin from "./pages/Signin";
 import Details from "./pages/Details";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
 import { AuthContext } from "./contexts/AuthContext";
 
 function App() {
@@ -45,6 +46,13 @@ function App() {
           path="/add-details"
           render={(props) =>
             currentUser ? <Details {...props} /> : <Redirect to="/signin" />
+          }
+        />
+        <Route
+          exact
+          path="/profile"
+          render={(props) =>
+            currentUser ? <Profile {...props} /> : <Redirect to="/signin" />
           }
         />
       </Switch>

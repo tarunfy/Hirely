@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import Spinner from "../components/Spinner";
 import { useHistory } from "react-router-dom";
+import Spinner from "../components/Spinner";
+import Sidebar from "../components/Sidebar/Sidebar";
 
 const Dashboard = () => {
-  const { isLoading, getCurrentUser, isFetching, logout } =
+  const { isLoading, getCurrentUser, isFetching, currentUser } =
     useContext(AuthContext);
 
   const history = useHistory();
@@ -22,15 +23,12 @@ const Dashboard = () => {
   if (isLoading || isFetching) return <Spinner />;
 
   return (
-    <div className="flex justify-center items-center h-screen bg-slate-50">
-      <p className="text-9xl font-extrabold">Dashboard</p>
-      <button
-        onClick={() => logout()}
-        className="text-base text-primary-800 border-2 border-primary-800  bg-slate-50 font-medium px-6 py-1 rounded-md hover:scale-95  transition-transform duration-200 ease-in-out"
-      >
-        Logout
-      </button>
-    </div>
+    <>
+      <Sidebar />
+      <div className="h-screen pl-56 w-full bg-slate-50 text-center">
+        <p className="text-6xl">Welcome {currentUser.phoneNumber} 👋🏻</p>
+      </div>
+    </>
   );
 };
 

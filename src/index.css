@@ -29,7 +29,7 @@
   width: 50px;
   height: 50px;
   position: relative;
-  animation: sk-chase 2.5s infinite linear both;
+  animation: sk-chase 1.5s infinite linear 0s;
 }
 
 .sk-chase-dot {
@@ -38,7 +38,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  animation: sk-chase-dot 2s infinite ease-in-out both;
+  animation: sk-chase-dot 1s infinite ease-in-out 0s;
 }
 
 .sk-chase-dot:before {
@@ -48,7 +48,7 @@
   height: 25%;
   background-color: #4c00ff;
   border-radius: 100%;
-  animation: sk-chase-dot-before 2s infinite ease-in-out both;
+  animation: sk-chase-dot-before 1s infinite ease-in-out 0s;
 }
 
 .sk-chase-dot:nth-child(1) {
