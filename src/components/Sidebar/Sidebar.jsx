@@ -10,7 +10,7 @@ const Sidebar = () => {
   return (
     <div className="h-screen absolute left-0 top-0 w-56 bg-secondary-800 flex justify-between py-10 flex-col">
       <div id="top" className="py-3 text-center">
-        <h2 className="text-white font-extrabold  text-3xl  cursor-default">
+        <h2 className="text-white font-extrabold text-4xl  cursor-default">
           Hirely
         </h2>
       </div>

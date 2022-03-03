@@ -10,10 +10,10 @@ const Home = () => {
       <div id="blurry-gradient"></div>
       <div id="blurry-gradient2"></div>
       <div className="w-full flex justify-center flex-col bg-slate-50 items-center h-screen">
-        <h1 className="z-30 text-center text-7xl font-extrabold">
+        <h1 className="z-30 text-center text-7xl leading-[5.5rem] font-extrabold">
           Direct Hiring App for Startup <br /> Ecosystem.
         </h1>
-        <p className="text-center cursor-default leading-8 text-2xl z-30 font-semibold text-gray-700 my-10">
+        <p className="text-center cursor-default leading-8 text-xl z-30 font-semibold text-gray-700 my-10">
           Hirely, India's first job platform, connects startup founders,
           business owners, <br /> recruiters, and HR heads directly to job{" "}
           <br /> seekers and candidates.
