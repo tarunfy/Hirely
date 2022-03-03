@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import { FaPencilAlt } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { AuthContext } from "../contexts/AuthContext";
-import Recruiter from "../assets/recruiter.svg";
-import Applicant from "../assets/applicant.svg";
+import web from "../assets/web.svg";
+import business from "../assets/business.svg";
 import Spinner from "../components/Spinner";
 import { Link } from "react-router-dom";
 import beam from "../assets/beams.jpeg";
@@ -290,9 +290,9 @@ const Signup = () => {
           </form>
         </div>
         <img
-          src={role === "Recruiter" ? Recruiter : Applicant}
+          src={role === "Recruiter" ? web : business}
           alt="img"
-          className="w-128 h-128 z-30"
+          className="w-[40rem] h-128 z-30"
         />
       </div>
     </>

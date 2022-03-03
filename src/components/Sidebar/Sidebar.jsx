@@ -25,7 +25,7 @@ const Sidebar = () => {
             className={`${
               window.location.pathname == value.link
                 ? "bg-secondary-600 py-4 w-full flex justify-evenly items-center cursor-pointer"
-                : "hover:bg-white hover:text-secondary-500 hover:shadow-2xl text-white transition-all duration-500 ease-in-out py-4 w-full flex justify-evenly items-center cursor-pointer"
+                : "hover:bg-white hover:text-secondary-500 hover:shadow-2xl text-white transition-all duration-300 ease-in-out py-4 w-full flex justify-evenly items-center cursor-pointer"
             }  `}
           >
             <div className=" flex w-2/5 justify-end px-3">{value.icon}</div>

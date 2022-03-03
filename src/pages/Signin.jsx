@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { RiUserSharedFill } from "react-icons/ri";
 import { AuthContext } from "../contexts/AuthContext";
 import { MdDelete } from "react-icons/md";
-import Login from "../assets/login.svg";
+import startup from "../assets/startup.svg";
 import Spinner from "../components/Spinner";
 import { Link } from "react-router-dom";
 import beam from "../assets/beams.jpeg";
@@ -114,7 +114,7 @@ const Signup = () => {
             </p>
           </form>
         </div>
-        <img src={Login} alt="login-img" className="w-128 h-128 z-30" />
+        <img src={startup} alt="login-img" className="w-[40rem] h-128 z-30" />
       </div>
     </>
   );
