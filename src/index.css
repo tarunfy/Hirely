@@ -46,7 +46,7 @@
   display: block;
   width: 25%;
   height: 25%;
-  background-color: #4c00ff;
+  background-color: #f43f5f;
   border-radius: 100%;
   animation: sk-chase-dot-before 1s infinite ease-in-out 0s;
 }
@@ -108,6 +108,15 @@
   100%,
   0% {
     transform: scale(1);
+  }
+}
+
+@media (max-height: 728px) {
+  .candidate {
+    top: 23rem;
+  }
+  .recruiter {
+    top: 23rem;
   }
 }
 
@@ -184,8 +193,4 @@ input[type="radio"]:checked:after {
     rgba(76, 0, 255, 0)
   );
   opacity: 0.4;
-}
-
-.candidate {
-  transform: scaleX(-1);
 }

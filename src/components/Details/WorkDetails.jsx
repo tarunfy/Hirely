@@ -58,7 +58,7 @@ const WorkDetails = () => {
               value={workDetails.skills}
               id="skills"
               required
-              className="p-2 w-full border-[1px] text-lg rounded-md border-gray-200 focus:outline-primary-300"
+              className="p-2 w-full border-[1px] text-lg rounded-md border-gray-200 focus:outline-secondary-300"
             />
           </div>
           <div className="input-div mb-4">
@@ -72,7 +72,7 @@ const WorkDetails = () => {
               autoComplete="off"
               required
               id="education"
-              className="p-2 w-full border-[1px] text-lg rounded-md border-gray-200 focus:outline-primary-300"
+              className="p-2 w-full border-[1px] text-lg rounded-md border-gray-200 focus:outline-secondary-300"
             />
           </div>
           <div className="input-div mb-4">
@@ -86,7 +86,7 @@ const WorkDetails = () => {
               onChange={(e) => handleChange(e)}
               required
               id="linkedinUsername"
-              className="p-2 w-full font-normal border-[1px] text-lg rounded-md border-gray-200 focus:outline-primary-300"
+              className="p-2 w-full font-normal border-[1px] text-lg rounded-md border-gray-200 focus:outline-secondary-300"
             />
           </div>
           <div className="input-div mb-4">
@@ -99,20 +99,20 @@ const WorkDetails = () => {
               value={workDetails.bio}
               onChange={(e) => handleChange(e)}
               required
-              className="p-2 w-full border-[1px] text-lg rounded-md  border-gray-200 focus:outline-primary-300"
+              className="p-2 w-full border-[1px] text-lg rounded-md  border-gray-200 focus:outline-secondary-300"
             />
           </div>
           <div className="flex justify-start items-center space-x-2">
             <button
               type="submit"
-              className="uppercase flex justify-center  transition-colors hover:bg-primary-700 duration-500 ease-in-out  items-center py-2 px-4 border-[1px] border-primary-600 text-white rounded-md font-semibold text-lg bg-primary-600"
+              className="uppercase flex justify-center  transition-colors hover:bg-secondary-700 duration-500 ease-in-out  items-center py-2 px-4 border-[1px] border-secondary-600 text-white rounded-md font-semibold text-lg bg-secondary-600"
             >
               <HiDocumentAdd className="h-5 w-5 mr-1" /> Add
             </button>
             <button
               type="reset"
               onClick={() => handleReset()}
-              className="uppercase flex justify-center  shadow-primary-500 transition-all hover:bg-primary-50 duration-500 ease-in-out bg-white  items-center py-2 px-4 text-primary-600 border-[1px] border-primary-600 rounded-md font-semibold text-lg"
+              className="uppercase flex justify-center  shadow-secondary-500 transition-all hover:bg-secondary-50 duration-500 ease-in-out bg-white  items-center py-2 px-4 text-secondary-600 border-[1px] border-secondary-600 rounded-md font-semibold text-lg"
             >
               <MdDelete className="h-5 w-5 mr-1" /> Clear
             </button>

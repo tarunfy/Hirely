@@ -20,26 +20,31 @@ const Home = () => {
         </p>
         <Link
           id="cta-btn"
+          // animate-gradient-x  to-secondary-700 from-purple-400 via-primary-800 bg-gradient-to-r
           to="/signin"
-          className="text-white animate-gradient-x from-purple-400 via-primary-800 bg-gradient-to-r z-40 uppercase flex justify-center to-secondary-700 items-center  hover:shadow-2xl hover:shadow-primary-900 transition-all duration-300 ease-in-out font-bold text-3xl px-5 py-3 rounded-md"
+          className="bg-white border-2 border-secondary-600 text-secondary-600  z-40 uppercase flex justify-center  items-center hover:bg-secondary-600 hover:text-white  hover:shadow-2xl hover:shadow-secondary-900 transition-all duration-300 ease-in-out hover:scale-105 font-semibold text-3xl px-5 py-3 rounded-full"
         >
           Start Hiring
         </Link>
         <img
           src={Waves}
           alt="Waves"
-          className="fixed overflow-hidden z-40  bottom-0 w-full"
+          className="fixed overflow-hidden z-30  bottom-0 w-full waves-bottom"
         />
         <img
           src={Waves}
           alt="Waves"
-          className="fixed overflow-hidden z-40 rotate-180  top-0 w-full"
+          className="fixed overflow-hidden  z-30 rotate-180  top-0 w-full waves-top"
         />
-        <img src={recruiter} alt="img" className="fixed top-[25rem] left-10 " />
+        <img
+          src={recruiter}
+          alt="img"
+          className="fixed top-[25rem] transition-all duration-300 ease-in-out left-10 recruiter hover:scale-105 hover:-rotate-1"
+        />
         <img
           src={candidate}
           alt="img"
-          className="fixed top-[25rem] right-10 candidate"
+          className="fixed top-[25rem] transition-all duration-300 ease-in-out right-10 candidate hover:scale-105 hover:rotate-1"
         />
       </div>
     </>

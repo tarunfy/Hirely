@@ -40,7 +40,7 @@ const Signup = () => {
             <div className="input-container mb-5">
               <input
                 type="email"
-                className="p-2 border-[1px] border-gray-200 focus:outline-primary-400 w-full rounded-md text-lg"
+                className="p-2 border-[1px] border-gray-200 focus:outline-secondary-400 w-full rounded-md text-lg"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
@@ -50,7 +50,7 @@ const Signup = () => {
             <div className="input-container mb-5">
               <input
                 type="password"
-                className=" focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md text-lg"
+                className=" focus:outline-secondary-400 border-[1px] border-gray-200 p-2 w-full rounded-md text-lg"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
@@ -67,8 +67,8 @@ const Signup = () => {
               disabled={isLoading || !email || !password}
               className={`${
                 isLoading || !email || !password
-                  ? "bg-primary-400 cursor-default"
-                  : "bg-primary-600 hover:bg-primary-700"
+                  ? "bg-secondary-400 cursor-default"
+                  : "bg-secondary-600 hover:bg-secondary-700"
               } flex justify-center items-center  transition-colors duration-300 ease-in-out w-full text-xl font-medium px-5 py-2 rounded-md shadow-md  text-white`}
             >
               {!isLoading ? (
@@ -80,7 +80,7 @@ const Signup = () => {
                 <>
                   <svg
                     role="status"
-                    className="mr-2 w-5 h-5 text-gray-200 animate-spin  fill-primary-500"
+                    className="mr-2 w-5 h-5 text-gray-200 animate-spin  fill-secondary-500"
                     viewBox="0 0 100 101"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -101,14 +101,14 @@ const Signup = () => {
             <button
               onClick={handleClear}
               type="reset"
-              className="border-primary-600 border-2 flex justify-center items-center text-center text-primary-600 w-full px-5 py-2 font-medium text-xl mt-4 rounded-md transition-colors duration-300 ease-in-out  hover:bg-primary-50"
+              className="border-secondary-600 border-2 flex justify-center items-center text-center text-secondary-600 w-full px-5 py-2 font-medium text-xl mt-4 rounded-md transition-colors duration-300 ease-in-out  hover:bg-secondary-50"
             >
-              <MdDelete className="mr-1 h-5 w-5" fill="#4f46e5" />
+              <MdDelete className="mr-1 h-5 w-5" fill="#F43F5F" />
               Clear
             </button>
             <p className="text-center text-base mt-4">
               Don't have an account?{" "}
-              <Link to="/signup" className="text-primary-500 font-semibold">
+              <Link to="/signup" className="text-secondary-500 font-semibold">
                 Sign up
               </Link>{" "}
             </p>

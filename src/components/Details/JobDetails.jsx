@@ -25,6 +25,14 @@ const JobDetails = () => {
 
   const { experience, salary, education } = jobRequirements;
 
+  const isDisabled =
+    !jobDescription ||
+    !jobTitle ||
+    !jobLocation ||
+    !experience ||
+    !salary ||
+    !education;
+
   const handleDetails = (e) => {
     setJobDetails({ ...jobDetails, [e.target.id]: e.target.value });
   };
@@ -73,7 +81,7 @@ const JobDetails = () => {
               autoComplete="off"
               id="jobTitle"
               required
-              className="p-2 w-full border-[1px] text-lg rounded-md border-gray-200 focus:outline-primary-300"
+              className="p-2 w-full border-[1px] text-lg rounded-md border-gray-200 focus:outline-secondary-300"
             />
           </div>
           <div className="input-div mb-4">
@@ -91,7 +99,7 @@ const JobDetails = () => {
                   value={experience}
                   onChange={(e) => handleRequirements(e)}
                   id="experience"
-                  className="p-1 border-[1px] text-sm rounded-md border-gray-200 focus:outline-primary-300"
+                  className="p-1 border-[1px] text-sm rounded-md border-gray-200 focus:outline-secondary-300"
                 >
                   <option value="Any Experience">Any Experience</option>
                   <option value="Fresher">Fresher</option>
@@ -112,7 +120,7 @@ const JobDetails = () => {
                   value={salary}
                   onChange={(e) => handleRequirements(e)}
                   required
-                  className="p-1 border-[1px] text-sm rounded-md border-gray-200 focus:outline-primary-300"
+                  className="p-1 border-[1px] text-sm rounded-md border-gray-200 focus:outline-secondary-300"
                 >
                   <option value="Rs 1 - 1 LPA">Rs 1 - 1 LPA</option>
                   <option value="Rs 2 - 5 LPA">Rs 2 - 5 LPA</option>
@@ -133,7 +141,7 @@ const JobDetails = () => {
                   value={education}
                   onChange={(e) => handleRequirements(e)}
                   required
-                  className="p-1 border-[1px] text-sm rounded-md border-gray-200 focus:outline-primary-300"
+                  className="p-1 border-[1px] text-sm rounded-md border-gray-200 focus:outline-secondary-300"
                 >
                   <option value="Doctorate">Doctorate</option>
                   <option value="Post-Graduation">Post-Graduation</option>
@@ -155,7 +163,7 @@ const JobDetails = () => {
               onChange={(e) => handleDetails(e)}
               required
               id="jobLocation"
-              className="p-2 w-full font-normal border-[1px] text-lg rounded-md border-gray-200 focus:outline-primary-300"
+              className="p-2 w-full font-normal border-[1px] text-lg rounded-md border-gray-200 focus:outline-secondary-300"
             />
           </div>
           <div className="input-div mb-4">
@@ -168,20 +176,25 @@ const JobDetails = () => {
               onChange={(e) => handleDetails(e)}
               autoComplete="off"
               required
-              className="p-2 w-full border-[1px] text-lg rounded-md  border-gray-200 focus:outline-primary-300"
+              className="p-2 w-full border-[1px] text-lg rounded-md  border-gray-200 focus:outline-secondary-300"
             />
           </div>
           <div className="flex justify-start items-center space-x-2">
             <button
               type="submit"
-              className="uppercase flex justify-center  transition-colors hover:bg-primary-700 duration-500 ease-in-out  items-center py-2 px-4 border-[1px] border-primary-600 text-white rounded-md font-semibold text-lg bg-primary-600"
+              disabled={isDisabled}
+              className={`${
+                isDisabled
+                  ? "bg-secondary-400 cursor-default"
+                  : "bg-secondary-600 hover:bg-secondary-700"
+              } flex justify-center items-center  transition-colors duration-300 ease-in-out text-xl font-medium px-5 py-2 rounded-md  text-white`}
             >
               <HiDocumentAdd className="h-5 w-5 mr-1" /> Add
             </button>
             <button
               type="reset"
               onClick={() => resetForm()}
-              className="uppercase flex justify-center  shadow-primary-500 transition-all hover:bg-primary-50 duration-500 ease-in-out bg-white  items-center py-2 px-4 text-primary-600 border-[1px] border-primary-600 rounded-md font-semibold text-lg"
+              className="flex justify-center  shadow-secondary-500 transition-all hover:bg-secondary-50 duration-500 ease-in-out bg-white  items-center py-2 px-4 text-secondary-600 border-[1px] border-secondary-600 rounded-md font-semibold text-lg"
             >
               <MdDelete className="h-5 w-5 mr-1" /> Clear
             </button>

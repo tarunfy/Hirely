@@ -134,7 +134,7 @@ const Signup = () => {
             <div className="input-container mb-5">
               <input
                 type="text"
-                className="focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md "
+                className="focus:outline-secondary-400 border-[1px] border-gray-200 p-2 w-full rounded-md "
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="Full Name"
@@ -145,7 +145,7 @@ const Signup = () => {
               {role === "Recruiter" ? (
                 <input
                   type="text"
-                  className="focus:outline-primary-400  border-[1px] border-gray-200 p-2 w-full rounded-md"
+                  className="focus:outline-secondary-400  border-[1px] border-gray-200 p-2 w-full rounded-md"
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
                   placeholder="My Company"
@@ -154,7 +154,7 @@ const Signup = () => {
               ) : (
                 <input
                   type="text"
-                  className="focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
+                  className="focus:outline-secondary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
                   value={experienceLevel}
                   onChange={(e) => setExperienceLevel(e.target.value)}
                   placeholder="Experience Level"
@@ -166,7 +166,7 @@ const Signup = () => {
               {role === "Recruiter" ? (
                 <input
                   type="text"
-                  className="focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
+                  className="focus:outline-secondary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
                   value={designation}
                   onChange={(e) => setDesignation(e.target.value)}
                   placeholder="Designation"
@@ -176,7 +176,7 @@ const Signup = () => {
                 <select
                   name="gender"
                   id="gender"
-                  className="focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
+                  className="focus:outline-secondary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
                   value={gender}
                   onChange={(e) => setGender(e.target.value)}
                 >
@@ -193,7 +193,7 @@ const Signup = () => {
               <div className="input-container mb-5">
                 <input
                   type="date"
-                  className="focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
+                  className="focus:outline-secondary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
                   value={dob}
                   onChange={(e) => setDob(e.target.value)}
                   placeholder="Date of birth"
@@ -206,7 +206,7 @@ const Signup = () => {
                 type="tel"
                 maxLength={10}
                 pattern="[0-9]{10}"
-                className="focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
+                className="focus:outline-secondary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
                 placeholder="Phone Number"
@@ -216,7 +216,7 @@ const Signup = () => {
             <div className="input-container mb-5">
               <input
                 type="email"
-                className="focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
+                className="focus:outline-secondary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
@@ -226,7 +226,7 @@ const Signup = () => {
             <div className="input-container mb-5">
               <input
                 type="password"
-                className="focus:outline-primary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
+                className="focus:outline-secondary-400 border-[1px] border-gray-200 p-2 w-full rounded-md"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
@@ -243,8 +243,8 @@ const Signup = () => {
               disabled={isDisabled}
               className={`${
                 isDisabled
-                  ? "bg-primary-400 cursor-default"
-                  : "bg-primary-600 hover:bg-primary-700"
+                  ? "bg-secondary-400 cursor-default"
+                  : "bg-secondary-600 hover:bg-secondary-700"
               } flex justify-center items-center  transition-colors duration-300 ease-in-out w-full text-xl font-medium px-5 py-2 rounded-md  text-white`}
             >
               {!isLoading ? (
@@ -255,7 +255,7 @@ const Signup = () => {
                 <>
                   <svg
                     role="status"
-                    className="mr-2 w-5 h-5 text-gray-200 animate-spin  fill-primary-500"
+                    className="mr-2 w-5 h-5 text-gray-200 animate-spin  fill-secondary-500"
                     viewBox="0 0 100 101"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -276,14 +276,14 @@ const Signup = () => {
             <button
               onClick={handleClear}
               type="reset"
-              className="flex justify-center items-center border-primary-600 border-2 text-center  text-primary-600 w-full px-5 py-2 font-medium text-xl mt-4 rounded-md transition-colors duration-300 ease-in-out  hover:bg-primary-50"
+              className="flex justify-center items-center border-secondary-600 border-2 text-center  text-secondary-600 w-full px-5 py-2 font-medium text-xl mt-4 rounded-md transition-colors duration-300 ease-in-out  hover:bg-secondary-50"
             >
               <MdDelete className="mr-1 h-5 w-5" />
               Clear
             </button>
             <p className="text-center text-base mt-4">
               Already have an account?{" "}
-              <Link to="/signin" className="text-primary-500 font-semibold">
+              <Link to="/signin" className="text-secondary-500 font-semibold">
                 Sign in
               </Link>{" "}
             </p>
