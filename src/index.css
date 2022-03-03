@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import url("http://fonts.cdnfonts.com/css/sofia-pro");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 
 * {
   margin: 0;
@@ -10,14 +11,14 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: "Poppins", sans-serif;
+}
+
 ::-moz-selection {
   /* Code for Firefox */
   color: black;
   background: #e11d48;
-}
-
-#cta-btn {
-  font-family: "Sofia Pro", sans-serif;
 }
 
 ::selection {
@@ -176,6 +177,10 @@ input[type="radio"]:checked:after {
     rgba(76, 0, 255, 0)
   );
   opacity: 0.4;
+}
+
+#cta {
+  font-family: "Sofia Pro", sans-serif;
 }
 
 #blurry-gradient2 {
