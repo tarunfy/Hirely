@@ -199,3 +199,16 @@ input[type="radio"]:checked:after {
   );
   opacity: 0.4;
 }
+
+.navigation-container {
+  background: rgba(26, 23, 24, 0.2);
+  backdrop-filter: blur(15px);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .navigation-container {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
+  }
+}

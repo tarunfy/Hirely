@@ -6,6 +6,8 @@ import Details from "./pages/Details";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
+import ApplicantsList from "./pages/ApplicantsList";
 import { AuthContext } from "./contexts/AuthContext";
 
 function App() {
@@ -53,6 +55,24 @@ function App() {
           path="/profile"
           render={(props) =>
             currentUser ? <Profile {...props} /> : <Redirect to="/signin" />
+          }
+        />
+        <Route
+          exact
+          path="/settings"
+          render={(props) =>
+            currentUser ? <Settings {...props} /> : <Redirect to="/signin" />
+          }
+        />
+        <Route
+          exact
+          path="/applicants"
+          render={(props) =>
+            currentUser ? (
+              <ApplicantsList {...props} />
+            ) : (
+              <Redirect to="/signin" />
+            )
           }
         />
       </Switch>
