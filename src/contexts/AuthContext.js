@@ -65,23 +65,37 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  const addDetails = async (docId, data) => {
+  const addJobDetails = async (docId, data) => {
     setIsLoading(true);
     try {
       await db
         .collection("users")
         .doc(docId)
         .set(
-          currentUser.role == "Applicant"
-            ? {
-                details: {
-                  ...data,
-                  skills: data.skills.split(","),
-                },
-              }
-            : {
-                details: data,
-              },
+          {
+            details: [data],
+          },
+          { merge: true }
+        );
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
+  const addWorkDetails = async (docId, data) => {
+    setIsLoading(true);
+    try {
+      await db
+        .collection("users")
+        .doc(docId)
+        .set(
+          {
+            details: {
+              ...data,
+              skills: data.skills.split(","),
+            },
+          },
           { merge: true }
         );
     } catch (err) {
@@ -122,7 +136,8 @@ export const AuthProvider = ({ children }) => {
         setError,
         isLoading,
         setIsLoading,
-        addDetails,
+        addWorkDetails,
+        addJobDetails,
         getCurrentUser,
         logout,
       }}

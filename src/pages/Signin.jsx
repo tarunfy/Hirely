@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import Spinner from "../components/Spinner";
-import { RiUserSharedFill } from "react-icons/ri";
+import { RiLoginBoxLine } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 import startup from "../assets/startup.svg";
 import beam from "../assets/beams.jpeg";
@@ -73,7 +73,7 @@ const Signup = () => {
             >
               {!isLoading ? (
                 <>
-                  <RiUserSharedFill className="mr-1 h-5 w-5" />
+                  <RiLoginBoxLine className="mr-1 h-5 w-5" />
                   Login
                 </>
               ) : (

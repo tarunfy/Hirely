@@ -23,7 +23,7 @@ const JobDetails = () => {
 
   const history = useHistory();
 
-  const { addDetails, currentUser, isLoading } = useContext(AuthContext);
+  const { addJobDetails, currentUser, isLoading } = useContext(AuthContext);
 
   const { jobTitle, jobDescription, jobLocation } = jobDetails;
 
@@ -48,7 +48,7 @@ const JobDetails = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = { ...jobDetails, jobRequirements };
-    await addDetails(currentUser.userId, data);
+    await addJobDetails(currentUser.userId, data);
     resetForm();
     history.push("/dashboard");
   };

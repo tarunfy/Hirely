@@ -8,8 +8,6 @@ const Dashboard = () => {
   const { isLoading, getCurrentUser, isFetching, currentUser } =
     useContext(AuthContext);
 
-  console.log(currentUser);
-
   const history = useHistory();
 
   useEffect(() => {
@@ -28,7 +26,7 @@ const Dashboard = () => {
     <>
       <NavigationBar />
       <div className="h-screen w-full bg-slate-50 text-center">
-        <p className="text-6xl">Welcome {currentUser.phoneNumber} 👋🏻</p>
+        <p className="text-6xl">Welcome {currentUser.fullName} 👋🏻</p>
       </div>
     </>
   );

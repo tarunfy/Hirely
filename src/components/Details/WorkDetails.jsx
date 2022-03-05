@@ -16,7 +16,7 @@ const WorkDetails = () => {
 
   const history = useHistory();
 
-  const { addDetails, currentUser, isLoading } = useContext(AuthContext);
+  const { addWorkDetails, currentUser, isLoading } = useContext(AuthContext);
 
   const isDisabled =
     !workDetails.skills ||
@@ -30,7 +30,7 @@ const WorkDetails = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await addDetails(currentUser.userId, workDetails);
+    await addWorkDetails(currentUser.userId, workDetails);
     handleReset();
     history.push("/dashboard");
   };

@@ -12,6 +12,11 @@ export const NavigationData = [
     link: "/dashboard",
   },
   {
+    title: "Applicants",
+    icon: <RiFileList2Line className="h-5 w-5" />,
+    link: "/applicants",
+  },
+  {
     title: "Profile",
     icon: <RiUser3Line className="h-5 w-5" />,
     link: "/profile",
@@ -20,10 +25,5 @@ export const NavigationData = [
     title: "Settings",
     icon: <RiSettings3Line className="h-5 w-5" />,
     link: "/settings",
-  },
-  {
-    title: "Applicants",
-    icon: <RiFileList2Line className="h-5 w-5" />,
-    link: "/applicants",
   },
 ];
