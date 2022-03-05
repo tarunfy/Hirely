@@ -212,3 +212,10 @@ input[type="radio"]:checked:after {
     backdrop-filter: blur(20px);
   }
 }
+
+li {
+  border-bottom: 0.1px solid gray;
+}
+li:last-child {
+  border: none;
+}
