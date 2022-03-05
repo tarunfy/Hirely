@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 import Spinner from "../components/Spinner";
 import NavigationBar from "../components/NavigationBar/NavigationBar";
 

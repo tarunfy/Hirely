@@ -201,9 +201,9 @@ input[type="radio"]:checked:after {
 }
 
 .navigation-container {
-  background: rgba(26, 23, 24, 0.2);
+  background: rgba(248, 250, 252, 0.2);
   backdrop-filter: blur(15px);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 12px;
 }
 
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {

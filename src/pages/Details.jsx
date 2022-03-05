@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import JobDetails from "../components/Details/JobDetails";
 import WorkDetails from "../components/Details/WorkDetails";
 import Spinner from "../components/Spinner";
-import { useHistory } from "react-router-dom";
 
 const Details = () => {
   const { currentUser, isLoading, isFetching } = useContext(AuthContext);

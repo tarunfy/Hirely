@@ -1,8 +1,7 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import Waves from "../assets/waves.svg";
 import candidate from "../assets/candidate.svg";
 import recruiter from "../assets/recruiter2.svg";
-import { Link } from "react-router-dom";
 
 const Home = () => {
   return (

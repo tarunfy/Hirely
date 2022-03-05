@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import Spinner from "../components/Spinner";
+import { AuthContext } from "../contexts/AuthContext";
 import { FaPencilAlt } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import { AuthContext } from "../contexts/AuthContext";
 import web from "../assets/web.svg";
 import business from "../assets/business.svg";
-import Spinner from "../components/Spinner";
-import { Link } from "react-router-dom";
 import beam from "../assets/beams.jpeg";
 
 const Signup = () => {

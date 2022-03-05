@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { AuthContext } from "./contexts/AuthContext";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Details from "./pages/Details";
-import { Route, Switch, Redirect } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import ApplicantsList from "./pages/ApplicantsList";
-import { AuthContext } from "./contexts/AuthContext";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
