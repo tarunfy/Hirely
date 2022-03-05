@@ -8,6 +8,8 @@ const Dashboard = () => {
   const { isLoading, getCurrentUser, isFetching, currentUser } =
     useContext(AuthContext);
 
+  console.log(currentUser);
+
   const history = useHistory();
 
   useEffect(() => {
