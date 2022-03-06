@@ -2,9 +2,9 @@ import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import PieChart from "../components/PieChart";
-
 import Spinner from "../components/Spinner";
 import NavigationBar from "../components/NavigationBar/NavigationBar";
+import { IoDocumentsSharp } from "react-icons/io5";
 
 const Dashboard = () => {
   const [jobStats, setJobStats] = useState({
@@ -55,20 +55,6 @@ const Dashboard = () => {
             <hr className="w-full bg-slate-500 h-[1px] mt-3 mb-6" />
             <div>
               <ul className="list-none">
-                <li className="flex justify-between items-center py-2">
-                  <div className="text-left">
-                    <h1 className="text-base font-semibold">
-                      Frontend Developer
-                    </h1>
-                    <p className="text-sm max-w-sm text-gray-700">
-                      Good hands on JavasScript, TypeScript, and familiarity
-                      with framworks like React, Next, Sevalte, etc.
-                    </p>
-                  </div>
-                  <div>
-                    <h1>New York</h1>
-                  </div>
-                </li>
                 <li className="flex justify-between items-center  py-2">
                   <div className="text-left">
                     <h1 className="text-base font-semibold">
@@ -129,7 +115,70 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="w-full bg-slate-50 shadow-material2 h-full rounded-xl"></div>
+        <div className="w-full bg-slate-50  shadow-material2 py-4 px-8 h-full rounded-2xl overflow-y-scroll">
+          <div className="text-center w-full text-2xl">
+            <h1 className="font-extrabold  flex justify-center items-center">
+              Job Applications <IoDocumentsSharp className="ml-1" />
+            </h1>
+          </div>
+          <hr className="w-full bg-slate-500 h-[1px] mt-3 mb-6" />
+          <div>
+            <ul className="list-none">
+              <li className="flex justify-between items-center py-2">
+                <div className="text-left">
+                  <h1 className="text-lg font-bold">Jhon Doe</h1>
+                  <p className="max-w-xl text-base text-gray-800">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Unde perspiciatis aperiam, consequatur cum saepe non soluta
+                    iusto impedit architecto ratione.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-medium text-gray-800">9203481759</h4>
+                </div>
+              </li>
+              <li className="flex justify-between items-center py-2">
+                <div className="text-left">
+                  <h1 className="text-lg font-bold">Steve Jobs</h1>
+                  <p className="max-w-xl text-base text-gray-800">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Unde perspiciatis aperiam, consequatur cum saepe non soluta
+                    iusto impedit architecto ratione.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-medium text-gray-800">8435625182</h4>
+                </div>
+              </li>
+              <li className="flex justify-between items-center py-2">
+                <div className="text-left">
+                  <h1 className="text-lg font-bold">Jack Shelby</h1>
+                  <p className="max-w-xl text-base text-gray-800">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Unde perspiciatis aperiam, consequatur cum saepe non soluta
+                    iusto impedit architecto ratione.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-medium text-gray-800">8973659871</h4>
+                </div>
+              </li>
+              <li className="flex justify-between items-center py-2">
+                <div className="text-left">
+                  <h1 className="text-lg font-bold">Ivan Louis</h1>
+                  <p className="max-w-xl text-base text-gray-800">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Unde perspiciatis aperiam, consequatur cum saepe non soluta
+                    iusto impedit architecto ratione.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-medium text-gray-800">8283846712</h4>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </>
   );
