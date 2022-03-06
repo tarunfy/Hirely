@@ -8,22 +8,22 @@ import {
 export const NavigationData = [
   {
     title: "Dashboard",
-    icon: <RiDashboardLine className="h-5 w-5" />,
+    icon: <RiDashboardLine className="h-6 w-6" />,
     link: "/dashboard",
   },
   {
     title: "Applicants",
-    icon: <RiFileList2Line className="h-5 w-5" />,
+    icon: <RiFileList2Line className="h-6 w-6" />,
     link: "/applicants",
   },
   {
     title: "Profile",
-    icon: <RiUser3Line className="h-5 w-5" />,
+    icon: <RiUser3Line className="h-6 w-6" />,
     link: "/profile",
   },
   {
     title: "Settings",
-    icon: <RiSettings3Line className="h-5 w-5" />,
+    icon: <RiSettings3Line className="h-6 w-6" />,
     link: "/settings",
   },
 ];
