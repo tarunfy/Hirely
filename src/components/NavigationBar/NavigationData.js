@@ -1,9 +1,5 @@
-import {
-  RiSettings3Line,
-  RiUser3Line,
-  RiDashboardLine,
-  RiFileList2Line,
-} from "react-icons/ri";
+import { RiSettings3Line, RiUser3Line, RiDashboardLine } from "react-icons/ri";
+import { MdOutlineAddBusiness } from "react-icons/md";
 
 export const NavigationData = [
   {
@@ -12,9 +8,9 @@ export const NavigationData = [
     link: "/dashboard",
   },
   {
-    title: "Applicants",
-    icon: <RiFileList2Line className="h-6 w-6" />,
-    link: "/applicants",
+    title: "Add Opening",
+    icon: <MdOutlineAddBusiness className="h-6 w-6" />,
+    link: "/add-opening",
   },
   {
     title: "Profile",

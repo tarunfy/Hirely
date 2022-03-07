@@ -7,14 +7,14 @@ import "tippy.js/animations/scale.css";
 const NavigationBar = () => {
   return (
     <>
-      <div className="navigation-container flex justify-evenly items-center  space-x-6 h-auto py-4 px-6  rounded-xl z-50  fixed bottom-1 left-2/4 -translate-x-2/4">
+      <div className="navigation-container flex justify-evenly items-center  space-x-6 h-auto py-4 px-6 hover:border-[0.5px] border-[0.5px] border-zinc-500 transition-all duration-300 ease-in-out  hover:border-secondary-500 rounded-xl z-50  fixed bottom-1 left-2/4 -translate-x-2/4">
         {NavigationData.map((value, index) => (
           <div key={index}>
             <Link
               className={`${
                 window.location.pathname == value.link
                   ? "text-secondary-500"
-                  : "text-slate-600 hover:text-black "
+                  : "text-zinc-600 hover:text-black "
               }  flex justify-center items-center flex-col`}
               to={value.link}
               id={value.title}

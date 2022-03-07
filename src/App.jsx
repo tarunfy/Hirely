@@ -8,7 +8,7 @@ import Details from "./pages/Details";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
-import ApplicantsList from "./pages/ApplicantsList";
+import AddOpening from "./pages/AddOpening";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -66,13 +66,9 @@ function App() {
         />
         <Route
           exact
-          path="/applicants"
+          path="/add-opening"
           render={(props) =>
-            currentUser ? (
-              <ApplicantsList {...props} />
-            ) : (
-              <Redirect to="/signin" />
-            )
+            currentUser ? <AddOpening {...props} /> : <Redirect to="/signin" />
           }
         />
       </Switch>

@@ -5,6 +5,8 @@ import PieChart from "../components/PieChart";
 import Spinner from "../components/Spinner";
 import NavigationBar from "../components/NavigationBar/NavigationBar";
 import { IoDocumentsSharp } from "react-icons/io5";
+import { RiBriefcase4Fill } from "react-icons/ri";
+import { AiFillPieChart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
@@ -43,7 +45,9 @@ const Dashboard = () => {
       <div className="h-screen w-full bg-slate-50 p-8 text-center gap-y-8  grid grid-rows-2">
         <div className="grid grid-cols-3 gap-x-7">
           <div className="w-full shadow-material2 h-full rounded-xl flex flex-col justify-start py-4 px-8">
-            <h1 className="text-2xl font-extrabold">Job Openings's Stats</h1>
+            <h1 className="text-2xl font-extrabold flex justify-center items-center">
+              Job Openings's Stats <AiFillPieChart className="ml-1" />
+            </h1>
             <hr className="w-full bg-slate-500 h-[1px] my-3" />
             <div className="chart w-4/6 ml-14 mt-4 flex justify-center items-center">
               <PieChart chartData={jobStats} />
@@ -51,7 +55,9 @@ const Dashboard = () => {
           </div>
           <div className="w-full bg-slate-50 col-span-2 shadow-material2 py-4 px-8 h-full rounded-2xl overflow-y-scroll">
             <div className="text-center w-full text-2xl">
-              <h1 className="font-extrabold">Your Job Openings</h1>
+              <h1 className="font-extrabold flex justify-center items-center">
+                Your Job Openings <RiBriefcase4Fill className="ml-1" />
+              </h1>
             </div>
             <hr className="w-full bg-slate-500 h-[1px] mt-3 mb-6" />
             <div>
@@ -126,7 +132,7 @@ const Dashboard = () => {
           <div>
             <Link
               to="/dashboard"
-              className="flex justify-between  p-4 items-center rounded-xl  hover:scale-[1.04] hover:bg-slate-200 transition-all duration-300 ease-in-out"
+              className="flex justify-between  p-4 items-center rounded-xl hover:shadow-sm  hover:scale-[1.04] hover:bg-slate-200 transition-all duration-300 ease-in-out"
             >
               <div className="text-left">
                 <h1 className="text-lg font-bold">Jhon Doe</h1>
@@ -142,7 +148,7 @@ const Dashboard = () => {
             </Link>
             <Link
               to="/dashboard"
-              className="flex justify-between p-4 items-center rounded-xl  hover:scale-[1.04] hover:bg-slate-200 transition-all duration-300 ease-in-out"
+              className="flex justify-between p-4 items-center rounded-xl hover:shadow-sm  hover:scale-[1.04] hover:bg-slate-200 transition-all duration-300 ease-in-out"
             >
               <div className="text-left">
                 <h1 className="text-lg font-bold">Steve Jobs</h1>
@@ -158,7 +164,7 @@ const Dashboard = () => {
             </Link>
             <Link
               to="/dashboard"
-              className="flex justify-between p-4  items-center rounded-xl  hover:scale-[1.04] hover:bg-slate-200 transition-all duration-300 ease-in-out"
+              className="flex justify-between p-4  items-center rounded-xl hover:shadow-sm  hover:scale-[1.04] hover:bg-slate-200 transition-all duration-300 ease-in-out"
             >
               <div className="text-left">
                 <h1 className="text-lg font-bold">Jack Shelby</h1>
@@ -174,7 +180,7 @@ const Dashboard = () => {
             </Link>
             <Link
               to="/dashboard"
-              className="flex justify-between p-4 items-center rounded-xl  hover:scale-[1.04] hover:bg-slate-200 transition-all duration-300 ease-in-out"
+              className="flex justify-between p-4 items-center rounded-xl hover:shadow-sm  hover:scale-[1.04] hover:bg-slate-200 transition-all duration-300 ease-in-out"
             >
               <div className="text-left">
                 <h1 className="text-lg font-bold">Ivan Louis</h1>
