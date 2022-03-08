@@ -44,9 +44,9 @@ const Dashboard = () => {
       <NavigationBar />
       <div className="h-screen w-full bg-slate-50 p-8 text-center gap-y-8  grid grid-rows-2">
         <div className="grid grid-cols-3 gap-x-7">
-          <div className="w-full shadow-material2 h-full rounded-xl flex flex-col justify-start py-4 px-8">
+          <div className="w-full shadow-material2 h-full bg-slate-50 rounded-xl flex flex-col justify-start py-4 px-8">
             <h1 className="text-2xl font-extrabold flex justify-center items-center">
-              Job Openings's Stats <AiFillPieChart className="ml-1" />
+              Job Applications's Stats <AiFillPieChart className="ml-1" />
             </h1>
             <hr className="w-full bg-slate-500 h-[1px] my-3" />
             <div className="chart w-4/6 ml-14 mt-4 flex justify-center items-center">
