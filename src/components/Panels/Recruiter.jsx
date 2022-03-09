@@ -1,7 +1,11 @@
+import { useContext } from "react";
+import { JobContext } from "../../contexts/JobContext";
 import JobCard from "../JobCard";
 import AddIcon from "@mui/icons-material/Add";
 
 const Recruiter = () => {
+  const { jobs } = useContext(JobContext);
+
   return (
     <div className="flex flex-col justify-start items-center pt-28 px-16 bg-slate-50 h-screen w-full">
       <div className="top flex justify-between items-center w-full">
@@ -12,9 +16,19 @@ const Recruiter = () => {
         </button>
       </div>
       <div className="bottom w-full overflow-y-scroll  px-10 mt-20">
-        <ul className="w-full border-[1px] border-zinc-500 rounded-md bg-slate-50">
-          <JobCard />
-        </ul>
+        {jobs ? (
+          <>
+            <ul className="w-full border-[1px] border-zinc-500 rounded-md bg-slate-50">
+              {jobs.map((job, index) => (
+                <JobCard key={index} job={job} />
+              ))}
+            </ul>
+          </>
+        ) : (
+          <>
+            <h1 className="text-center text-lg font-bold">Please add a job.</h1>
+          </>
+        )}
       </div>
     </div>
   );

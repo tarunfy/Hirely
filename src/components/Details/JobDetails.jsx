@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { HiDocumentAdd } from "react-icons/hi";
 import { MdDelete } from "react-icons/md";
 import { AuthContext } from "../../contexts/AuthContext";
+import { JobContext } from "../../contexts/JobContext";
 import { useHistory } from "react-router-dom";
 import person from "../../assets/3d.png";
 import graph1 from "../../assets/graph.png";
@@ -24,7 +25,9 @@ const JobDetails = () => {
 
   const history = useHistory();
 
-  const { addJobDetails, currentUser, isLoading } = useContext(AuthContext);
+  const { currentUser, isLoading } = useContext(AuthContext);
+
+  const { addJobDetails } = useContext(JobContext);
 
   const { jobTitle, jobDescription, jobLocation, jobDesignation } = jobDetails;
 

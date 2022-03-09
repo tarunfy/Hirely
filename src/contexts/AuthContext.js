@@ -65,16 +65,6 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  const addJobDetails = async (data) => {
-    setIsLoading(true);
-    try {
-      await db.collection("jobs").add(data);
-    } catch (err) {
-      console.log(err);
-    }
-    setIsLoading(false);
-  };
-
   const addWorkDetails = async (docId, data) => {
     setIsLoading(true);
     try {
@@ -96,23 +86,6 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  const fetchJobs = async () => {
-    setIsFetching(true);
-    let jobExists;
-    try {
-      const snapshot = await db
-        .collection("jobs")
-        .where("userId", "==", currentUser.userId)
-        .get();
-      setIsFetching(false);
-      jobExists = snapshot.docs.length > 0 ? true : false;
-    } catch (err) {
-      console.log(err);
-    }
-    setIsFetching(false);
-    return jobExists;
-  };
-
   const logout = () => {
     auth.signOut();
   };
@@ -129,8 +102,6 @@ export const AuthProvider = ({ children }) => {
         isLoading,
         setIsLoading,
         addWorkDetails,
-        addJobDetails,
-        fetchJobs,
         logout,
       }}
     >

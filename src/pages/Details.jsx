@@ -1,6 +1,7 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import { JobContext } from "../contexts/JobContext";
 import JobDetails from "../components/Details/JobDetails";
 import WorkDetails from "../components/Details/WorkDetails";
 import Spinner from "../components/Spinner";
@@ -8,11 +9,20 @@ import Spinner from "../components/Spinner";
 const Details = () => {
   const { currentUser, isLoading, isFetching } = useContext(AuthContext);
 
+  const { jobs, fetchJobs, isFetchingJobs } = useContext(JobContext);
+
+  useEffect(() => {
+    async function fetch() {
+      await fetchJobs(currentUser.userId);
+    }
+    fetch();
+  }, []);
+
   const history = useHistory();
 
-  if (currentUser.details) history.push("/dashboard");
+  if (jobs) history.push("/dashboard");
 
-  if (isLoading || isFetching) return <Spinner />;
+  if (isLoading || isFetchingJobs) return <Spinner />;
 
   return (
     <div className="h-screen flex flex-col justify-center items-center bg-slate-50">
