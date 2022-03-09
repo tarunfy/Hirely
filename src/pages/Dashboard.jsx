@@ -9,7 +9,6 @@ import Recruiter from "../components/Panels/Recruiter";
 
 const Dashboard = () => {
   const { isLoading, isFetching, currentUser } = useContext(AuthContext);
-
   const { fetchJobs, isFetchingJobs } = useContext(JobContext);
 
   const history = useHistory();

@@ -52,7 +52,12 @@ const JobDetails = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = { ...jobDetails, jobRequirements, userId: currentUser.userId };
+    const data = {
+      ...jobDetails,
+      jobRequirements,
+      userId: currentUser.userId,
+      createdAt: new Date(),
+    };
     await addJobDetails(data);
     resetForm();
     history.push("/dashboard");
