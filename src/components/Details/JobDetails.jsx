@@ -13,6 +13,7 @@ const JobDetails = () => {
     jobTitle: "",
     jobLocation: "",
     jobDescription: "",
+    jobDesignation: "",
   });
 
   const [jobRequirements, setJobRequirements] = useState({
@@ -25,7 +26,7 @@ const JobDetails = () => {
 
   const { addJobDetails, currentUser, isLoading } = useContext(AuthContext);
 
-  const { jobTitle, jobDescription, jobLocation } = jobDetails;
+  const { jobTitle, jobDescription, jobLocation, jobDesignation } = jobDetails;
 
   const { experience, salary, education } = jobRequirements;
 
@@ -33,6 +34,7 @@ const JobDetails = () => {
     !jobDescription ||
     !jobTitle ||
     !jobLocation ||
+    !jobDesignation ||
     !experience ||
     !salary ||
     !education;
@@ -47,8 +49,8 @@ const JobDetails = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = { ...jobDetails, jobRequirements };
-    await addJobDetails(currentUser.userId, data);
+    const data = { ...jobDetails, jobRequirements, userId: currentUser.userId };
+    await addJobDetails(data);
     resetForm();
     history.push("/dashboard");
   };
@@ -58,6 +60,7 @@ const JobDetails = () => {
       jobTitle: "",
       jobLocation: "",
       jobDescription: "",
+      jobDesignation: "",
     });
     setJobRequirements({
       experience: "",
@@ -106,6 +109,20 @@ const JobDetails = () => {
               id="jobTitle"
               required
               className="p-2 w-full border-[1px] text-lg rounded-md border-gray-200 focus:outline-secondary-300"
+            />
+          </div>
+          <div className="input-div mb-4">
+            <label htmlFor="designation" className="text-lg font-medium">
+              Job designation
+            </label>
+            <input
+              type="text"
+              autoComplete="off"
+              value={jobDesignation}
+              onChange={(e) => handleDetails(e)}
+              required
+              id="jobDesignation"
+              className="p-2 w-full font-normal border-[1px] text-lg rounded-md border-gray-200 focus:outline-secondary-300"
             />
           </div>
           <div className="input-div mb-4">
@@ -190,6 +207,7 @@ const JobDetails = () => {
               className="p-2 w-full font-normal border-[1px] text-lg rounded-md border-gray-200 focus:outline-secondary-300"
             />
           </div>
+
           <div className="input-div mb-4">
             <label htmlFor="job-description" className="text-lg font-medium">
               Job description

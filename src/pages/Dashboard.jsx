@@ -7,19 +7,19 @@ import Applicant from "../components/Panels/Applicant";
 import Recruiter from "../components/Panels/Recruiter";
 
 const Dashboard = () => {
-  const { isLoading, getCurrentUser, isFetching, currentUser } =
+  const { isLoading, fetchJobs, isFetching, currentUser } =
     useContext(AuthContext);
 
   const history = useHistory();
 
   useEffect(() => {
-    async function fetchUser() {
-      const res = await getCurrentUser();
+    async function fetch() {
+      const res = await fetchJobs();
       if (!res) {
         history.push("/add-details");
       }
     }
-    fetchUser();
+    fetch();
   }, []);
 
   if (isLoading || isFetching) return <Spinner />;

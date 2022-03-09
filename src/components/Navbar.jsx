@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
@@ -6,6 +8,8 @@ import { Avatar } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 
 const NavigationBar = () => {
+  const { logout } = useContext(AuthContext);
+
   return (
     <>
       <div className="w-full fixed top-0 left-0 py-5 shadow-md px-16 bg-slate-50 flex justify-between items-center">
@@ -22,7 +26,10 @@ const NavigationBar = () => {
               </Avatar>
             </Link>
           </Tippy>
-          <button className="font-semibold text-lg rounded-md ease-in-out  bg-secondary-500  text-white px-4 py-1 hover:bg-secondary-600 transition-colors duration-300">
+          <button
+            onClick={() => logout()}
+            className="font-semibold text-lg rounded-md ease-in-out  bg-secondary-500  text-white px-4 py-1 hover:bg-secondary-600 transition-colors duration-300"
+          >
             Logout
           </button>
         </div>

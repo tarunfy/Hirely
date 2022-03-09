@@ -65,18 +65,10 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  const addJobDetails = async (docId, data) => {
+  const addJobDetails = async (data) => {
     setIsLoading(true);
     try {
-      await db
-        .collection("users")
-        .doc(docId)
-        .set(
-          {
-            details: [data],
-          },
-          { merge: true }
-        );
+      await db.collection("jobs").add(data);
     } catch (err) {
       console.log(err);
     }
@@ -104,21 +96,21 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  const getCurrentUser = async () => {
+  const fetchJobs = async () => {
     setIsFetching(true);
+    let jobExists;
     try {
-      const userRef = await db
-        .collection("users")
-        .doc(currentUser.userId)
+      const snapshot = await db
+        .collection("jobs")
+        .where("userId", "==", currentUser.userId)
         .get();
-      setCurrentUser(userRef.data());
       setIsFetching(false);
-      return currentUser.details ? true : false;
+      jobExists = snapshot.docs.length > 0 ? true : false;
     } catch (err) {
       console.log(err);
-      setIsFetching(false);
-      return false;
     }
+    setIsFetching(false);
+    return jobExists;
   };
 
   const logout = () => {
@@ -138,7 +130,7 @@ export const AuthProvider = ({ children }) => {
         setIsLoading,
         addWorkDetails,
         addJobDetails,
-        getCurrentUser,
+        fetchJobs,
         logout,
       }}
     >
