@@ -113,8 +113,8 @@ const JobDetails = () => {
               Job requirements
             </label>
             <div className="flex justify-between items-center">
-              <div className="w-1/3">
-                <label htmlFor="experience" className="text-base">
+              <div>
+                <label htmlFor="experience" className="text-base block">
                   Experience
                 </label>
                 <select
@@ -134,8 +134,8 @@ const JobDetails = () => {
                   <option value="10+">10+ Years</option>
                 </select>
               </div>
-              <div className="w-1/3">
-                <label htmlFor="salary" className="text-base">
+              <div>
+                <label htmlFor="salary" className="text-base block">
                   Salary
                 </label>
                 <select
@@ -146,17 +146,17 @@ const JobDetails = () => {
                   required
                   className="p-1 border-[1px] text-sm rounded-md border-gray-200 focus:outline-secondary-300"
                 >
-                  <option value="Rs 1 - 1 LPA">Rs 1 - 1 LPA</option>
-                  <option value="Rs 2 - 5 LPA">Rs 2 - 5 LPA</option>
-                  <option value="Rs 3 - 7 LPA">Rs 3 - 7 LPA</option>
-                  <option value="Rs 8 - 12 LPA">Rs 8 - 12 LPA</option>
-                  <option value="Rs 12 - 18 LPA">Rs 12 - 18 LPA</option>
-                  <option value="Rs 18 - 24 LPA">Rs 18 - 24 LPA</option>
-                  <option value="Rs 24 - 32 LPA">Rs 24 - 32 LPA</option>
+                  <option value="$ 1k - 1k">$ 1k - 1k</option>
+                  <option value="$ 2k - 5k">$ 2k - 5k</option>
+                  <option value="$ 3k - 7k">$ 3k - 7k</option>
+                  <option value="$ 8k - 12k">$ 8k - 12k</option>
+                  <option value="$ 12k - 18k">$ 12k - 18k</option>
+                  <option value="$ 18k - 24k">$ 18k - 24k</option>
+                  <option value="$ 24k - 32k">$ 24k - 32k</option>
                 </select>
               </div>
-              <div className="w-1/3">
-                <label htmlFor="education" className="text-base">
+              <div>
+                <label htmlFor="education" className="text-base block">
                   Education
                 </label>
                 <select
