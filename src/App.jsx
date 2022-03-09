@@ -7,8 +7,6 @@ import Signin from "./pages/Signin";
 import Details from "./pages/Details";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
-import Settings from "./pages/Settings";
-import AddOpening from "./pages/AddOpening";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -55,20 +53,6 @@ function App() {
           path="/profile"
           render={(props) =>
             currentUser ? <Profile {...props} /> : <Redirect to="/signin" />
-          }
-        />
-        <Route
-          exact
-          path="/settings"
-          render={(props) =>
-            currentUser ? <Settings {...props} /> : <Redirect to="/signin" />
-          }
-        />
-        <Route
-          exact
-          path="/add-opening"
-          render={(props) =>
-            currentUser ? <AddOpening {...props} /> : <Redirect to="/signin" />
           }
         />
       </Switch>

@@ -7,7 +7,6 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "@tippyjs/react": "^4.2.6",
-    "chartjs": "^0.3.24",
     "firebase": "^8.7.1",
     "framer-motion": "^6.2.4",
     "moment": "^2.29.1",
