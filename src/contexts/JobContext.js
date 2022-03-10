@@ -74,6 +74,7 @@ export const JobProvider = ({ children }) => {
         jobs,
         removeJob,
         updateJob,
+        setJobs,
       }}
     >
       {children}

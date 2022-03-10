@@ -1,5 +1,6 @@
-import React, { useEffect, useState, createContext } from "react";
+import React, { useEffect, useState, createContext, useContext } from "react";
 import { auth, db } from "../services/firebase";
+import { JobContext } from "./JobContext";
 
 export const AuthContext = createContext(null);
 
@@ -9,6 +10,8 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const { setJobs } = useContext(JobContext);
 
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
@@ -88,6 +91,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     auth.signOut();
+    setJobs(null);
   };
 
   return (
