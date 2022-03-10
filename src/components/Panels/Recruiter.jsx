@@ -48,8 +48,8 @@ const Recruiter = () => {
     };
     await addJobDetails(data);
     closeAddStaffModal();
-    await fetchJobs(currentUser.userId);
     clearModal();
+    await fetchJobs(currentUser.userId);
   };
 
   const openAddStaffModal = () => {
