@@ -1,8 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { JobContext } from "../../contexts/JobContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import JobCard from "../JobCard";
 import AddIcon from "@mui/icons-material/Add";
 import { Modal, Box } from "@mui/material";
+import Spinner from "../Spinner";
 
 const Recruiter = () => {
   const [addStaffModal, setAddStaffModal] = useState(false);
@@ -23,7 +25,10 @@ const Recruiter = () => {
 
   const { experience, salary, education } = jobRequirements;
 
-  const { jobs } = useContext(JobContext);
+  const { currentUser } = useContext(AuthContext);
+
+  const { jobs, addJobDetails, isLoading, fetchJobs, isFetchingJobs } =
+    useContext(JobContext);
 
   const handleDetails = (e) => {
     setJobDetails({ ...jobDetails, [e.target.id]: e.target.value });
@@ -33,13 +38,20 @@ const Recruiter = () => {
     setJobRequirements({ ...jobRequirements, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = { ...jobDetails, ...jobRequirements };
-    console.log(data);
+    const data = {
+      ...jobDetails,
+      jobRequirements,
+      userId: currentUser.userId,
+      createdAt: Date.now(),
+    };
+    await addJobDetails(data);
     closeAddStaffModal();
+    await fetchJobs(currentUser.userId);
     clearModal();
   };
+
   const openAddStaffModal = () => {
     setAddStaffModal(true);
   };
@@ -61,6 +73,8 @@ const Recruiter = () => {
       education: "",
     });
   };
+
+  if (isLoading || isFetchingJobs) return <Spinner />;
 
   return (
     <>

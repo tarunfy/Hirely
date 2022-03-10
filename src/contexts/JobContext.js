@@ -32,7 +32,6 @@ export const JobProvider = ({ children }) => {
         snapshot.docs.forEach((job) => {
           jobs.push({ ...job.data(), jobId: job.id });
         });
-        console.log("hi");
         setJobs(jobs);
       } else {
         jobExists = false;

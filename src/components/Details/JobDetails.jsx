@@ -56,7 +56,7 @@ const JobDetails = () => {
       ...jobDetails,
       jobRequirements,
       userId: currentUser.userId,
-      createdAt: new Date(),
+      createdAt: Date.now(),
     };
     await addJobDetails(data);
     resetForm();
