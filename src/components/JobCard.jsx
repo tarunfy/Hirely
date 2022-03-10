@@ -1,3 +1,7 @@
+import { useContext } from "react";
+import { JobContext } from "../contexts/JobContext";
+import { AuthContext } from "../contexts/AuthContext";
+import Spinner from "../components/Spinner";
 import moment from "moment";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
@@ -5,7 +9,20 @@ import "tippy.js/animations/scale.css";
 import EditIcon from "@mui/icons-material/Edit";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+
 const JobCard = ({ job }) => {
+  const { removeJob, updateJob, fetchJobs, isFetchingJobs, isLoading } =
+    useContext(JobContext);
+
+  const { currentUser } = useContext(AuthContext);
+
+  const handleRemoveJob = async () => {
+    await removeJob(job.jobId);
+    await fetchJobs(currentUser.userId);
+  };
+
+  if (isLoading || isFetchingJobs) return <Spinner />;
+
   return (
     <>
       <li className="flex hover:shadow-inner  justify-between items-stretch cursor-default p-5 duration-300 transition-all ease-in-out">
@@ -30,7 +47,10 @@ const JobCard = ({ job }) => {
               </button>
             </Tippy>
             <Tippy content="Remove" inertia animation="scale">
-              <button className="border-[1px]  border-black p-2">
+              <button
+                onClick={handleRemoveJob}
+                className="border-[1px]  border-black p-2"
+              >
                 <RemoveCircleOutlineIcon />
               </button>
             </Tippy>

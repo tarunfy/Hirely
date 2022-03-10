@@ -25,6 +25,7 @@ export const JobProvider = ({ children }) => {
       const snapshot = await db
         .collection("jobs")
         .where("userId", "==", userId)
+        .orderBy("createdAt")
         .get();
       if (snapshot.docs.length > 0) {
         jobExists = true;
@@ -43,6 +44,26 @@ export const JobProvider = ({ children }) => {
     return jobExists;
   };
 
+  const removeJob = async (docId) => {
+    setIsLoading(true);
+    try {
+      await db.collection("jobs").doc(docId).delete();
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
+  const updateJob = async (docId, details) => {
+    setIsLoading(true);
+    try {
+      await db.collection("jobs").doc(docId).update(details);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <JobContext.Provider
       value={{
@@ -51,6 +72,8 @@ export const JobProvider = ({ children }) => {
         isFetchingJobs,
         isLoading,
         jobs,
+        removeJob,
+        updateJob,
       }}
     >
       {children}
