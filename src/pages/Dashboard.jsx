@@ -9,21 +9,11 @@ import Recruiter from "../components/Panels/Recruiter";
 
 const Dashboard = () => {
   const { isLoading, isFetching, currentUser } = useContext(AuthContext);
-  const { fetchJobs, isFetchingJobs } = useContext(JobContext);
+  // const { fetchJobs, isFetchingJobs } = useContext(JobContext);
 
-  const history = useHistory();
+  // const history = useHistory();
 
-  useEffect(() => {
-    async function fetch() {
-      const res = await fetchJobs(currentUser.userId);
-      if (!res) {
-        history.push("/add-details");
-      }
-    }
-    fetch();
-  }, []);
-
-  if (isLoading || isFetching || isFetchingJobs) return <Spinner />;
+  // if (isLoading || isFetching || isFetchingJobs) return <Spinner />;
 
   return (
     <>

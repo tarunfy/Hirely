@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { JobContext } from "../contexts/JobContext";
 import { AuthContext } from "../contexts/AuthContext";
 import { Modal, Box } from "@mui/material";
+import { useHistory } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import moment from "moment";
 import Tippy from "@tippyjs/react";
@@ -25,6 +26,8 @@ const JobCard = ({ job }) => {
     salary: "",
     education: "",
   });
+
+  const history = useHistory();
 
   const { jobTitle, jobDescription, jobLocation, jobDesignation } = jobDetails;
 
@@ -81,7 +84,10 @@ const JobCard = ({ job }) => {
 
   const handleRemoveJob = async () => {
     await removeJob(job.jobId);
-    await fetchJobs(currentUser.userId);
+    const res = await fetchJobs(currentUser.userId);
+    if (!res) {
+      history.push("/add-details");
+    }
   };
 
   if (isLoading || isFetchingJobs) return <Spinner />;

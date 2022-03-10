@@ -36,6 +36,7 @@ export const JobProvider = ({ children }) => {
         setJobs(jobs);
       } else {
         jobExists = false;
+        setJobs(null);
       }
     } catch (err) {
       console.log(err);

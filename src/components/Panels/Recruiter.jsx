@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { JobContext } from "../../contexts/JobContext";
 import { AuthContext } from "../../contexts/AuthContext";
+import { useHistory } from "react-router-dom";
 import JobCard from "../JobCard";
 import AddIcon from "@mui/icons-material/Add";
 import { Modal, Box } from "@mui/material";
@@ -21,6 +22,8 @@ const Recruiter = () => {
     education: "",
   });
 
+  const history = useHistory();
+
   const { jobTitle, jobDescription, jobLocation, jobDesignation } = jobDetails;
 
   const { experience, salary, education } = jobRequirements;
@@ -29,6 +32,16 @@ const Recruiter = () => {
 
   const { jobs, addJobDetails, isLoading, fetchJobs, isFetchingJobs } =
     useContext(JobContext);
+
+  useEffect(() => {
+    async function fetch() {
+      const res = await fetchJobs(currentUser.userId);
+      if (!res) {
+        history.push("/add-details");
+      }
+    }
+    fetch();
+  }, []);
 
   const handleDetails = (e) => {
     setJobDetails({ ...jobDetails, [e.target.id]: e.target.value });
