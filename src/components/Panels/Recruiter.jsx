@@ -1,7 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { JobContext } from "../../contexts/JobContext";
 import { AuthContext } from "../../contexts/AuthContext";
-import { useHistory } from "react-router-dom";
 import JobCard from "../JobCard";
 import AddIcon from "@mui/icons-material/Add";
 import { Modal, Box } from "@mui/material";
@@ -22,23 +21,18 @@ const Recruiter = () => {
     education: "",
   });
 
-  const history = useHistory();
-
   const { jobTitle, jobDescription, jobLocation, jobDesignation } = jobDetails;
 
   const { experience, salary, education } = jobRequirements;
 
   const { currentUser } = useContext(AuthContext);
 
-  const { jobs, addJobDetails, isLoading, fetchJobs, isFetchingJobs } =
+  const { jobs, addJobDetails, error, isLoading, fetchJobs, isFetchingJobs } =
     useContext(JobContext);
 
   useEffect(() => {
     async function fetch() {
-      const res = await fetchJobs(currentUser.userId);
-      if (!res) {
-        history.push("/add-details");
-      }
+      await fetchJobs(currentUser.userId);
     }
     fetch();
   }, []);
@@ -102,23 +96,29 @@ const Recruiter = () => {
             Add
           </button>
         </div>
-        <div className="bottom w-full overflow-y-scroll  px-10 mt-20">
-          {jobs ? (
-            <>
-              <ul className="w-full border-[1px] border-zinc-500 rounded-md bg-slate-50">
-                {jobs.map((job, index) => (
-                  <JobCard key={index} job={job} />
-                ))}
-              </ul>
-            </>
-          ) : (
-            <>
-              <h1 className="text-center text-lg font-bold">
-                Please add a job.
-              </h1>
-            </>
-          )}
-        </div>
+        {error ? (
+          <div className="text-center w-full mt-52 ">
+            <h1 className="text-xl font-semibold">{error}</h1>
+          </div>
+        ) : (
+          <div className="bottom w-full overflow-y-scroll  px-10 mt-20">
+            {jobs ? (
+              <>
+                <ul className="w-full border-[1px] border-zinc-500 rounded-md bg-slate-50">
+                  {jobs.map((job, index) => (
+                    <JobCard key={index} job={job} />
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <>
+                <h1 className="text-center text-lg font-bold">
+                  Please add a job.
+                </h1>
+              </>
+            )}
+          </div>
+        )}
       </div>
       <Modal
         open={addStaffModal}

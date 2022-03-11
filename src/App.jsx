@@ -4,7 +4,6 @@ import { AuthContext } from "./contexts/AuthContext";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
-import Details from "./pages/Details";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 
@@ -39,13 +38,6 @@ function App() {
           path="/dashboard"
           render={(props) =>
             currentUser ? <Dashboard {...props} /> : <Redirect to="/signin" />
-          }
-        />
-        <Route
-          exact
-          path="/add-details"
-          render={(props) =>
-            currentUser ? <Details {...props} /> : <Redirect to="/signin" />
           }
         />
         <Route

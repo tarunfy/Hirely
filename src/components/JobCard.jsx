@@ -84,10 +84,7 @@ const JobCard = ({ job }) => {
 
   const handleRemoveJob = async () => {
     await removeJob(job.jobId);
-    const res = await fetchJobs(currentUser.userId);
-    if (!res) {
-      history.push("/add-details");
-    }
+    await fetchJobs(currentUser.userId);
   };
 
   if (isLoading || isFetchingJobs) return <Spinner />;

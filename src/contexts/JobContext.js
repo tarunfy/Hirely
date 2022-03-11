@@ -4,6 +4,7 @@ import { db } from "../services/firebase";
 export const JobContext = createContext(null);
 
 export const JobProvider = ({ children }) => {
+  const [error, setError] = useState("");
   const [isFetchingJobs, setIsFetchingJobs] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [jobs, setJobs] = useState(null);
@@ -20,7 +21,6 @@ export const JobProvider = ({ children }) => {
 
   const fetchJobs = async (userId) => {
     setIsFetchingJobs(true);
-    let jobExists;
     try {
       const snapshot = await db
         .collection("jobs")
@@ -28,21 +28,20 @@ export const JobProvider = ({ children }) => {
         .orderBy("createdAt")
         .get();
       if (snapshot.docs.length > 0) {
-        jobExists = true;
+        setError("");
         let jobs = [];
         snapshot.docs.forEach((job) => {
           jobs.push({ ...job.data(), jobId: job.id });
         });
         setJobs(jobs);
       } else {
-        jobExists = false;
+        setError("No jobs available...");
         setJobs(null);
       }
     } catch (err) {
       console.log(err);
     }
     setIsFetchingJobs(false);
-    return jobExists;
   };
 
   const removeJob = async (docId) => {
@@ -76,6 +75,7 @@ export const JobProvider = ({ children }) => {
         removeJob,
         updateJob,
         setJobs,
+        error,
       }}
     >
       {children}

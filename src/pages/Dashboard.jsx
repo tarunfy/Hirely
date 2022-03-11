@@ -1,19 +1,11 @@
-import { useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import { JobContext } from "../contexts/JobContext";
-import Spinner from "../components/Spinner";
 import NavigationBar from "../components/Navbar";
 import Applicant from "../components/Panels/Applicant";
 import Recruiter from "../components/Panels/Recruiter";
 
 const Dashboard = () => {
-  const { isLoading, isFetching, currentUser } = useContext(AuthContext);
-  // const { fetchJobs, isFetchingJobs } = useContext(JobContext);
-
-  // const history = useHistory();
-
-  // if (isLoading || isFetching || isFetchingJobs) return <Spinner />;
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <>
