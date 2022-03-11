@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { JobContext } from "../contexts/JobContext";
 import { AuthContext } from "../contexts/AuthContext";
 import { Modal, Box } from "@mui/material";
-import { useHistory } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import moment from "moment";
 import Tippy from "@tippyjs/react";
@@ -27,16 +26,20 @@ const JobCard = ({ job }) => {
     education: "",
   });
 
-  const history = useHistory();
-
   const { jobTitle, jobDescription, jobLocation, jobDesignation } = jobDetails;
 
   const { experience, salary, education } = jobRequirements;
 
   const { currentUser } = useContext(AuthContext);
 
-  const { removeJob, updateJob, fetchJobs, isFetchingJobs, isLoading } =
-    useContext(JobContext);
+  const {
+    removeJob,
+    updateJob,
+    fetchJob,
+    fetchJobs,
+    isFetchingJobs,
+    isLoading,
+  } = useContext(JobContext);
 
   const handleDetails = (e) => {
     setJobDetails({ ...jobDetails, [e.target.id]: e.target.value });
@@ -60,12 +63,25 @@ const JobCard = ({ job }) => {
     await fetchJobs(currentUser.userId);
   };
 
-  const openUpdateStaffModal = () => {
+  const openUpdateStaffModal = async () => {
+    const data = await fetchJob(job.jobId);
+    setJobDetails({
+      jobTitle: data.jobTitle,
+      jobDescription: data.jobDescription,
+      jobDesignation: data.jobDesignation,
+      jobLocation: data.jobLocation,
+    });
+    setJobRequirements({
+      experience: data.jobRequirements.experience,
+      salary: data.jobRequirements.salary,
+      education: data.jobRequirements.education,
+    });
     setUpdateStaffModal(true);
   };
 
   const closeUpdateStaffModal = () => {
     setUpdateStaffModal(false);
+    clearModal();
   };
 
   const clearModal = () => {

@@ -35,7 +35,7 @@ export const JobProvider = ({ children }) => {
         });
         setJobs(jobs);
       } else {
-        setError("No jobs available...");
+        setError("Please add a new job posting.");
         setJobs(null);
       }
     } catch (err) {
@@ -64,6 +64,17 @@ export const JobProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  const fetchJob = async (docId) => {
+    let data = null;
+    try {
+      const doc = await db.collection("jobs").doc(docId).get();
+      data = doc.data();
+    } catch (err) {
+      console.log(err);
+    }
+    return data;
+  };
+
   return (
     <JobContext.Provider
       value={{
@@ -74,6 +85,7 @@ export const JobProvider = ({ children }) => {
         jobs,
         removeJob,
         updateJob,
+        fetchJob,
         setJobs,
         error,
       }}

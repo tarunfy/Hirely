@@ -65,6 +65,7 @@ const Recruiter = () => {
 
   const closeAddStaffModal = () => {
     setAddStaffModal(false);
+    clearModal();
   };
 
   const clearModal = () => {
