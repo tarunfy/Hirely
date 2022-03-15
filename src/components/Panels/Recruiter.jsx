@@ -3,8 +3,48 @@ import { JobContext } from "../../contexts/JobContext";
 import { AuthContext } from "../../contexts/AuthContext";
 import JobCard from "../JobCard";
 import AddIcon from "@mui/icons-material/Add";
-import { Modal, Box } from "@mui/material";
+import { Modal, Select, Chip, FormControl, Box, MenuItem } from "@mui/material";
 import Spinner from "../Spinner";
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+const techNames = [
+  "ReactJs",
+  "VueJs",
+  "NextJs",
+  "NodeJs",
+  "MongoDB",
+  "MySQL",
+  "Firebase",
+  "ExpressJs",
+  "Flutter",
+  "React Native",
+  "AWS",
+  "Docker",
+  "Kubernetes",
+  "Scss",
+  "HTML",
+  "CSS",
+  "Javascript",
+  "Typescript",
+  "GSAP",
+  "C++",
+  "C#",
+  "Laravel",
+  "ThreeJs",
+  "Postman",
+  "Figma",
+  "AdobeXD",
+];
 
 const Recruiter = () => {
   const [addStaffModal, setAddStaffModal] = useState(false);
@@ -20,6 +60,8 @@ const Recruiter = () => {
     salary: "",
     education: "",
   });
+
+  const [tags, setTags] = useState([]);
 
   const { jobTitle, jobDescription, jobLocation, jobDesignation } = jobDetails;
 
@@ -50,6 +92,7 @@ const Recruiter = () => {
     const data = {
       ...jobDetails,
       jobRequirements,
+      jobTags: tags,
       userId: currentUser.userId,
       createdAt: Date.now(),
     };
@@ -68,6 +111,16 @@ const Recruiter = () => {
     clearModal();
   };
 
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setTags(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+
   const clearModal = () => {
     setJobDetails({
       jobTitle: "",
@@ -80,6 +133,7 @@ const Recruiter = () => {
       salary: "",
       education: "",
     });
+    setTags([]);
   };
 
   if (isLoading || isFetchingJobs) return <Spinner />;
@@ -128,7 +182,7 @@ const Recruiter = () => {
         aria-describedby="modal-modal-description"
         className="flex h-screen w-full items-center justify-center"
       >
-        <Box className="p-6 rounded-md bg-slate-50 w-[40%] border-none outline-none focus:outline-none ">
+        <Box className="p-6 rounded-md  h-[80%] overflow-y-scroll bg-slate-50 w-[40%] border-none outline-none focus:outline-none ">
           <h1 className="text-[2rem] text-center font-semibold">Add Job</h1>
           <hr className="bg-slate-400 h-[2px] w-full mb-4" />
           <form className="w-full" onSubmit={(e) => handleSubmit(e)}>
@@ -245,7 +299,46 @@ const Recruiter = () => {
                 className="p-2 w-full font-normal border-[1px] text-lg rounded-md border-gray-200 focus:outline-secondary-300"
               />
             </div>
-
+            <div className="input-div my-4">
+              <label
+                htmlFor="job-title"
+                className="text-lg font-medium leading-[.1rem]"
+              >
+                Job tags
+              </label>
+              <FormControl className="w-full bg-white">
+                <Select
+                  id="demo-multiple-chip"
+                  multiple
+                  required
+                  autoComplete="off"
+                  value={tags}
+                  onChange={handleChange}
+                  renderValue={(selected) => (
+                    <Box className="flex flex-wrap gap-[10px]">
+                      {selected.map((value) => (
+                        <Chip
+                          sx={{
+                            color: "white",
+                            backgroundColor: "#f43f5e",
+                            fontWeight: "600",
+                          }}
+                          key={value}
+                          label={value}
+                        />
+                      ))}
+                    </Box>
+                  )}
+                  MenuProps={MenuProps}
+                >
+                  {techNames.map((techName, index) => (
+                    <MenuItem key={index} value={techName}>
+                      {techName}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
             <div className="input-div mb-4">
               <label htmlFor="job-description" className="text-lg font-medium">
                 Job description

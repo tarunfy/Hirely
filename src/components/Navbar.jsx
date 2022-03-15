@@ -28,7 +28,7 @@ const NavigationBar = () => {
           </Tippy>
           <button
             onClick={() => logout()}
-            className="font-semibold text-lg rounded-md ease-in-out  bg-secondary-500  text-white px-4 py-1 hover:bg-secondary-600 transition-colors duration-300"
+            className="font-semibold  text-lg rounded-md ease-in-out  bg-secondary-500  text-white px-4 py-1 hover:bg-secondary-600 transition-colors duration-300"
           >
             Logout
           </button>
