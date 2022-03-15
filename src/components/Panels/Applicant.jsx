@@ -49,7 +49,7 @@ const Applicant = () => {
   const [interests, setInterests] = useState([]);
 
   const { addInterests, isLoading } = useContext(JobContext);
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const { currentUser, updateCurrentUser } = useContext(AuthContext);
 
   const checkInterest = () => {
     if (currentUser.interests) {
@@ -83,7 +83,8 @@ const Applicant = () => {
     await addInterests(interests, currentUser);
     setInterests([]);
     setAddInterestsModal(false);
-    checkInterest();
+    await updateCurrentUser();
+    setAddInterestsModal(false);
   };
 
   if (isLoading) return <Spinner />;

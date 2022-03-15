@@ -89,6 +89,23 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  const updateCurrentUser = async () => {
+    setIsLoading(true);
+    try {
+      const res = await db.collection("users").doc(currentUser.userId).get();
+      if (res.exists) {
+        console.log("Document data:", res.data());
+        setCurrentUser(res.data());
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
   const logout = () => {
     auth.signOut();
     setJobs(null);
@@ -107,6 +124,7 @@ export const AuthProvider = ({ children }) => {
         isLoading,
         setIsLoading,
         addWorkDetails,
+        updateCurrentUser,
         logout,
       }}
     >
