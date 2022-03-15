@@ -5,7 +5,7 @@ import { JobContext } from "./JobContext";
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [isFetching, setIsFetching] = useState(false);
+  // const [isFetching, setIsFetching] = useState(false);
   const [fetchingUser, setFetchingUser] = useState(true);
   const [currentUser, setCurrentUser] = useState(null);
   const [error, setError] = useState("");
@@ -97,8 +97,9 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        isFetching,
+        // isFetching,
         currentUser,
+        setCurrentUser,
         signup,
         login,
         error,

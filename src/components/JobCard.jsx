@@ -52,7 +52,7 @@ const techNames = [
 ];
 
 const JobCard = ({ job }) => {
-  const [updateStaffModal, setUpdateStaffModal] = useState(false);
+  const [updateJobModal, setUpdateJobModal] = useState(false);
   const [jobDetails, setJobDetails] = useState({
     jobTitle: "",
     jobLocation: "",
@@ -101,11 +101,11 @@ const JobCard = ({ job }) => {
     };
     await updateJob(jobId, data);
     clearModal();
-    closeUpdateStaffModal();
+    closeUpdateJobModal();
     await fetchJobs(currentUser.userId);
   };
 
-  const openUpdateStaffModal = async () => {
+  const openUpdateJobModal = async () => {
     const data = await fetchJob(job.jobId);
     setJobDetails({
       jobTitle: data.jobTitle,
@@ -119,11 +119,11 @@ const JobCard = ({ job }) => {
       education: data.jobRequirements.education,
     });
     setTags([...data.jobTags]);
-    setUpdateStaffModal(true);
+    setUpdateJobModal(true);
   };
 
-  const closeUpdateStaffModal = () => {
-    setUpdateStaffModal(false);
+  const closeUpdateJobModal = () => {
+    setUpdateJobModal(false);
     clearModal();
   };
 
@@ -179,7 +179,7 @@ const JobCard = ({ job }) => {
           <div className="flex items-center justify-end space-x-5">
             <Tippy content="Edit" inertia animation="scale">
               <button
-                onClick={openUpdateStaffModal}
+                onClick={openUpdateJobModal}
                 className="border-[1px] border-black p-2"
               >
                 <EditIcon />
@@ -202,13 +202,13 @@ const JobCard = ({ job }) => {
         </div>
       </li>
       <Modal
-        open={updateStaffModal}
-        onClose={closeUpdateStaffModal}
+        open={updateJobModal}
+        onClose={closeUpdateJobModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         className="flex h-screen w-full items-center justify-center"
       >
-        <Box className="p-6 rounded-md h-[80%] overflow-y-scroll bg-slate-50 w-[40%] border-none outline-none focus:outline-none ">
+        <Box className="p-6 rounded-md h-[85%] overflow-y-scroll bg-slate-50 w-[40%] border-none outline-none focus:outline-none ">
           <h1 className="text-[2rem] text-center font-semibold">Update Job</h1>
           <hr className="bg-slate-400 h-[2px] w-full mb-4" />
           <form
@@ -383,7 +383,7 @@ const JobCard = ({ job }) => {
             </div>
             <div className="flex justify-start items-center space-x-2">
               <button
-                onClick={closeUpdateStaffModal}
+                onClick={closeUpdateJobModal}
                 className="font-semibold text-red-500 rounded-lg border-red-500 border-[1px]  duration-300 ease-in-out hover:shadow-xl transition-all  text-xl   px-6 py-2"
               >
                 Cancel

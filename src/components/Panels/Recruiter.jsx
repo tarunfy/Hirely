@@ -47,7 +47,7 @@ const techNames = [
 ];
 
 const Recruiter = () => {
-  const [addStaffModal, setAddStaffModal] = useState(false);
+  const [addJobModal, setAddJobModal] = useState(false);
   const [jobDetails, setJobDetails] = useState({
     jobTitle: "",
     jobLocation: "",
@@ -97,17 +97,17 @@ const Recruiter = () => {
       createdAt: Date.now(),
     };
     await addJobDetails(data);
-    closeAddStaffModal();
+    closeAddJobModal();
     clearModal();
     await fetchJobs(currentUser.userId);
   };
 
-  const openAddStaffModal = () => {
-    setAddStaffModal(true);
+  const openAddJobModal = () => {
+    setAddJobModal(true);
   };
 
-  const closeAddStaffModal = () => {
-    setAddStaffModal(false);
+  const closeAddJobModal = () => {
+    setAddJobModal(false);
     clearModal();
   };
 
@@ -144,7 +144,7 @@ const Recruiter = () => {
         <div className="top flex justify-between items-center w-full">
           <h1 className="text-5xl font-bold">Your Job Openings</h1>
           <button
-            onClick={openAddStaffModal}
+            onClick={openAddJobModal}
             className="uppercase font-medium border-[1px] hover:scale-95 hover:bg-secondary-500 hover:text-white hover:shadow-xl hover:shadow-secondary-300 transition-all ease-in-out duration-300 flex items-center border-secondary-500 text-xl px-5 py-2 text-secondary-500"
           >
             <AddIcon className="mr-1" />
@@ -176,13 +176,13 @@ const Recruiter = () => {
         )}
       </div>
       <Modal
-        open={addStaffModal}
-        onClose={closeAddStaffModal}
+        open={addJobModal}
+        onClose={closeAddJobModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         className="flex h-screen w-full items-center justify-center"
       >
-        <Box className="p-6 rounded-md  h-[80%] overflow-y-scroll bg-slate-50 w-[40%] border-none outline-none focus:outline-none ">
+        <Box className="p-6 rounded-md  h-[85%] overflow-y-scroll bg-slate-50 w-[40%] border-none outline-none focus:outline-none ">
           <h1 className="text-[2rem] text-center font-semibold">Add Job</h1>
           <hr className="bg-slate-400 h-[2px] w-full mb-4" />
           <form className="w-full" onSubmit={(e) => handleSubmit(e)}>
@@ -354,7 +354,7 @@ const Recruiter = () => {
             </div>
             <div className="flex justify-start items-center space-x-2">
               <button
-                onClick={closeAddStaffModal}
+                onClick={closeAddJobModal}
                 className="font-semibold text-red-500 rounded-lg border-red-500 border-[1px]  duration-300 ease-in-out hover:shadow-xl transition-all  text-xl   px-6 py-2"
               >
                 Cancel

@@ -75,12 +75,28 @@ export const JobProvider = ({ children }) => {
     return data;
   };
 
+  const addInterests = async (interests, currentUser) => {
+    setIsLoading(true);
+    try {
+      await db.collection("users").doc(currentUser.userId).set(
+        {
+          interests,
+        },
+        { merge: true }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <JobContext.Provider
       value={{
         fetchJobs,
         addJobDetails,
         isFetchingJobs,
+        addInterests,
         isLoading,
         jobs,
         removeJob,
