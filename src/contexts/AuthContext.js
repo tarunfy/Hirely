@@ -94,10 +94,8 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await db.collection("users").doc(currentUser.userId).get();
       if (res.exists) {
-        console.log("Document data:", res.data());
         setCurrentUser(res.data());
       } else {
-        // doc.data() will be undefined in this case
         console.log("No such document!");
       }
     } catch (err) {
