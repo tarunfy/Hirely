@@ -138,7 +138,7 @@ const Applicant = () => {
           </div>
         )}
         <div className="w-full overflow-y-scroll px-10 mt-10 ">
-          {jobs.length > 0 && (
+          {jobs.length > 0 ? (
             <ul className="w-full border-[1px] border-zinc-500 rounded-md bg-slate-50">
               {jobs.map((job, index) => (
                 <li
@@ -172,6 +172,10 @@ const Applicant = () => {
                 </li>
               ))}
             </ul>
+          ) : (
+            <p className="text-center font-medium text-xl">
+              Oops, No job available for this interest yet...
+            </p>
           )}
         </div>
       </div>
