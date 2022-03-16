@@ -55,8 +55,13 @@ const Applicant = () => {
   const [activeInterest, setActiveInterest] = useState("");
   const [jobs, setJobs] = useState([]);
 
-  const { addInterests, isLoading, fetchAllJobs, isFetchingJobs } =
-    useContext(JobContext);
+  const {
+    addInterests,
+    isLoading,
+    fetchAllJobs,
+    isFetchingJobs,
+    fetchInterestedJobs,
+  } = useContext(JobContext);
   const { currentUser, updateCurrentUser } = useContext(AuthContext);
 
   const checkInterest = () => {
@@ -78,8 +83,14 @@ const Applicant = () => {
         setJobs(allJobs);
       }
     }
+    async function fetchInterestJobs() {
+      const interestedJobs = await fetchInterestedJobs(activeInterest);
+      setJobs(interestedJobs);
+    }
     if (activeInterest === "") {
       fetchJobs();
+    } else {
+      fetchInterestJobs();
     }
   }, [activeInterest]);
 
@@ -126,11 +137,10 @@ const Applicant = () => {
             ))}
           </div>
         )}
-        <div className="w-full overflow-y-scroll px-10 mt-10">
-          <ul className="w-full border-[1px] border-zinc-500 rounded-md bg-slate-50">
-            {setJobs.length > 0 &&
-              activeInterest === "" &&
-              jobs.map((job, index) => (
+        <div className="w-full overflow-y-scroll px-10 mt-10 ">
+          {jobs.length > 0 && (
+            <ul className="w-full border-[1px] border-zinc-500 rounded-md bg-slate-50">
+              {jobs.map((job, index) => (
                 <li
                   key={index}
                   className="flex hover:shadow-inner  justify-between items-stretch cursor-default p-5 duration-300 transition-all ease-in-out"
@@ -161,7 +171,8 @@ const Applicant = () => {
                   </div>
                 </li>
               ))}
-          </ul>
+            </ul>
+          )}
         </div>
       </div>
       <Modal

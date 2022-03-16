@@ -107,6 +107,25 @@ export const JobProvider = ({ children }) => {
     return allJobs;
   };
 
+  const fetchInterestedJobs = async (interest) => {
+    setIsFetchingJobs(true);
+    let jobs = [];
+    try {
+      const snapshot = await db
+        .collection("jobs")
+        .where("jobTags", "array-contains", interest)
+        .get();
+      console.log(snapshot.docs.length);
+      snapshot.docs.forEach((doc) => {
+        jobs.push(doc.data());
+      });
+    } catch (err) {
+      console.log(err);
+    }
+    setIsFetchingJobs(false);
+    return jobs;
+  };
+
   return (
     <JobContext.Provider
       value={{
@@ -114,6 +133,7 @@ export const JobProvider = ({ children }) => {
         addJobDetails,
         isFetchingJobs,
         addInterests,
+        fetchInterestedJobs,
         isLoading,
         jobs,
         removeJob,
