@@ -2,7 +2,12 @@ import { useState, useContext, useEffect } from "react";
 import { JobContext } from "../../contexts/JobContext";
 import { AuthContext } from "../../contexts/AuthContext";
 import Spinner from "../Spinner";
+import moment from "moment";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/animations/scale.css";
 import { Modal, Select, Chip, FormControl, Box, MenuItem } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -48,8 +53,10 @@ const Applicant = () => {
   const [addInterestsModal, setAddInterestsModal] = useState(false);
   const [interests, setInterests] = useState([]);
   const [activeInterest, setActiveInterest] = useState("");
+  const [jobs, setJobs] = useState([]);
 
-  const { addInterests, isLoading } = useContext(JobContext);
+  const { addInterests, isLoading, fetchAllJobs, isFetchingJobs } =
+    useContext(JobContext);
   const { currentUser, updateCurrentUser } = useContext(AuthContext);
 
   const checkInterest = () => {
@@ -63,6 +70,18 @@ const Applicant = () => {
   useEffect(() => {
     checkInterest();
   }, []);
+
+  useEffect(() => {
+    async function fetchJobs() {
+      const allJobs = await fetchAllJobs();
+      if (allJobs.length > 0) {
+        setJobs(allJobs);
+      }
+    }
+    if (activeInterest === "") {
+      fetchJobs();
+    }
+  }, [activeInterest]);
 
   const closeInterestModal = () => {
     setAddInterestsModal(false);
@@ -85,7 +104,7 @@ const Applicant = () => {
     setAddInterestsModal(false);
   };
 
-  if (isLoading) return <Spinner />;
+  if (isLoading || isFetchingJobs) return <Spinner />;
 
   return (
     <>
@@ -95,6 +114,7 @@ const Applicant = () => {
             {currentUser.interests.map((interest, index) => (
               <p
                 onClick={(e) => setActiveInterest(e.target.innerText)}
+                onDoubleClick={() => setActiveInterest("")}
                 key={index}
                 className={` ${
                   activeInterest === interest &&
@@ -106,6 +126,43 @@ const Applicant = () => {
             ))}
           </div>
         )}
+        <div className="w-full overflow-y-scroll px-10 mt-10">
+          <ul className="w-full border-[1px] border-zinc-500 rounded-md bg-slate-50">
+            {setJobs.length > 0 &&
+              activeInterest === "" &&
+              jobs.map((job, index) => (
+                <li
+                  key={index}
+                  className="flex hover:shadow-inner  justify-between items-stretch cursor-default p-5 duration-300 transition-all ease-in-out"
+                >
+                  <div className="flex flex-col justify-between text-left">
+                    <div className="mb-4">
+                      <h1 className="text-2xl font-semibold">{job.jobTitle}</h1>
+                      <h4 className="text-lg font-medium">
+                        {job.jobDesignation}
+                      </h4>
+                      <p className="max-w-2xl text-base font-normal text-gray-900">
+                        {job.jobDescription}
+                      </p>
+                    </div>
+                    <div>
+                      <h3>Applications: 50</h3>
+                    </div>
+                  </div>
+                  <div className="flex flex-col justify-between text-right">
+                    <div>{moment(job.createdAt).format("MM/DD/YYYY")}</div>
+                    <div className="flex items-center justify-end space-x-5">
+                      <Tippy content="View" inertia animation="scale">
+                        <button className="border-[1px] border-black p-2">
+                          <VisibilityIcon />
+                        </button>
+                      </Tippy>
+                    </div>
+                  </div>
+                </li>
+              ))}
+          </ul>
+        </div>
       </div>
       <Modal
         open={addInterestsModal}

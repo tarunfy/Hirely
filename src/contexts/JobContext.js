@@ -90,6 +90,23 @@ export const JobProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  const fetchAllJobs = async () => {
+    setIsFetchingJobs(true);
+    let allJobs = [];
+    try {
+      const snapshot = await db.collection("jobs").get();
+      if (snapshot.docs.length > 0) {
+        snapshot.docs.forEach((job) => {
+          allJobs.push(job.data());
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    setIsFetchingJobs(false);
+    return allJobs;
+  };
+
   return (
     <JobContext.Provider
       value={{
@@ -103,6 +120,7 @@ export const JobProvider = ({ children }) => {
         updateJob,
         fetchJob,
         setJobs,
+        fetchAllJobs,
         error,
       }}
     >
