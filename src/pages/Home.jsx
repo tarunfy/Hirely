@@ -12,17 +12,21 @@ const Home = () => {
         <h1 className="z-30 text-center text-7xl leading-[5.5rem] font-extrabold">
           Direct Hiring App for Startup <br /> Ecosystem.
         </h1>
-        <p className="text-center cursor-default leading-8 text-lg z-30 font-light text-gray-700 my-10">
+        <p className="text-center cursor-default leading-7 text-lg z-30 font-light text-gray-700 my-10">
           Hirely, first job platform, connects startup founders, business
-          owners, <br /> recruiters, and HR heads directly to job <br /> seekers
-          and candidates.
+          owners,
+          <br />
+          recruiters, and HR heads directly to job
+          <br />
+          seekers and candidates.
         </p>
         <Link
-          id="cta"
           to="/signin"
-          className="bg-white border-2 border-secondary-600 text-secondary-600  z-40 uppercase flex justify-center  items-center hover:bg-secondary-600 hover:text-white  hover:shadow-2xl hover:shadow-secondary-900 transition-all duration-300 ease-in-out hover:scale-105 font-semibold text-3xl px-5 py-3 rounded-full"
+          className="group relative inline-flex border border-secondary-600 focus:outline-none  lg:ml-4 lg:inline-flex"
         >
-          Start Hiring
+          <span className="w-full inline-flex items-center justify-center self-stretch px-2 py-1 text-2xl text-secondary-600 text-center font-bold uppercase bg-white ring-1 ring-secondary-600 ring-offset-1 transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-focus:-translate-y-1 group-focus:-translate-x-1">
+            Get Started
+          </span>
         </Link>
         <img
           src={Waves}

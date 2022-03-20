@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
+import AppliedJobs from "./pages/AppliedJobs";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -45,6 +46,17 @@ function App() {
           path="/profile"
           render={(props) =>
             currentUser ? <Profile {...props} /> : <Redirect to="/signin" />
+          }
+        />
+        <Route
+          exact
+          path="/applied-jobs"
+          render={(props) =>
+            currentUser && currentUser.role === "Applicant" ? (
+              <AppliedJobs {...props} />
+            ) : (
+              <Redirect to="/dashboard" />
+            )
           }
         />
       </Switch>

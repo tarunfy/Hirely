@@ -95,6 +95,7 @@ const Recruiter = () => {
       jobTags: tags,
       userId: currentUser.userId,
       createdAt: Date.now(),
+      applications: [],
     };
     await addJobDetails(data);
     closeAddJobModal();

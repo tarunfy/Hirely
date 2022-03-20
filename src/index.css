@@ -15,6 +15,15 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+@font-face {
+  font-family: "TechnaSansRegular";
+  src: url(./assets/fonts/TechnaSansRegular-Xp79.otf);
+}
+
+.logo {
+  font-family: "TechnaSansRegular", sans-serif;
+}
+
 ::-moz-selection {
   /* Code for Firefox */
   color: black;

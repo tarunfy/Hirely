@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react";
-import { db } from "../services/firebase";
+import { db, FieldValue } from "../services/firebase";
 
 export const JobContext = createContext(null);
 
@@ -96,8 +96,8 @@ export const JobProvider = ({ children }) => {
     try {
       const snapshot = await db.collection("jobs").get();
       if (snapshot.docs.length > 0) {
-        snapshot.docs.forEach((job) => {
-          allJobs.push(job.data());
+        snapshot.docs.forEach((doc) => {
+          allJobs.push({ ...doc.data(), jobId: doc.id });
         });
       }
     } catch (err) {
@@ -116,7 +116,7 @@ export const JobProvider = ({ children }) => {
         .where("jobTags", "array-contains", interest)
         .get();
       snapshot.docs.forEach((doc) => {
-        jobs.push(doc.data());
+        jobs.push({ ...doc.data(), jobId: doc.id });
       });
     } catch (err) {
       console.log(err);
@@ -125,10 +125,29 @@ export const JobProvider = ({ children }) => {
     return jobs;
   };
 
+  const applyJob = async (jobId, userId) => {
+    setIsLoading(true);
+    try {
+      await db
+        .collection("jobs")
+        .doc(jobId)
+        .update({
+          applications: new FieldValue.arrayUnion({
+            userId,
+            appliedOn: Date.now(),
+          }),
+        });
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <JobContext.Provider
       value={{
         fetchJobs,
+        applyJob,
         addJobDetails,
         isFetchingJobs,
         addInterests,
