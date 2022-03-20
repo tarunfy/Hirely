@@ -115,7 +115,6 @@ export const JobProvider = ({ children }) => {
         .collection("jobs")
         .where("jobTags", "array-contains", interest)
         .get();
-      console.log(snapshot.docs.length);
       snapshot.docs.forEach((doc) => {
         jobs.push(doc.data());
       });

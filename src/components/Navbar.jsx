@@ -8,7 +8,7 @@ import { Avatar } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 
 const NavigationBar = () => {
-  const { logout } = useContext(AuthContext);
+  const { logout, currentUser } = useContext(AuthContext);
 
   return (
     <>
@@ -27,10 +27,12 @@ const NavigationBar = () => {
             </Link>
           </Tippy>
           <button
-            onClick={() => logout()}
-            className="font-semibold  text-lg rounded-md ease-in-out  bg-secondary-500  text-white px-4 py-1 hover:bg-secondary-600 transition-colors duration-300"
+            class="group relative inline-flex border border-secondary-600 focus:outline-none  lg:ml-4 lg:inline-flex"
+            onClick={logout}
           >
-            Logout
+            <span class="w-full inline-flex items-center justify-center self-stretch px-4 py-2 text-sm text-secondary-600 text-center font-bold uppercase bg-white ring-1 ring-secondary-600 ring-offset-1 transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-focus:-translate-y-1 group-focus:-translate-x-1">
+              Logout
+            </span>
           </button>
         </div>
       </div>
