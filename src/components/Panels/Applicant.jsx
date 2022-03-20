@@ -129,7 +129,7 @@ const Applicant = () => {
                 key={index}
                 className={` ${
                   activeInterest === interest &&
-                  "bg-secondary-600 text-white shadow-lg shadow-secondary-300"
+                  "bg-secondary-600 hover:shadow-lg hover:shadow-secondary-300 text-white shadow-lg shadow-secondary-300"
                 } font-semibold hover:shadow-lg transition-shadow duration-200 ease-out rounded-full px-4 py-2 cursor-pointer bg-white border-2 border-secondary-500`}
               >
                 {interest}

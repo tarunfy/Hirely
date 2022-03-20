@@ -145,10 +145,12 @@ const Recruiter = () => {
           <h1 className="text-5xl font-bold">Your Job Openings</h1>
           <button
             onClick={openAddJobModal}
-            className="uppercase font-medium border-[1px] hover:scale-95 hover:bg-secondary-500 hover:text-white hover:shadow-xl hover:shadow-secondary-300 transition-all ease-in-out duration-300 flex items-center border-secondary-500 text-xl px-5 py-2 text-secondary-500"
+            className="group relative inline-flex border border-secondary-600 focus:outline-none w-full sm:w-auto"
           >
-            <AddIcon className="mr-1" />
-            Add
+            <span className="w-full inline-flex items-center justify-center self-stretch px-4 py-2 text-lg text-white text-center font-bold uppercase bg-secondary-600 ring-1 ring-secondary-600 ring-offset-1 ring-offset-secondary-600 transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-focus:-translate-y-1 group-focus:-translate-x-1">
+              <AddIcon className="mr-1" />
+              Add
+            </span>
           </button>
         </div>
         {error ? (
