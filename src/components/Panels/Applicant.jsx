@@ -53,7 +53,7 @@ const Applicant = () => {
   const [addInterestsModal, setAddInterestsModal] = useState(false);
   const [interests, setInterests] = useState([]);
   const [activeInterest, setActiveInterest] = useState("");
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState(null);
 
   const {
     addInterests,
@@ -120,7 +120,11 @@ const Applicant = () => {
     await applyJob(jobId);
     if (activeInterest === "") {
       const allJobs = await fetchAllJobs();
-      setJobs(allJobs);
+      if (allJobs.length > 0) {
+        setJobs(allJobs);
+      } else {
+        setJobs(null);
+      }
     } else {
       const interestedJobs = await fetchInterestedJobs(activeInterest);
       setJobs(interestedJobs);
@@ -150,7 +154,7 @@ const Applicant = () => {
           </div>
         )}
         <div className="w-full overflow-y-scroll px-10 mt-10 ">
-          {jobs.length > 0 ? (
+          {jobs && jobs.length > 0 ? (
             <ul className="w-full border-[1px] border-zinc-500 rounded-md bg-slate-50">
               {jobs.map((job, index) => (
                 <li
@@ -191,7 +195,7 @@ const Applicant = () => {
             </ul>
           ) : (
             <p className="text-center font-medium text-xl">
-              Oops, No job available for this interest yet...
+              Oops, No jobs available yet...
             </p>
           )}
         </div>

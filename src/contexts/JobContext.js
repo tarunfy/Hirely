@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext } from "react";
-import { app, db, FieldValue } from "../services/firebase";
+import { db, FieldValue } from "../services/firebase";
 import { AuthContext } from "./AuthContext";
 
 export const JobContext = createContext(null);
@@ -162,10 +162,35 @@ export const JobProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  const fetchAppliedJobs = async () => {
+    setIsFetchingJobs(true);
+    let appliedJobs = [];
+    try {
+      const snapshot = await db.collection("jobs").get();
+      if (snapshot.docs.length > 0) {
+        appliedJobs = snapshot.docs
+          .map((doc) => ({ ...doc.data(), jobId: doc.id }))
+          .filter((doc) => {
+            for (let i = 0; i < doc.applications.length; i++) {
+              if (doc.applications[i].userId === currentUser.userId) {
+                return true;
+              }
+            }
+            return false;
+          });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    setIsFetchingJobs(false);
+    return appliedJobs;
+  };
+
   return (
     <JobContext.Provider
       value={{
         fetchJobs,
+        fetchAppliedJobs,
         applyJob,
         addJobDetails,
         isFetchingJobs,
