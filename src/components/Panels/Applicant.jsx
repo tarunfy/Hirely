@@ -109,7 +109,7 @@ const Applicant = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await addInterests(interests, currentUser);
+    await addInterests(interests);
     setInterests([]);
     setAddInterestsModal(false);
     await updateCurrentUser();
@@ -117,8 +117,14 @@ const Applicant = () => {
   };
 
   const handleApplyJob = async (jobId) => {
-    await applyJob(jobId, currentUser.userId);
-    console.log("ggs");
+    await applyJob(jobId);
+    if (activeInterest === "") {
+      const allJobs = await fetchAllJobs();
+      setJobs(allJobs);
+    } else {
+      const interestedJobs = await fetchInterestedJobs(activeInterest);
+      setJobs(interestedJobs);
+    }
   };
 
   if (isLoading || isFetchingJobs) return <Spinner />;

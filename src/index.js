@@ -7,12 +7,12 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { JobProvider } from "./contexts/JobContext";
 
 ReactDOM.render(
-  <JobProvider>
-    <AuthProvider>
+  <AuthProvider>
+    <JobProvider>
       <Router>
         <App />
       </Router>
-    </AuthProvider>
-  </JobProvider>,
+    </JobProvider>
+  </AuthProvider>,
   document.getElementById("root")
 );

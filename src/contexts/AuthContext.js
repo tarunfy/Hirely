@@ -1,17 +1,13 @@
-import React, { useEffect, useState, createContext, useContext } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import { auth, db } from "../services/firebase";
-import { JobContext } from "./JobContext";
 
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  // const [isFetching, setIsFetching] = useState(false);
   const [fetchingUser, setFetchingUser] = useState(true);
   const [currentUser, setCurrentUser] = useState(null);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  const { setJobs } = useContext(JobContext);
 
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
@@ -106,13 +102,11 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     auth.signOut();
-    setJobs(null);
   };
 
   return (
     <AuthContext.Provider
       value={{
-        // isFetching,
         currentUser,
         setCurrentUser,
         signup,

@@ -1,5 +1,6 @@
-import React, { useState, createContext } from "react";
-import { db, FieldValue } from "../services/firebase";
+import React, { useState, createContext, useContext } from "react";
+import { app, db, FieldValue } from "../services/firebase";
+import { AuthContext } from "./AuthContext";
 
 export const JobContext = createContext(null);
 
@@ -8,6 +9,8 @@ export const JobProvider = ({ children }) => {
   const [isFetchingJobs, setIsFetchingJobs] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [jobs, setJobs] = useState(null);
+
+  const { currentUser } = useContext(AuthContext);
 
   const addJobDetails = async (data) => {
     setIsLoading(true);
@@ -75,7 +78,7 @@ export const JobProvider = ({ children }) => {
     return data;
   };
 
-  const addInterests = async (interests, currentUser) => {
+  const addInterests = async (interests) => {
     setIsLoading(true);
     try {
       await db.collection("users").doc(currentUser.userId).set(
@@ -96,9 +99,16 @@ export const JobProvider = ({ children }) => {
     try {
       const snapshot = await db.collection("jobs").get();
       if (snapshot.docs.length > 0) {
-        snapshot.docs.forEach((doc) => {
-          allJobs.push({ ...doc.data(), jobId: doc.id });
-        });
+        allJobs = snapshot.docs
+          .map((doc) => ({ ...doc.data(), jobId: doc.id }))
+          .filter((doc) => {
+            for (let i = 0; i < doc.applications.length; i++) {
+              if (doc.applications[i].userId === currentUser.userId) {
+                return false;
+              }
+            }
+            return true;
+          });
       }
     } catch (err) {
       console.log(err);
@@ -115,9 +125,18 @@ export const JobProvider = ({ children }) => {
         .collection("jobs")
         .where("jobTags", "array-contains", interest)
         .get();
-      snapshot.docs.forEach((doc) => {
-        jobs.push({ ...doc.data(), jobId: doc.id });
-      });
+      if (snapshot.docs.length > 0) {
+        jobs = snapshot.docs
+          .map((doc) => ({ ...doc.data(), jobId: doc.id }))
+          .filter((doc) => {
+            for (let i = 0; i < doc.applications.length; i++) {
+              if (doc.applications[i].userId === currentUser.userId) {
+                return false;
+              }
+            }
+            return true;
+          });
+      }
     } catch (err) {
       console.log(err);
     }
@@ -125,7 +144,7 @@ export const JobProvider = ({ children }) => {
     return jobs;
   };
 
-  const applyJob = async (jobId, userId) => {
+  const applyJob = async (jobId) => {
     setIsLoading(true);
     try {
       await db
@@ -133,7 +152,7 @@ export const JobProvider = ({ children }) => {
         .doc(jobId)
         .update({
           applications: new FieldValue.arrayUnion({
-            userId,
+            userId: currentUser.userId,
             appliedOn: Date.now(),
           }),
         });
