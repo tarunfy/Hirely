@@ -4,7 +4,7 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 const AppliedJobCard = ({ job }) => {
   return (
-    <div className="relative px-3 py-10 bg-white shadow-md hover:shadow-xl hover:-translate-y-1 transition-all ease-in-out duration-300 w-full h-fit border-t-[4px] border-secondary-500 rounded-sm">
+    <div className="relative px-3 py-10 bg-white shadow-md hover:shadow-xl hover:-translate-y-1 transition-all ease-in-out duration-300 w-full h-56 border-t-[4px] border-secondary-500 rounded-sm">
       <Tippy content="Applied on" inertia animation="scale">
         <p className="absolute cursor-default top-2 font-medium right-2">
           {moment(job.applications[0].appliedOn).format("MM/DD/YYYY")}
@@ -12,7 +12,7 @@ const AppliedJobCard = ({ job }) => {
       </Tippy>
       <div>
         <h1 className="text-2xl font-bold">{job.jobTitle}</h1>
-        <p className="text-base font-semibold max-w-sm text-gray-600">
+        <p className="text-sm font-semibold max-w-sm text-gray-600">
           {job.jobDescription}
         </p>
         <div className="flex mt-2 mb-7 items-center space-x-1 justify-start flex-wrap">
