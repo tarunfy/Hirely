@@ -171,7 +171,7 @@ const JobCard = ({ job }) => {
             </p>
           </div>
           <div>
-            <h3>Applications: 50</h3>
+            <h3>Applications: {job.applications.length}</h3>
           </div>
         </div>
         <div className="flex flex-col justify-between text-right">
