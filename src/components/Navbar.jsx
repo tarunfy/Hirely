@@ -5,8 +5,6 @@ import { JobContext } from "../contexts/JobContext";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
-import { Avatar } from "@mui/material";
-import PersonIcon from "@mui/icons-material/Person";
 
 const NavigationBar = () => {
   const { logout, currentUser } = useContext(AuthContext);
@@ -41,10 +39,12 @@ const NavigationBar = () => {
             </span>
           </button>
           <Tippy content="Profile" inertia animation="scale">
-            <Link to="/profile">
-              <Avatar>
-                <PersonIcon />
-              </Avatar>
+            <Link to="/profile" className="bg-white p-2 rounded-full">
+              <img
+                src={`https://avatars.dicebear.com/api/bottts/${currentUser.fullName}.svg`}
+                alt="profile"
+                className="h-8 w-8 object-cover"
+              />
             </Link>
           </Tippy>
         </div>
