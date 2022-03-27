@@ -5,6 +5,7 @@ import { JobContext } from "../contexts/JobContext";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
+import { Avatar } from "@mui/material";
 
 const NavigationBar = () => {
   const { logout, currentUser } = useContext(AuthContext);
@@ -17,11 +18,11 @@ const NavigationBar = () => {
 
   return (
     <>
-      <div className="w-full fixed top-0 left-0 py-5 shadow-md px-16 bg-slate-50 flex justify-between items-center">
+      <div className="w-full fixed  top-0 left-0 py-5 shadow-md px-16 bg-slate-50 flex justify-between items-center">
         <div className="left cursor-default">
           <h1 className="text-4xl logo text-secondary-600">Hirely</h1>
         </div>
-        <div className="right flex space-x-7 items-center">
+        <div className="right  flex space-x-7 items-center">
           <Tippy content="Role" inertia animation="scale">
             <p className="cursor-default text-neutral-600">
               {currentUser.role}
@@ -44,11 +45,14 @@ const NavigationBar = () => {
             </span>
           </button>
           <Tippy content="Profile" inertia animation="scale">
-            <Link to="/profile" className="bg-white p-2 rounded-full">
-              <img
-                src={`https://avatars.dicebear.com/api/bottts/${currentUser.fullName}.svg`}
-                alt="profile"
-                className="h-8 w-8 object-cover"
+            <Link to="/profile">
+              <Avatar
+                className="!rounded-full !h-15 !w-15 object-cover"
+                src={
+                  currentUser?.profilePhoto
+                    ? currentUser.profilePhoto
+                    : `https://avatars.dicebear.com/api/bottts/${currentUser.fullName}.svg`
+                }
               />
             </Link>
           </Tippy>

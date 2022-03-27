@@ -257,3 +257,7 @@ li:first-child {
     width: 100%;
   }
 }
+
+input[type="file"] {
+  display: none;
+}
