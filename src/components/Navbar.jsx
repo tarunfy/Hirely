@@ -22,6 +22,11 @@ const NavigationBar = () => {
           <h1 className="text-4xl logo text-secondary-600">Hirely</h1>
         </div>
         <div className="right flex space-x-7 items-center">
+          <Tippy content="Role" inertia animation="scale">
+            <p className="cursor-default text-neutral-600">
+              {currentUser.role}
+            </p>
+          </Tippy>
           {currentUser.role === "Applicant" && (
             <Link
               to="/applied-jobs"
