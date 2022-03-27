@@ -7,38 +7,160 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const RecruiterProfile = () => {
+  const [profilePhoto, setProfilePhoto] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [designation, setDesignation] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [companyName, setCompanyName] = useState("");
+
   const { currentUser } = useContext(AuthContext);
+
+  const imageHandler = (e) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setProfilePhoto(reader.result);
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    console.log(fullName);
+    console.log(profilePhoto);
+    console.log(designation);
+    console.log(phoneNumber);
+    console.log(companyName);
+  };
+
   return (
     <div className="h-full w-full flex flex-col justify-start items-center">
-      <div className="border-2 relative border-black/50 p-2 bg-white rounded-full">
-        <Tippy content="Change your avatar" inertia animation="scale">
+      <form
+        className="p-1 space-y-10 mt-10 flex flex-col items-center"
+        onSubmit={handleUpdate}
+      >
+        <div className="border-2 relative border-gray-500 rounded-full">
           <Avatar
-            className="!h-32 !w-32 !object-cover"
+            className="!h-32 !w-32"
             src={
               currentUser?.profilePhoto
                 ? currentUser.profilePhoto
-                : `https://avatars.dicebear.com/api/bottts/${currentUser.fullName}.svg`
+                : profilePhoto
             }
           />
-        </Tippy>
 
-        <label htmlFor="icon-button-file">
-          <Input
-            accept="image/*"
-            id="icon-button-file"
-            type="file"
-            className="!hidden"
-          />
-          <IconButton
-            color="primary"
-            aria-label="upload picture"
-            component="span"
-            className="!absolute !top-28 !-right-1 !text-secondary-500 !p-1.5 !bg-white"
-          >
-            <EditIcon />
-          </IconButton>
-        </label>
-      </div>
+          <label htmlFor="icon-button-file">
+            <Input
+              accept="image/*"
+              id="icon-button-file"
+              type="file"
+              className="!hidden"
+              onChange={(e) => imageHandler(e)}
+            />
+            <Tippy
+              content="Edit avatar"
+              inertia
+              animation="scale"
+              placement="bottom"
+            >
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="span"
+                className="!absolute !top-[100px] !-right-1 !text-secondary-500 !p-1.5 !bg-white"
+              >
+                <EditIcon />
+              </IconButton>
+            </Tippy>
+          </label>
+        </div>
+        <div className="space-y-10">
+          <div className="flex justify-between items-center space-x-24 ">
+            <div className="input-container flex flex-col justify-between items-start">
+              <label
+                htmlFor="fullName"
+                className="text-sm text-gray-900 font-light"
+              >
+                Full Name
+              </label>
+              <input
+                type="text"
+                autoComplete="off"
+                required
+                id="fullName"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                className="p-2 font-normal text-lg placeholder:text-zinc-800 focus:outline-secondary-400 border border-slate-500"
+              />
+            </div>
+            <div className="input-container flex flex-col justify-between items-start">
+              <label
+                htmlFor="companyName"
+                className="text-sm text-gray-900 font-light"
+              >
+                Company Name
+              </label>
+              <input
+                type="text"
+                autoComplete="off"
+                required
+                id="companyName"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
+                className="p-2 font-normal text-lg placeholder:text-zinc-800 focus:outline-secondary-400 border border-slate-500"
+              />
+            </div>
+          </div>
+
+          <div className="flex justify-between items-center space-x-24">
+            <div className="input-container flex flex-col justify-between items-start">
+              <label
+                htmlFor="phoneNumber"
+                className="text-sm text-gray-900 font-light"
+              >
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                maxLength={10}
+                pattern="[0-9]{10}"
+                autoComplete="off"
+                required
+                id="phoneNumber"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                className="p-2 font-normal text-lg placeholder:text-zinc-800 focus:outline-secondary-400 border border-slate-500"
+              />
+            </div>
+            <div className="input-container flex flex-col justify-between items-start">
+              <label
+                htmlFor="desgination"
+                className="text-sm text-gray-900 font-light"
+              >
+                Designation
+              </label>
+              <input
+                type="text"
+                autoComplete="off"
+                required
+                id="designation"
+                value={designation}
+                onChange={(e) => setDesignation(e.target.value)}
+                className="p-2 font-normal text-lg placeholder:text-zinc-800 focus:outline-secondary-400 border border-slate-500"
+              />
+            </div>
+          </div>
+        </div>
+        <button
+          className="group relative inline-flex border border-secondary-600 focus:outline-none  lg:ml-4 lg:inline-flex"
+          type="submit"
+        >
+          <span className="w-full inline-flex items-center justify-center self-stretch px-2 py-1 text-sm text-secondary-600 text-center font-medium  bg-white ring-1 ring-secondary-600 ring-offset-1 transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-focus:-translate-y-1 group-focus:-translate-x-1">
+            Update Profile
+          </span>
+        </button>
+      </form>
     </div>
   );
 };

@@ -48,11 +48,7 @@ const NavigationBar = () => {
             <Link to="/profile">
               <Avatar
                 className="!rounded-full !h-15 !w-15 object-cover"
-                src={
-                  currentUser?.profilePhoto
-                    ? currentUser.profilePhoto
-                    : `https://avatars.dicebear.com/api/bottts/${currentUser.fullName}.svg`
-                }
+                src={currentUser?.profilePhoto ? currentUser.profilePhoto : ""}
               />
             </Link>
           </Tippy>
