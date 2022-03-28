@@ -262,3 +262,27 @@ li:first-child {
 input[type="file"] {
   display: none;
 }
+
+.css-156qn3s-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root:before {
+  border-bottom: none !important;
+}
+
+.css-156qn3s-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root:before:hover {
+  border-bottom: none !important;
+}
+
+.css-156qn3s-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root:after {
+  display: none !important;
+}
+
+.css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input:focus {
+  background-color: white !important;
+}
+
+.css-156qn3s-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root {
+  border-radius: 0 !important;
+}
+
+.css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input {
+  padding-top: 13px !important;
+}

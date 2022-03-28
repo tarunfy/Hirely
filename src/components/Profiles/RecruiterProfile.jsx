@@ -6,6 +6,8 @@ import "tippy.js/animations/scale.css";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import Spinner from "../Spinner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RecruiterProfile = () => {
   const [profilePhoto, setProfilePhoto] = useState("");
@@ -18,13 +20,18 @@ const RecruiterProfile = () => {
     useContext(AuthContext);
 
   const imageHandler = (e) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setProfilePhoto(reader.result);
-      }
-    };
-    reader.readAsDataURL(e.target.files[0]);
+    if (e.target.files[0].type.includes("image")) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setProfilePhoto(reader.result);
+        }
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    } else {
+      toast.error("Please select an image 😩");
+      return;
+    }
   };
 
   useEffect(() => {
@@ -57,7 +64,6 @@ const RecruiterProfile = () => {
       >
         <div className="border-2 relative border-gray-500 rounded-full">
           <Avatar className="!h-32 !w-32" src={profilePhoto} />
-
           <label htmlFor="icon-button-file">
             <Input
               accept="image/*"
@@ -76,7 +82,6 @@ const RecruiterProfile = () => {
                 color="primary"
                 aria-label="upload picture"
                 component="span"
-                id="test"
                 className="!absolute !top-24 !-right-2 !text-secondary-500 !p-1.5 !bg-white"
               >
                 <EditOutlinedIcon />
@@ -84,6 +89,7 @@ const RecruiterProfile = () => {
             </Tippy>
           </label>
         </div>
+
         <div className="space-y-10">
           <div className="flex justify-between items-center space-x-24 ">
             <div className="input-container flex flex-col justify-between items-start">
@@ -170,6 +176,17 @@ const RecruiterProfile = () => {
           </span>
         </button>
       </form>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };
