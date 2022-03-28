@@ -21,6 +21,7 @@ const ApplicationCard = ({ applicantId, applicationStatus }) => {
       const details = await fetchApplicant(applicantId);
       setApplicantDetails(details);
     }
+
     getApplicant();
   }, []);
 
@@ -91,9 +92,31 @@ const ApplicationCard = ({ applicantId, applicationStatus }) => {
         aria-describedby="modal-modal-description"
         className="flex h-screen w-full items-center justify-center"
       >
-        <Box className="p-6 rounded-md h-[85%] overflow-y-scroll bg-slate-50 w-[40%] border-none outline-none focus:outline-none ">
-          <h1 className="text-[2rem] text-center font-semibold">Update Job</h1>
-          <hr className="bg-slate-400 h-[2px] w-full mb-4" />
+        <Box className="px-6 py-10 rounded-md h-[80%] overflow-y-scroll bg-slate-50 w-[45%] border-none outline-none focus:outline-none ">
+          <div className="flex justify-center flex-col items-center space-y-4">
+            <div className="flex flex-col justify-center items-center space-y-1">
+              <Avatar
+                src={applicantDetails?.profilePhoto}
+                className="!h-20 !w-20 !border-gray-500 !border-[1px]"
+              />
+              <p className="text-xl tracking-wide text-secondary-600 font-semibold">
+                {applicantDetails?.fullName}
+              </p>
+            </div>
+            <div className="flex flex-col items-center space-y-8">
+              <p className="text-center text-lg text-gray-600">
+                {applicantDetails?.about}
+              </p>
+              <div
+                className="grid grid-cols-3 divide-x-2 
+                    divide-gray-500 text-lg font-medium w-[80%]"
+              >
+                <p className="text-left">{applicantDetails?.dob}</p>
+                <p className="text-center">{applicantDetails?.gender}</p>
+                <p className="text-right">{applicantDetails?.phoneNumber}</p>
+              </div>
+            </div>
+          </div>
         </Box>
       </Modal>
     </>
