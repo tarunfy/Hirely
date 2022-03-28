@@ -157,6 +157,7 @@ export const JobProvider = ({ children }) => {
           applications: new FieldValue.arrayUnion({
             userId: currentUser.userId,
             appliedOn: Date.now(),
+            status: "Pending",
           }),
         });
     } catch (err) {

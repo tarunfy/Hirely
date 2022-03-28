@@ -76,11 +76,7 @@ function App() {
           exact
           path="/job-details/:jobId"
           render={(props) =>
-            currentUser && currentUser.role === "Recruiter" ? (
-              <JobDetails {...props} />
-            ) : (
-              <Redirect to="/sigin" />
-            )
+            currentUser ? <JobDetails {...props} /> : <Redirect to="/sigin" />
           }
         />
       </Switch>
