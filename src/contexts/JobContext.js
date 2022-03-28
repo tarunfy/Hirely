@@ -60,7 +60,10 @@ export const JobProvider = ({ children }) => {
   const updateJob = async (docId, details) => {
     setIsLoading(true);
     try {
-      await db.collection("jobs").doc(docId).update(details);
+      await db
+        .collection("jobs")
+        .doc(docId)
+        .update({ ...details, jobId: docId });
     } catch (err) {
       console.log(err);
     }

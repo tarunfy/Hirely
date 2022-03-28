@@ -1,5 +1,5 @@
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import { Avatar, IconButton, Input } from "@mui/material";
+import { Avatar, Button, IconButton, Input } from "@mui/material";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
@@ -7,7 +7,9 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import Spinner from "../Spinner";
 import { ToastContainer, toast } from "react-toastify";
+import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 
 const RecruiterProfile = () => {
   const [profilePhoto, setProfilePhoto] = useState("");
@@ -57,7 +59,16 @@ const RecruiterProfile = () => {
   if (isLoading) return <Spinner />;
 
   return (
-    <div className="h-full w-full flex flex-col justify-start items-center">
+    <div className="h-full w-full flex flex-col justify-start relative items-center">
+      <Link to="/dashboard" className="absolute top-0 left-0">
+        <Button
+          variant="outlined"
+          startIcon={<ArrowBackOutlinedIcon />}
+          className="!border-[1px] !border-gray-600 hover:!bg-transparent !text-black"
+        >
+          Go back
+        </Button>
+      </Link>
       <form
         className="p-1 space-y-10 mt-10 flex flex-col items-center"
         onSubmit={handleUpdate}
@@ -171,7 +182,7 @@ const RecruiterProfile = () => {
           className="group relative inline-flex border border-secondary-600 focus:outline-none  lg:ml-4 lg:inline-flex"
           type="submit"
         >
-          <span className="w-full inline-flex items-center justify-center self-stretch px-2 py-1 text-sm text-secondary-600 text-center font-medium  bg-white ring-1 ring-secondary-600 ring-offset-1 transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-focus:-translate-y-1 group-focus:-translate-x-1">
+          <span className="w-full inline-flex items-center justify-center self-stretch px-2 py-1 text-lg text-secondary-600 text-center font-medium  bg-white ring-1 ring-secondary-600 ring-offset-1 transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-focus:-translate-y-1 group-focus:-translate-x-1">
             Update Profile
           </span>
         </button>

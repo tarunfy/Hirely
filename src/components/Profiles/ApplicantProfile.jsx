@@ -3,7 +3,8 @@ import { AuthContext } from "../../contexts/AuthContext";
 import Spinner from "../Spinner";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+
 import {
   Avatar,
   Button,
@@ -20,6 +21,7 @@ import "tippy.js/animations/scale.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Box } from "@mui/system";
+import { Link } from "react-router-dom";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -107,8 +109,6 @@ const ApplicantProfile = () => {
     }
   };
 
-  console.log(resume);
-
   const handleChange = (event) => {
     const {
       target: { value },
@@ -125,6 +125,7 @@ const ApplicantProfile = () => {
     setGender(currentUser.gender);
     setInterests(currentUser.interests);
     setProfilePhoto(currentUser.profilePhoto);
+    setResume(currentUser.resume);
     setIsLoading(false);
   }, []);
 
@@ -145,7 +146,16 @@ const ApplicantProfile = () => {
   if (isLoading) return <Spinner />;
 
   return (
-    <div className="h-full w-full flex flex-col justify-start items-center">
+    <div className="h-full w-full flex flex-col justify-start relative items-center">
+      <Link to="/dashboard" className="absolute top-0 left-0">
+        <Button
+          variant="outlined"
+          startIcon={<ArrowBackOutlinedIcon />}
+          className="!border-[1px] !border-gray-600 hover:!bg-transparent !text-black"
+        >
+          Go back
+        </Button>
+      </Link>
       <form
         className="p-1 space-y-10 flex flex-col items-center"
         onSubmit={handleUpdate}
@@ -353,7 +363,7 @@ const ApplicantProfile = () => {
           className="group relative inline-flex border border-secondary-600 focus:outline-none  lg:ml-4 lg:inline-flex"
           type="submit"
         >
-          <span className="w-full inline-flex items-center justify-center self-stretch px-2 py-1 text-sm text-secondary-600 text-center font-medium  bg-white ring-1 ring-secondary-600 ring-offset-1 transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-focus:-translate-y-1 group-focus:-translate-x-1">
+          <span className="w-full inline-flex items-center justify-center self-stretch px-2 py-1 text-lg text-secondary-600 text-center font-medium  bg-white ring-1 ring-secondary-600 ring-offset-1 transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-focus:-translate-y-1 group-focus:-translate-x-1">
             Update Profile
           </span>
         </button>
