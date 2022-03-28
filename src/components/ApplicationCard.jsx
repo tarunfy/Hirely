@@ -1,4 +1,4 @@
-import { Avatar, Modal } from "@mui/material";
+import { Avatar, Button, Modal } from "@mui/material";
 import React, { useState, useContext, useEffect } from "react";
 import { JobContext } from "../contexts/JobContext";
 import Spinner from "./Spinner";
@@ -7,6 +7,7 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Box } from "@mui/system";
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
 
 const ApplicationCard = ({ applicantId, applicationStatus }) => {
   const [applicantDetails, setApplicantDetails] = useState(null);
@@ -92,7 +93,7 @@ const ApplicationCard = ({ applicantId, applicationStatus }) => {
         aria-describedby="modal-modal-description"
         className="flex h-screen w-full items-center justify-center"
       >
-        <Box className="px-6 py-10 rounded-md h-[80%] overflow-y-scroll bg-slate-50 w-[45%] border-none outline-none focus:outline-none ">
+        <Box className="px-6 py-10 rounded-md  overflow-y-scroll bg-slate-50 w-[45%] border-none outline-none focus:outline-none ">
           <div className="flex justify-center flex-col items-center space-y-4">
             <div className="flex flex-col justify-center items-center space-y-1">
               <Avatar
@@ -115,6 +116,17 @@ const ApplicationCard = ({ applicantId, applicationStatus }) => {
                 <p className="text-center">{applicantDetails?.gender}</p>
                 <p className="text-right">{applicantDetails?.phoneNumber}</p>
               </div>
+              <a
+                href={applicantDetails?.resume}
+                download={applicantDetails?.resume}
+              >
+                <button className="group relative inline-flex border border-secondary-600 focus:outline-none w-full sm:w-auto">
+                  <span className="w-full inline-flex items-center justify-center self-stretch px-4 py-2 text-lg text-white text-center font-bold  bg-secondary-600 ring-1 ring-secondary-600 ring-offset-1 ring-offset-secondary-600 transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-focus:-translate-y-1 group-focus:-translate-x-1">
+                    <FileDownloadIcon className="mr-1" />
+                    Download resume
+                  </span>
+                </button>
+              </a>
             </div>
           </div>
         </Box>
