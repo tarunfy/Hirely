@@ -1,21 +1,22 @@
+import { useContext, useState, useEffect } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import Spinner from "../Spinner";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import {
   Avatar,
+  Button,
   Chip,
   FormControl,
   IconButton,
   Input,
-  InputLabel,
   MenuItem,
-  OutlinedInput,
   Select,
 } from "@mui/material";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
-import { useContext, useState, useEffect } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
-import Spinner from "../Spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Box } from "@mui/system";
@@ -68,6 +69,7 @@ const ApplicantProfile = () => {
   const [dob, setDob] = useState("");
   const [interests, setInterests] = useState([]);
   const [experienceLevel, setExperienceLevel] = useState("");
+  const [resume, setResume] = useState("");
 
   const { currentUser, updateUserProfile, isLoading, setIsLoading } =
     useContext(AuthContext);
@@ -87,12 +89,33 @@ const ApplicantProfile = () => {
     }
   };
 
+  const resumeHandler = (e) => {
+    if (e.target.files[0].type.includes("application")) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        console.log("sdcdsc");
+        if (reader.readyState == 2) {
+          setResume(reader.result);
+        }
+      };
+      reader.readAsDataURL(e.target.files[0]);
+      toast.success("Resume added 🦄");
+    } else {
+      setResume("");
+      toast.error("Please select a document 😩");
+      return;
+    }
+  };
+
+  console.log(resume);
+
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
     setInterests(typeof value === "string" ? value.split(",") : value);
   };
+
   useEffect(() => {
     setIsLoading(true);
     setFullName(currentUser.fullName);
@@ -115,14 +138,16 @@ const ApplicantProfile = () => {
       profilePhoto,
       phoneNumber,
       interests,
+      resume,
     });
   };
+
   if (isLoading) return <Spinner />;
 
   return (
     <div className="h-full w-full flex flex-col justify-start items-center">
       <form
-        className="p-1 space-y-10 mt-10 flex flex-col items-center"
+        className="p-1 space-y-10 flex flex-col items-center"
         onSubmit={handleUpdate}
       >
         <div className="border-2 relative border-gray-500 rounded-full">
@@ -222,7 +247,7 @@ const ApplicantProfile = () => {
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
               >
-                <option value="none" selected disabled>
+                <option value="none" selected={true} disabled="disabled">
                   Gender
                 </option>
                 <option value="Male">Male</option>
@@ -294,7 +319,34 @@ const ApplicantProfile = () => {
             </div>
           </div>
 
-          <div></div>
+          <div className="w-full  flex items-center justify-start space-x-4">
+            <label
+              htmlFor="resume"
+              className="text-xl text-gray-900 font-semibold"
+            >
+              Resume:
+            </label>
+            <div className="space-x-5">
+              <label htmlFor="resume">
+                <Input
+                  accept="application/*"
+                  id="resume"
+                  type="file"
+                  className="!hidden"
+                  onChange={(e) => resumeHandler(e)}
+                />
+                <Tippy inertia animation="scale" content="Upload resume">
+                  <IconButton
+                    color="primary"
+                    component="span"
+                    className=" !bg-secondary-500 !p-1.5 !text-white hover:!shadow-xl hover:!shadow-secondary-400 !transition-all !duration-100 !ease-in"
+                  >
+                    <CloudUploadIcon />
+                  </IconButton>
+                </Tippy>
+              </label>
+            </div>
+          </div>
         </div>
 
         <button
