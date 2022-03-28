@@ -7,6 +7,8 @@ import Signin from "./pages/Signin";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import AppliedJobs from "./pages/AppliedJobs";
+import Applications from "./pages/Applications";
+import JobDetails from "./pages/JobDetails";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -56,6 +58,28 @@ function App() {
               <AppliedJobs {...props} />
             ) : (
               <Redirect to="/dashboard" />
+            )
+          }
+        />
+        <Route
+          exact
+          path="/applications/:jobId"
+          render={(props) =>
+            currentUser && currentUser.role === "Recruiter" ? (
+              <Applications {...props} />
+            ) : (
+              <Redirect to="/signin" />
+            )
+          }
+        />
+        <Route
+          exact
+          path="/job-details/:jobId"
+          render={(props) =>
+            currentUser && currentUser.role === "Recruiter" ? (
+              <JobDetails {...props} />
+            ) : (
+              <Redirect to="/sigin" />
             )
           }
         />

@@ -11,6 +11,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import FeedIcon from "@mui/icons-material/Feed";
+import { Link } from "react-router-dom";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -186,9 +187,12 @@ const JobCard = ({ job }) => {
           </Tippy>
           <div className="flex items-center justify-end space-x-5">
             <Tippy content="Applications" inertia animation="scale">
-              <button className="border-[1px] border-black p-2">
+              <Link
+                to={`applications/${job.jobId}`}
+                className="border-[1px] border-black p-2"
+              >
                 <FeedIcon />
-              </button>
+              </Link>
             </Tippy>
             <Tippy content="Edit" inertia animation="scale">
               <button
@@ -207,9 +211,12 @@ const JobCard = ({ job }) => {
               </button>
             </Tippy>
             <Tippy content="View details" inertia animation="scale">
-              <button className="border-[1px] border-black p-2">
+              <Link
+                to={`/job-details/${job.jobId}`}
+                className="border-[1px] border-black p-2"
+              >
                 <VisibilityIcon />
-              </button>
+              </Link>
             </Tippy>
           </div>
         </div>
