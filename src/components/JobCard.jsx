@@ -10,6 +10,7 @@ import "tippy.js/animations/scale.css";
 import EditIcon from "@mui/icons-material/Edit";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import FeedIcon from "@mui/icons-material/Feed";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -171,12 +172,20 @@ const JobCard = ({ job }) => {
             </p>
           </div>
           <div>
-            <h3>Applications: {job.applications.length}</h3>
+            <h3>
+              Applications count:{" "}
+              <span className="font-medium">{job.applications.length}</span>
+            </h3>
           </div>
         </div>
         <div className="flex flex-col justify-between text-right">
           <div>{moment(job.createdAt).format("MM/DD/YYYY")}</div>
           <div className="flex items-center justify-end space-x-5">
+            <Tippy content="Applications" inertia animation="scale">
+              <button className="border-[1px] border-black p-2">
+                <FeedIcon />
+              </button>
+            </Tippy>
             <Tippy content="Edit" inertia animation="scale">
               <button
                 onClick={openUpdateJobModal}
@@ -193,7 +202,7 @@ const JobCard = ({ job }) => {
                 <RemoveCircleOutlineIcon />
               </button>
             </Tippy>
-            <Tippy content="View" inertia animation="scale">
+            <Tippy content="View details" inertia animation="scale">
               <button className="border-[1px] border-black p-2">
                 <VisibilityIcon />
               </button>
