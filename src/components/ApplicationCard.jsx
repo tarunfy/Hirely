@@ -9,14 +9,16 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Box } from "@mui/system";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import CloseIcon from "@mui/icons-material/Close";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const ApplicationCard = ({ applicantId, applicationStatus }) => {
+const ApplicationCard = ({ applicantId, applicationStatus, job }) => {
   const [applicantDetails, setApplicantDetails] = useState(null);
-  const [status, setStatus] = useState(applicationStatus);
 
   const [viewMoreModal, setViewMoreModal] = useState(false);
 
-  const { fetchApplicant, isLoading } = useContext(JobContext);
+  const { fetchApplicant, isLoading, updateApplicationStatus } =
+    useContext(JobContext);
 
   useEffect(() => {
     async function getApplicant() {
@@ -31,8 +33,17 @@ const ApplicationCard = ({ applicantId, applicationStatus }) => {
     setViewMoreModal(false);
   };
 
-  const openViewMoreModal = () => {
-    setViewMoreModal(true);
+  const handleStatus = async (e) => {
+    const targetedJob = job;
+    for (let i = 0; i < targetedJob.applications.length; i++) {
+      if (targetedJob.applications[i].userId === applicantId) {
+        targetedJob.applications[i].status = e.target.value;
+      }
+    }
+    await updateApplicationStatus(targetedJob, job.jobId);
+    const details = await fetchApplicant(applicantId);
+    setApplicantDetails(details);
+    toast.success(`Application status updated 🚀`);
   };
 
   if (isLoading) return <Spinner />;
@@ -72,8 +83,8 @@ const ApplicationCard = ({ applicantId, applicationStatus }) => {
               name="application-status"
               id="application-status"
               className="p-1 font-normal text-sm text-black bg-transparent focus:outline-secondary-400 border border-slate-500"
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
+              onChange={(e) => handleStatus(e)}
+              value={applicationStatus}
             >
               <option value="" selected disabled hidden>
                 Status
@@ -155,6 +166,17 @@ const ApplicationCard = ({ applicantId, applicationStatus }) => {
           </div>
         </Box>
       </Modal>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };

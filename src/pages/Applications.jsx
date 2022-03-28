@@ -23,6 +23,8 @@ const Applications = ({ match }) => {
     jobs &&
     jobs.filter((job) => job.jobId === match.params.jobId)[0].applications;
 
+  const job = jobs && jobs.filter((job) => job.jobId === match.params.jobId)[0];
+
   if (isFetchingJobs) return <Spinner />;
 
   return (
@@ -35,6 +37,7 @@ const Applications = ({ match }) => {
               <ApplicationCard
                 applicantId={application.userId}
                 applicationStatus={application.status}
+                job={job}
                 key={index}
               />
             ))}

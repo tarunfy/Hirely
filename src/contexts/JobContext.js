@@ -203,12 +203,23 @@ export const JobProvider = ({ children }) => {
     return data;
   };
 
+  const updateApplicationStatus = async (details, jobId) => {
+    setIsLoading(true);
+    try {
+      await db.collection("jobs").doc(jobId).update(details);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <JobContext.Provider
       value={{
         fetchJobs,
         fetchAppliedJobs,
         fetchApplicant,
+        updateApplicationStatus,
         applyJob,
         addJobDetails,
         isFetchingJobs,
