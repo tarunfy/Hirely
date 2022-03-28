@@ -257,7 +257,7 @@ const ApplicantProfile = () => {
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
               >
-                <option value="none" selected={true} disabled="disabled">
+                <option value="" selected disabled hidden>
                   Gender
                 </option>
                 <option value="Male">Male</option>

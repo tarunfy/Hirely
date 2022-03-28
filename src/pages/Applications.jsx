@@ -4,6 +4,9 @@ import Navbar from "../components/Navbar";
 import { JobContext } from "../contexts/JobContext";
 import { AuthContext } from "../contexts/AuthContext";
 import Spinner from "../components/Spinner";
+import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 
 const Applications = ({ match }) => {
   const { jobs, fetchJobs, isFetchingJobs } = useContext(JobContext);
@@ -25,12 +28,25 @@ const Applications = ({ match }) => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col justify-start items-center pt-28 px-16 bg-slate-50 h-screen w-full overflow-y-scroll">
-        <div className="w-full grid grid-cols-3 gap-4">
+      <div className="flex flex-col justify-start items-center pt-28 px-16  h-screen w-full overflow-y-scroll">
+        <div className="w-full p-20 relative grid grid-cols-3 gap-4">
           {applications &&
             applications.map((application, index) => (
-              <ApplicationCard applicantId={application.userId} key={index} />
+              <ApplicationCard
+                applicantId={application.userId}
+                applicationStatus={application.status}
+                key={index}
+              />
             ))}
+          <Link to="/dashboard" className="absolute top-0 left-0">
+            <Button
+              variant="outlined"
+              startIcon={<ArrowBackOutlinedIcon />}
+              className="!border-[1px] !border-gray-600 hover:!bg-transparent !text-black"
+            >
+              Go back
+            </Button>
+          </Link>
         </div>
       </div>
     </>
