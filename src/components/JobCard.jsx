@@ -162,7 +162,7 @@ const JobCard = ({ job }) => {
 
   return (
     <>
-      <li className="flex hover:shadow-inner  justify-between items-stretch cursor-default p-5 duration-300 transition-all ease-in-out">
+      <li className="flex hover:shadow-inner relative justify-between items-stretch cursor-default p-5 duration-300 transition-all ease-in-out">
         <div className="flex flex-col justify-between text-left">
           <div className="mb-4">
             <h1 className="text-2xl font-semibold">{job.jobTitle}</h1>
@@ -178,8 +178,12 @@ const JobCard = ({ job }) => {
             </h3>
           </div>
         </div>
-        <div className="flex flex-col justify-between text-right">
-          <div>{moment(job.createdAt).format("MM/DD/YYYY")}</div>
+        <div className="flex flex-col justify-end text-right">
+          <Tippy content="Posted on" inertia animation="scale">
+            <p className="absolute cursor-default top-5 font-medium right-5">
+              {moment(job.createdAt).format("MM/DD/YYYY")}
+            </p>
+          </Tippy>
           <div className="flex items-center justify-end space-x-5">
             <Tippy content="Applications" inertia animation="scale">
               <button className="border-[1px] border-black p-2">
