@@ -50,6 +50,7 @@ const Signup = () => {
         company,
         designation,
         phoneNumber,
+        profilePhoto: "",
       });
     } else {
       await signup(email, password, {
@@ -59,6 +60,7 @@ const Signup = () => {
         experienceLevel,
         dob,
         phoneNumber,
+        profilePhoto: "",
       });
     }
   };

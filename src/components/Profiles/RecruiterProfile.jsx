@@ -1,10 +1,11 @@
-import EditIcon from "@mui/icons-material/Edit";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Avatar, IconButton, Input } from "@mui/material";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import Spinner from "../Spinner";
 
 const RecruiterProfile = () => {
   const [profilePhoto, setProfilePhoto] = useState("");
@@ -13,7 +14,8 @@ const RecruiterProfile = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [companyName, setCompanyName] = useState("");
 
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, updateUserProfile, isLoading, setIsLoading } =
+    useContext(AuthContext);
 
   const imageHandler = (e) => {
     const reader = new FileReader();
@@ -25,14 +27,27 @@ const RecruiterProfile = () => {
     reader.readAsDataURL(e.target.files[0]);
   };
 
-  const handleUpdate = (e) => {
+  useEffect(() => {
+    setIsLoading(true);
+    setFullName(currentUser.fullName);
+    setCompanyName(currentUser.company);
+    setPhoneNumber(currentUser.phoneNumber);
+    setDesignation(currentUser.designation);
+    setProfilePhoto(currentUser.profilePhoto);
+    setIsLoading(false);
+  }, []);
+
+  const handleUpdate = async (e) => {
     e.preventDefault();
-    console.log(fullName);
-    console.log(profilePhoto);
-    console.log(designation);
-    console.log(phoneNumber);
-    console.log(companyName);
+    await updateUserProfile({
+      fullName,
+      company: companyName,
+      designation,
+      profilePhoto,
+      phoneNumber,
+    });
   };
+  if (isLoading) return <Spinner />;
 
   return (
     <div className="h-full w-full flex flex-col justify-start items-center">
@@ -41,14 +56,7 @@ const RecruiterProfile = () => {
         onSubmit={handleUpdate}
       >
         <div className="border-2 relative border-gray-500 rounded-full">
-          <Avatar
-            className="!h-32 !w-32"
-            src={
-              currentUser?.profilePhoto
-                ? currentUser.profilePhoto
-                : profilePhoto
-            }
-          />
+          <Avatar className="!h-32 !w-32" src={profilePhoto} />
 
           <label htmlFor="icon-button-file">
             <Input
@@ -59,18 +67,19 @@ const RecruiterProfile = () => {
               onChange={(e) => imageHandler(e)}
             />
             <Tippy
-              content="Edit avatar"
               inertia
               animation="scale"
-              placement="bottom"
+              placement="bottom-start"
+              content="Update Photo"
             >
               <IconButton
                 color="primary"
                 aria-label="upload picture"
                 component="span"
-                className="!absolute !top-[100px] !-right-1 !text-secondary-500 !p-1.5 !bg-white"
+                id="test"
+                className="!absolute !top-24 !-right-2 !text-secondary-500 !p-1.5 !bg-white"
               >
-                <EditIcon />
+                <EditOutlinedIcon />
               </IconButton>
             </Tippy>
           </label>

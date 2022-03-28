@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         const snapshot = await db.collection("users").doc(user.uid).get();
-        setCurrentUser(snapshot.data());
+        setCurrentUser({ ...snapshot.data(), userId: user.uid });
       } else {
         setCurrentUser(null);
       }
@@ -104,11 +104,24 @@ export const AuthProvider = ({ children }) => {
     auth.signOut();
   };
 
+  const updateUserProfile = async (data) => {
+    setIsLoading(true);
+    try {
+      await db.collection("users").doc(currentUser.userId).update(data);
+      const res = await db.collection("users").doc(currentUser.userId).get();
+      setCurrentUser(res.data());
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <AuthContext.Provider
       value={{
         currentUser,
         setCurrentUser,
+        updateUserProfile,
         signup,
         login,
         error,
