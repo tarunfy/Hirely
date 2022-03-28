@@ -1,4 +1,4 @@
-import { Avatar, Button, Modal } from "@mui/material";
+import { Avatar, Button, IconButton, Modal } from "@mui/material";
 import React, { useState, useContext, useEffect } from "react";
 import { JobContext } from "../contexts/JobContext";
 import Spinner from "./Spinner";
@@ -8,6 +8,7 @@ import "tippy.js/animations/scale.css";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Box } from "@mui/system";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import CloseIcon from "@mui/icons-material/Close";
 
 const ApplicationCard = ({ applicantId, applicationStatus }) => {
   const [applicantDetails, setApplicantDetails] = useState(null);
@@ -93,7 +94,14 @@ const ApplicationCard = ({ applicantId, applicationStatus }) => {
         aria-describedby="modal-modal-description"
         className="flex h-screen w-full items-center justify-center"
       >
-        <Box className="px-6 py-10 rounded-md  overflow-y-scroll bg-slate-50 w-[45%] border-none outline-none focus:outline-none ">
+        <Box className="px-6 py-10 relative rounded-md  overflow-y-scroll bg-slate-50 w-[45%] border-none outline-none focus:outline-none ">
+          <IconButton
+            onClick={closeViewMoreModal}
+            component="span"
+            className="!text-black !absolute !top-2 !right-2"
+          >
+            <CloseIcon />
+          </IconButton>
           <div className="flex justify-center flex-col items-center space-y-4">
             <div className="flex flex-col justify-center items-center space-y-1">
               <Avatar
