@@ -72,6 +72,7 @@ const ApplicantProfile = () => {
   const [interests, setInterests] = useState([]);
   const [experienceLevel, setExperienceLevel] = useState("");
   const [resume, setResume] = useState("");
+  const [about, setAbout] = useState("");
 
   const { currentUser, updateUserProfile, isLoading, setIsLoading } =
     useContext(AuthContext);
@@ -126,6 +127,7 @@ const ApplicantProfile = () => {
     setInterests(currentUser.interests);
     setProfilePhoto(currentUser.profilePhoto);
     setResume(currentUser.resume);
+    setAbout(currentUser.about);
     setIsLoading(false);
   }, []);
 
@@ -140,6 +142,7 @@ const ApplicantProfile = () => {
       phoneNumber,
       interests,
       resume,
+      about,
     });
   };
 
@@ -157,7 +160,7 @@ const ApplicantProfile = () => {
         </Button>
       </Link>
       <form
-        className="p-1 space-y-10 flex flex-col items-center"
+        className="p-1 space-y-6 flex flex-col items-center"
         onSubmit={handleUpdate}
       >
         <div className="border-2 relative border-gray-500 rounded-full">
@@ -188,8 +191,8 @@ const ApplicantProfile = () => {
           </label>
         </div>
 
-        <div className="space-y-10">
-          <div className="flex justify-between items-center space-x-24 ">
+        <div className="space-y-6">
+          <div className="flex justify-between items-center space-x-52">
             <div className="input-container flex flex-col justify-between items-start">
               <label
                 htmlFor="fullName"
@@ -329,32 +332,43 @@ const ApplicantProfile = () => {
             </div>
           </div>
 
-          <div className="w-full  flex items-center justify-start space-x-4">
-            <label
-              htmlFor="resume"
-              className="text-xl text-gray-900 font-semibold"
-            >
-              Resume:
-            </label>
-            <div className="space-x-5">
-              <label htmlFor="resume">
-                <Input
-                  accept="application/*"
-                  id="resume"
-                  type="file"
-                  className="!hidden"
-                  onChange={(e) => resumeHandler(e)}
-                />
-                <Tippy inertia animation="scale" content="Upload resume">
-                  <IconButton
-                    color="primary"
-                    component="span"
-                    className=" !bg-secondary-500 !p-1.5 !text-white hover:!shadow-xl hover:!shadow-secondary-400 !transition-all !duration-100 !ease-in"
-                  >
-                    <CloudUploadIcon />
-                  </IconButton>
-                </Tippy>
+          <div className="w-full  flex items-center justify-between space-x-4">
+            <div>
+              <textarea
+                name="about"
+                className="!bg-white !font-xs p-2 text-base focus:!outline-secondary-400 !border !border-slate-500"
+                rows="3"
+                cols="40"
+                value={about}
+                onChange={(e) => setAbout(e.target.value)}
+              ></textarea>
+            </div>
+            <div className="space-x-5 !flex !items-center">
+              <label
+                htmlFor="resume"
+                className="text-xl text-gray-900 font-semibold"
+              >
+                Resume:
               </label>
+              <div>
+                <label htmlFor="resume">
+                  <Input
+                    accept="application/*"
+                    id="resume"
+                    type="file"
+                    className="!hidden"
+                    onChange={(e) => resumeHandler(e)}
+                  />
+                  <Tippy inertia animation="scale" content="Upload resume">
+                    <IconButton
+                      component="span"
+                      className=" !bg-secondary-500 !p-1.5 !text-white hover:!shadow-xl hover:!shadow-secondary-400 !transition-all !duration-100 !ease-in"
+                    >
+                      <CloudUploadIcon />
+                    </IconButton>
+                  </Tippy>
+                </label>
+              </div>
             </div>
           </div>
         </div>

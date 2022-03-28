@@ -61,6 +61,8 @@ const Signup = () => {
         dob,
         phoneNumber,
         profilePhoto: "",
+        about: "",
+        resume: "",
       });
     }
   };

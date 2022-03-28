@@ -18,7 +18,7 @@ const NavigationBar = () => {
 
   return (
     <>
-      <div className="w-full fixed  top-0 left-0 py-5 shadow-md px-16 bg-slate-50 flex justify-between items-center">
+      <div className="w-full fixed  z-50 top-0 left-0 py-5 shadow-md px-16 bg-slate-50 flex justify-between items-center">
         <div className="left cursor-default">
           <h1 className="text-4xl logo text-secondary-600">Hirely</h1>
         </div>

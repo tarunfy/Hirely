@@ -124,17 +124,33 @@ const ApplicationCard = ({ applicantId, applicationStatus }) => {
                 <p className="text-center">{applicantDetails?.gender}</p>
                 <p className="text-right">{applicantDetails?.phoneNumber}</p>
               </div>
-              <a
-                href={applicantDetails?.resume}
-                download={applicantDetails?.resume}
-              >
-                <button className="group relative inline-flex border border-secondary-600 focus:outline-none w-full sm:w-auto">
-                  <span className="w-full inline-flex items-center justify-center self-stretch px-4 py-2 text-lg text-white text-center font-bold  bg-secondary-600 ring-1 ring-secondary-600 ring-offset-1 ring-offset-secondary-600 transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-focus:-translate-y-1 group-focus:-translate-x-1">
-                    <FileDownloadIcon className="mr-1" />
-                    Download resume
-                  </span>
-                </button>
-              </a>
+              {applicantDetails?.resume ? (
+                <>
+                  <a
+                    href={applicantDetails?.resume}
+                    download={applicantDetails?.resume}
+                  >
+                    <button className="group relative inline-flex border border-secondary-600 focus:outline-none w-full sm:w-auto">
+                      <span className="w-full inline-flex items-center justify-center self-stretch px-4 py-2 text-lg text-white text-center font-bold  bg-secondary-600 ring-1 ring-secondary-600 ring-offset-1 ring-offset-secondary-600 transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-focus:-translate-y-1 group-focus:-translate-x-1">
+                        <FileDownloadIcon className="mr-1" />
+                        Download resume
+                      </span>
+                    </button>
+                  </a>
+                </>
+              ) : (
+                <Tippy content="No resume found 😭" inertia animation="scale">
+                  <button
+                    disabled
+                    className="group cursor-not-allowed relative inline-flex border border-gray-600 focus:outline-none w-full sm:w-auto"
+                  >
+                    <span className="w-full inline-flex items-center justify-center self-stretch px-4 py-2 text-lg text-white text-center font-bold  bg-gray-600 ring-1 ring-gray-600 ring-offset-1 ring-gray-secondary-600 transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-focus:-translate-y-1 group-focus:-translate-x-1">
+                      <FileDownloadIcon className="mr-1" />
+                      Download resume
+                    </span>
+                  </button>
+                </Tippy>
+              )}
             </div>
           </div>
         </Box>
