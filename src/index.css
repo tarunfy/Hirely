@@ -34,12 +34,12 @@ body {
 ::-moz-selection {
   /* Code for Firefox */
   color: black;
-  background: #e11d48;
+  background: #fb7185;
 }
 
 ::selection {
   color: black;
-  background: #e11d48;
+  background: #fb7185;
 }
 
 .sk-chase {
@@ -291,4 +291,9 @@ input[type="file"] {
 
 .css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input {
   padding-top: 13px !important;
+}
+
+.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+  border-color: rgb(229, 231, 235) !important;
+  border-width: 1px !important;
 }

@@ -166,9 +166,11 @@ const JobCard = ({ job }) => {
       <li className="flex hover:shadow-inner relative justify-between items-stretch cursor-default p-5 duration-300 transition-all ease-in-out">
         <div className="flex flex-col justify-between text-left">
           <div className="mb-4">
-            <h1 className="text-2xl font-semibold">{job.jobTitle}</h1>
+            <h1 className="text-2xl font-semibold text-stone-900">
+              {job.jobTitle}
+            </h1>
             <h4 className="text-lg font-medium">{job.jobDesignation}</h4>
-            <p className="max-w-2xl text-base font-normal text-gray-900">
+            <p className="max-w-2xl text-base font-normal text-s-900">
               {job.jobDescription}
             </p>
           </div>
