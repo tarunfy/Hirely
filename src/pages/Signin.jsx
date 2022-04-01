@@ -6,6 +6,7 @@ import { RiLoginBoxLine } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 import startup from "../assets/startup.svg";
 import beam from "../assets/beams.jpeg";
+import Navbar from "../components/Navbar";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -28,6 +29,7 @@ const Signup = () => {
 
   return (
     <>
+      <Navbar />
       <div id="login-container" className="absolute inset-0"></div>
       <img
         src={beam}

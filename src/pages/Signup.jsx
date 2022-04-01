@@ -7,6 +7,7 @@ import { MdDelete } from "react-icons/md";
 import web from "../assets/web.svg";
 import business from "../assets/business.svg";
 import beam from "../assets/beams.jpeg";
+import Navbar from "../components/Navbar";
 
 const Signup = () => {
   const { signup, isFetching, error, setError, isLoading } =
@@ -100,6 +101,7 @@ const Signup = () => {
 
   return (
     <>
+      <Navbar />
       <div id="signup-container" className="absolute inset-0"></div>
       <img
         src={beam}
