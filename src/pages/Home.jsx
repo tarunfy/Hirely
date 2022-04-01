@@ -13,7 +13,7 @@ const Home = () => {
       <div className="w-full flex justify-center flex-col bg-slate-50 items-center h-screen">
         <h1
           id="hero-heading"
-          className="z-30 text-center text-7xl leading-[5.5rem]"
+          className="z-30 text-center text-7xl leading-[5.5rem] text-stone-900"
         >
           Direct <span className="text-secondary-600">Hiring</span> App for
           <span className="text-secondary-600"> Startup</span> <br />{" "}
@@ -33,7 +33,7 @@ const Home = () => {
             className="group relative inline-flex border border-secondary-600 focus:outline-none lg:inline-flex"
           >
             <span className="w-full inline-flex items-center justify-center self-stretch px-2 py-1 text-2xl text-secondary-600 text-center font-semibold  bg-white ring-1 ring-secondary-600 ring-offset-1 transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-focus:-translate-y-1 group-focus:-translate-x-1">
-              Get Started <IoArrowForwardCircle className="h-8 w-8 ml-1" />
+              Join Hirely <IoArrowForwardCircle className="h-8 w-8 ml-1" />
             </span>
           </Link>
           <img
@@ -45,12 +45,12 @@ const Home = () => {
         <img
           src={Waves}
           alt="Waves"
-          className="fixed overflow-hidden z-30  bottom-0 w-full waves-bottom"
+          className="fixed  z-30  bottom-0 w-full waves-bottom"
         />
         <img
           src={Waves}
           alt="Waves"
-          className="fixed overflow-hidden  z-30 rotate-180  top-0 w-full waves-top"
+          className="fixed  z-30 rotate-180  top-0 w-full waves-top"
         />
         <img
           src={recruiter}
