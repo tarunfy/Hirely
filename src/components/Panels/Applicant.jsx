@@ -8,6 +8,7 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 import { Modal, Select, Chip, FormControl, Box, MenuItem } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import { Link } from "react-router-dom";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -183,10 +184,13 @@ const Applicant = () => {
                           Apply
                         </span>
                       </button>
-                      <Tippy content="View" inertia animation="scale">
-                        <button className="border-[1px] focus:outline-none border-black p-2">
+                      <Tippy content="View details" inertia animation="scale">
+                        <Link
+                          to={`/job-details/${job.jobId}`}
+                          className="border-[1px] border-black p-1"
+                        >
                           <VisibilityIcon />
-                        </button>
+                        </Link>
                       </Tippy>
                     </div>
                   </div>
