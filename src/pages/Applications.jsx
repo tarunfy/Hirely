@@ -52,7 +52,7 @@ const Applications = ({ match }) => {
             ))}
           </div>
         ) : (
-          <div className="text-2xl h-screen flex justify-center items-center font-medium  ">
+          <div className="text-2xl h-screen flex justify-center items-center font-medium">
             <h1>No Applications found...</h1>
           </div>
         )}

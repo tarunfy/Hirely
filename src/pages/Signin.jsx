@@ -7,20 +7,20 @@ import { MdDelete } from "react-icons/md";
 import startup from "../assets/startup.svg";
 import beam from "../assets/beams.jpeg";
 import Navbar from "../components/Navbar";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
   const { login, isFetching, isLoading } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
     const error = await login(email, password);
     if (error) {
-      setError(error);
+      toast.error(error);
     }
   };
   const handleClear = () => {
@@ -62,11 +62,6 @@ const Signup = () => {
                 required
               />
             </div>
-            {error && (
-              <div className="text-center text-red-600 text-sm font-medium my-2">
-                {error}
-              </div>
-            )}
             <button
               disabled={isLoading || !email || !password}
               type="submit"
@@ -126,6 +121,17 @@ const Signup = () => {
         </div>
         <img src={startup} alt="login-img" className="w-[40rem] h-128 z-30" />
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };

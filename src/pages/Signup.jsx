@@ -8,6 +8,8 @@ import web from "../assets/web.svg";
 import business from "../assets/business.svg";
 import beam from "../assets/beams.jpeg";
 import Navbar from "../components/Navbar";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const [role, setRole] = useState("Recruiter");
@@ -20,7 +22,6 @@ const Signup = () => {
   const [designation, setDesignation] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const { signup, isFetching, isLoading } = useContext(AuthContext);
 
   const isDisabled =
@@ -43,7 +44,6 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
     if (role === "Recruiter") {
       const error = await signup(email, password, {
         role,
@@ -54,7 +54,7 @@ const Signup = () => {
         profilePhoto: "",
       });
       if (error) {
-        setError(error);
+        toast.error(error);
       }
     } else {
       const error = await signup(email, password, {
@@ -69,7 +69,7 @@ const Signup = () => {
         resume: "",
       });
       if (error) {
-        setError(error);
+        toast.error(error);
       }
     }
   };
@@ -88,7 +88,6 @@ const Signup = () => {
     setExperienceLevel("");
     setGender("");
     setCompany("");
-    setError("");
   };
 
   const handleClear = () => {
@@ -245,11 +244,7 @@ const Signup = () => {
                 required
               />
             </div>
-            {error && (
-              <div className="text-center text-red-600 text-sm font-medium my-2">
-                {error}
-              </div>
-            )}
+
             <button
               disabled={isDisabled}
               type="submit"
@@ -312,6 +307,17 @@ const Signup = () => {
           className="w-[40rem] h-128 z-30"
         />
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };
