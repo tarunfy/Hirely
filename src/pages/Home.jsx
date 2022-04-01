@@ -16,7 +16,8 @@ const Home = () => {
           className="z-30 text-center text-7xl leading-[5.5rem]"
         >
           Direct <span className="text-secondary-600">Hiring</span> App for
-          <span className="text-secondary-600"> Startup</span> <br /> Ecosystem.
+          <span className="text-secondary-600"> Startup</span> <br />{" "}
+          <span className="line-through">Ecosystem</span>.
         </h1>
         <p className="text-center cursor-default leading-7 text-lg z-30 font-light text-gray-700 my-10">
           Hirely, first job platform, connects startup founders, business
@@ -29,9 +30,9 @@ const Home = () => {
         <div className="relative">
           <Link
             to="/signin"
-            className="group relative inline-flex border border-secondary-600 focus:outline-none  lg:ml-4 lg:inline-flex"
+            className="group relative inline-flex border border-secondary-600 focus:outline-none lg:inline-flex"
           >
-            <span className="w-full inline-flex items-center justify-center self-stretch px-2 py-1 text-2xl text-secondary-600 text-center font-bold uppercase bg-white ring-1 ring-secondary-600 ring-offset-1 transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-focus:-translate-y-1 group-focus:-translate-x-1">
+            <span className="w-full inline-flex items-center justify-center self-stretch px-2 py-1 text-2xl text-secondary-600 text-center font-semibold  bg-white ring-1 ring-secondary-600 ring-offset-1 transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-focus:-translate-y-1 group-focus:-translate-x-1">
               Get Started <IoArrowForwardCircle className="h-8 w-8 ml-1" />
             </span>
           </Link>
