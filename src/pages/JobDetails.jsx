@@ -4,7 +4,6 @@ import Spinner from "../components/Spinner";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
-import arrow from "../assets/arrow.svg";
 
 const JobDetails = ({ match }) => {
   const [job, setJob] = useState(null);
@@ -34,16 +33,15 @@ const JobDetails = ({ match }) => {
       </Link>
 
       <div className="flex w-full flex-col justify-center h-full items-center">
-        <div className="text-center mb-10">
+        <div className="mb-10 text-center">
           <h1 className="text-6xl font-black mb-6 underline text-stone-900">
             {job?.jobTitle}
           </h1>
-          <p className="text-lg max-w-xl font-semibold">
-            {job?.jobDescription}
-          </p>
+
+          <p className="text-lg  font-semibold">{job?.jobDescription}</p>
         </div>
 
-        <div className="w-[45%]  py-4 bg-white border-[1px] border-gray-200 mb-7 rounded-md">
+        <div className="w-[45%]  py-4 bg-white shadow-sm border-[1px] border-gray-200 mb-7 rounded-md">
           <h1 className="text-center text-2xl font-semibold mb-4">
             Requirements:
           </h1>
@@ -72,7 +70,7 @@ const JobDetails = ({ match }) => {
           </div>
         </div>
 
-        <div className="py-4 px-8 bg-white border-[1px] border-gray-200 mb-7 rounded-md">
+        <div className="py-4 px-8 bg-white border-[1px] shadow-sm border-gray-200 mb-7 rounded-md">
           <h1 className="text-center text-2xl font-semibold mb-2">
             More info:
           </h1>
@@ -88,7 +86,7 @@ const JobDetails = ({ match }) => {
 
         <div className="tags flex justify-evenly space-x-8 ">
           {job?.jobTags.map((tag, index) => (
-            <div key={index} className="bg-secondary-600  p-2 rounded-full">
+            <div key={index} className="bg-secondary-600 p-2 rounded-full">
               <p className="text-lg text-white ">{tag}</p>
             </div>
           ))}

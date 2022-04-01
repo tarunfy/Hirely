@@ -144,7 +144,7 @@ const Recruiter = () => {
       <div className="flex flex-col justify-start items-center pt-28 px-16 bg-slate-50 h-screen w-full">
         <div className="top flex justify-between items-center w-full">
           <h1 className="text-5xl font-bold text-stone-900">
-            Your Job Openings
+            Open Roles({jobs.length})
           </h1>
           <button
             onClick={openAddJobModal}
