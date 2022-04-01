@@ -213,6 +213,19 @@ export const JobProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  const fetchJobDetails = async (docId) => {
+    setIsFetchingJobs(true);
+    let data = null;
+    try {
+      const doc = await db.collection("jobs").doc(docId).get();
+      data = doc.data();
+    } catch (err) {
+      console.log(err);
+    }
+    setIsFetchingJobs(false);
+    return data;
+  };
+
   return (
     <JobContext.Provider
       value={{
@@ -233,6 +246,7 @@ export const JobProvider = ({ children }) => {
         setJobs,
         fetchAllJobs,
         error,
+        fetchJobDetails,
       }}
     >
       {children}
