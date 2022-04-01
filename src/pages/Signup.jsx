@@ -10,9 +10,6 @@ import beam from "../assets/beams.jpeg";
 import Navbar from "../components/Navbar";
 
 const Signup = () => {
-  const { signup, isFetching, error, setError, isLoading } =
-    useContext(AuthContext);
-
   const [role, setRole] = useState("Recruiter");
   const [gender, setGender] = useState("");
   const [experienceLevel, setExperienceLevel] = useState("");
@@ -23,6 +20,9 @@ const Signup = () => {
   const [designation, setDesignation] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { signup, isFetching, isLoading } = useContext(AuthContext);
+
   const isDisabled =
     role === "Recruiter"
       ? isLoading ||
@@ -45,7 +45,7 @@ const Signup = () => {
     e.preventDefault();
     setError("");
     if (role === "Recruiter") {
-      await signup(email, password, {
+      const error = await signup(email, password, {
         role,
         fullName,
         company,
@@ -53,8 +53,11 @@ const Signup = () => {
         phoneNumber,
         profilePhoto: "",
       });
+      if (error) {
+        setError(error);
+      }
     } else {
-      await signup(email, password, {
+      const error = await signup(email, password, {
         role,
         fullName,
         gender,
@@ -65,6 +68,9 @@ const Signup = () => {
         about: "",
         resume: "",
       });
+      if (error) {
+        setError(error);
+      }
     }
   };
 
@@ -240,7 +246,7 @@ const Signup = () => {
               />
             </div>
             {error && (
-              <div className="text-center text-secondary-600 font-medium my-4">
+              <div className="text-center text-red-600 text-sm font-medium my-2">
                 {error}
               </div>
             )}

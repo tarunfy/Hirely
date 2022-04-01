@@ -11,14 +11,17 @@ import Navbar from "../components/Navbar";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const { login, isFetching, error, setError, isLoading } =
-    useContext(AuthContext);
+  const { login, isFetching, isLoading } = useContext(AuthContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    login(email, password);
+    const error = await login(email, password);
+    if (error) {
+      setError(error);
+    }
   };
   const handleClear = () => {
     setEmail("");
@@ -49,7 +52,7 @@ const Signup = () => {
                 required
               />
             </div>
-            <div className="input-container mb-5">
+            <div className="input-container mb-3">
               <input
                 type="password"
                 className=" focus:outline-secondary-400 border-[1px] border-gray-200 p-2 w-full rounded-md text-lg"
@@ -60,7 +63,7 @@ const Signup = () => {
               />
             </div>
             {error && (
-              <div className="text-center text-red-600 font-medium my-2">
+              <div className="text-center text-red-600 text-sm font-medium my-2">
                 {error}
               </div>
             )}

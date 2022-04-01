@@ -6,7 +6,6 @@ export const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
   const [fetchingUser, setFetchingUser] = useState(true);
   const [currentUser, setCurrentUser] = useState(null);
-  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -23,6 +22,7 @@ export const AuthProvider = ({ children }) => {
 
   const signup = async (email, password, userInfo) => {
     setIsLoading(true);
+    let error = "";
     try {
       const response = await auth.createUserWithEmailAndPassword(
         email,
@@ -49,19 +49,22 @@ export const AuthProvider = ({ children }) => {
         });
       }
     } catch (err) {
-      setError(err.message);
+      error = err.message;
     }
     setIsLoading(false);
+    return error;
   };
 
   const login = async (email, password) => {
     setIsLoading(true);
+    let error = "";
     try {
       await auth.signInWithEmailAndPassword(email, password);
     } catch (err) {
-      setError(err.message);
+      error = err.message;
     }
     setIsLoading(false);
+    return error;
   };
 
   const addWorkDetails = async (docId, data) => {
@@ -124,8 +127,6 @@ export const AuthProvider = ({ children }) => {
         updateUserProfile,
         signup,
         login,
-        error,
-        setError,
         isLoading,
         setIsLoading,
         addWorkDetails,
