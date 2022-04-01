@@ -115,7 +115,7 @@ const Signup = () => {
         className="fixed top-0 left-0 opacity-60 z-0 h-screen w-full"
       />
       <div className="flex h-screen justify-between items-center px-10">
-        <div className="px-4 py-8 ml-16 w-128 rounded-lg shadow-material z-30 form-container">
+        <div className="px-4 py-6 ml-16 w-128 rounded-lg shadow-material z-30 form-container">
           <div className="flex w-full items-center justify-evenly mb-5">
             <div className="flex items-center space-x-1">
               <input
@@ -293,7 +293,7 @@ const Signup = () => {
               onClick={handleClear}
               type="reset"
               disabled={isDisabled}
-              className="flex justify-center disabled:cursor-not-allowed disabled:hover:bg-transparent items-center border-secondary-600 border-2 text-center  text-secondary-600 w-full px-5 py-2 font-medium text-xl mt-4  transition-colors duration-300 ease-in-out  hover:bg-secondary-50"
+              className="flex justify-center disabled:cursor-not-allowed disabled:hover:bg-transparent items-center border-secondary-600 border-2 text-center  text-secondary-600 w-full px-2 py-1 font-medium text-xl mt-4  transition-colors duration-300 ease-in-out  hover:bg-secondary-50"
             >
               <MdDelete className="mr-1 h-5 w-5" />
               Clear

@@ -111,7 +111,7 @@ const Signup = () => {
               onClick={handleClear}
               type="reset"
               disabled={!email || !password}
-              className="disabled:cursor-not-allowed disabled:hover:bg-transparent border-secondary-600 border-2 flex justify-center items-center text-center text-secondary-600 w-full px-5 py-2 font-medium text-xl mt-4  transition-colors duration-300 ease-in-out  hover:bg-secondary-50"
+              className="disabled:cursor-not-allowed disabled:hover:bg-transparent border-secondary-600 border-2 flex justify-center items-center text-center text-secondary-600 w-full px-2 py-1 font-medium text-xl mt-4  transition-colors duration-300 ease-in-out  hover:bg-secondary-50"
             >
               <MdDelete className="mr-1 h-5 w-5" fill="#F43F5F" />
               Clear
