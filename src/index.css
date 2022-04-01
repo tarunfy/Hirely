@@ -4,6 +4,7 @@
 
 @import url("http://fonts.cdnfonts.com/css/sofia-pro");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');
 
 * {
   margin: 0;
@@ -19,6 +20,11 @@ body {
 @font-face {
   font-family: "TechnaSansRegular";
   src: url(./assets/fonts/TechnaSansRegular-Xp79.otf);
+}
+
+#hero-heading{
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
 }
 
 .logo {
