@@ -65,14 +65,14 @@ const Signup = () => {
             <button
               disabled={isLoading || !email || !password}
               type="submit"
-              className={`disabled:border-secondary-400 disabled:cursor-not-allowed border-secondary-600 group first-letter:selection: w-full relative border  focus:outline-none`}
+              className={`disabled:border-secondary-400 disabled:cursor-not-allowed disabled:text-white/70 border-secondary-600 group first-letter:selection: w-full relative border  focus:outline-none`}
             >
               <span
                 className={`${
                   isLoading || !email || !password
-                    ? "text-secondary-400 cursor-not-allowed ring-secondary-400 transition-none"
-                    : "text-secondary-600 ring-secondary-600 cursor-pointer transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-focus:-translate-y-1 group-focus:-translate-x-1"
-                } w-full inline-flex  items-center justify-center self-stretch px-2 py-1 text-xl  text-center font-medium  bg-white ring-1  ring-offset-1 `}
+                    ? "bg-secondary-400 cursor-not-allowed ring-secondary-400 transition-none"
+                    : "bg-secondary-600 ring-secondary-600 text-white cursor-pointer transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-focus:-translate-y-1 group-focus:-translate-x-1"
+                } w-full inline-flex items-center justify-center self-stretch px-2 py-1 text-xl  text-center font-medium  ring-1`}
               >
                 {!isLoading ? (
                   <>
@@ -105,7 +105,8 @@ const Signup = () => {
             <button
               onClick={handleClear}
               type="reset"
-              className="border-secondary-600 border-2 flex justify-center items-center text-center text-secondary-600 w-full px-5 py-2 font-medium text-xl mt-4  transition-colors duration-300 ease-in-out  hover:bg-secondary-50"
+              disabled={!email || !password}
+              className="disabled:cursor-not-allowed disabled:hover:bg-transparent border-secondary-600 border-2 flex justify-center items-center text-center text-secondary-600 w-full px-5 py-2 font-medium text-xl mt-4  transition-colors duration-300 ease-in-out  hover:bg-secondary-50"
             >
               <MdDelete className="mr-1 h-5 w-5" fill="#F43F5F" />
               Clear
