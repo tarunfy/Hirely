@@ -264,6 +264,7 @@ const ApplicantProfile = () => {
               <select
                 name="gender"
                 id="gender"
+                required
                 className="p-2 font-normal text-lg placeholder:text-zinc-800 focus:outline-secondary-400 border border-slate-500"
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}

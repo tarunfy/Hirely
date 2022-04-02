@@ -18,7 +18,8 @@ const RecruiterProfile = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [companyName, setCompanyName] = useState("");
 
-  const { currentUser, updateUserProfile, isLoading } = useContext(AuthContext);
+  const { currentUser, updateUserProfile, isLoading, updateCurrentUser } =
+    useContext(AuthContext);
 
   const imageHandler = (e) => {
     if (e.target.files[0].type.includes("image")) {
@@ -52,8 +53,9 @@ const RecruiterProfile = () => {
       profilePhoto,
       phoneNumber,
     });
-    if (res.error) {
-      toast.error(res.error);
+    const data = await updateCurrentUser();
+    if (res.error || data.error) {
+      toast.error("Error updating the profile 😭");
     } else {
       toast.success("Profile updated successfully 😎");
     }
@@ -77,7 +79,11 @@ const RecruiterProfile = () => {
         onSubmit={handleUpdate}
       >
         <div className="border-2 relative border-gray-500 rounded-full">
-          <Avatar className="!h-32 !w-32" src={profilePhoto} />
+          <Tippy content="Remove photo">
+            <div className="cursor-pointer" onClick={() => setProfilePhoto("")}>
+              <Avatar className="!h-32 !w-32 " src={profilePhoto} />
+            </div>
+          </Tippy>
           <label htmlFor="icon-button-file">
             <Input
               accept="image/*"
