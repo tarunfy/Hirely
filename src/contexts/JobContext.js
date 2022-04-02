@@ -14,16 +14,21 @@ export const JobProvider = ({ children }) => {
 
   const addJobDetails = async (data) => {
     setIsLoading(true);
+    let error = "";
     try {
       await db.collection("jobs").add(data);
     } catch (err) {
-      console.log(err);
+      error = err.message;
     }
     setIsLoading(false);
+    return {
+      error,
+    };
   };
 
   const fetchJobs = async (userId) => {
     setIsFetchingJobs(true);
+    let error = "";
     try {
       const snapshot = await db
         .collection("jobs")
@@ -42,32 +47,43 @@ export const JobProvider = ({ children }) => {
         setJobs(null);
       }
     } catch (err) {
-      console.log(err);
+      error = err.message;
     }
     setIsFetchingJobs(false);
+    return {
+      error,
+    };
   };
 
   const removeJob = async (docId) => {
     setIsLoading(true);
+    let error = "";
     try {
       await db.collection("jobs").doc(docId).delete();
     } catch (err) {
-      console.log(err);
+      error = err.message;
     }
     setIsLoading(false);
+    return {
+      error,
+    };
   };
 
   const updateJob = async (docId, details) => {
     setIsLoading(true);
+    let error = "";
     try {
       await db
         .collection("jobs")
         .doc(docId)
         .update({ ...details, jobId: docId });
     } catch (err) {
-      console.log(err);
+      error = err.message;
     }
     setIsLoading(false);
+    return {
+      error,
+    };
   };
 
   const fetchJob = async (docId) => {

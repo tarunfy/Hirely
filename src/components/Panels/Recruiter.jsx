@@ -5,6 +5,8 @@ import JobCard from "../JobCard";
 import AddIcon from "@mui/icons-material/Add";
 import { Modal, Select, Chip, FormControl, Box, MenuItem } from "@mui/material";
 import Spinner from "../Spinner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -74,7 +76,10 @@ const Recruiter = () => {
 
   useEffect(() => {
     async function fetch() {
-      await fetchJobs(currentUser.userId);
+      const res = await fetchJobs(currentUser.userId);
+      if (res.error) {
+        toast.error(res.error);
+      }
     }
     fetch();
   }, []);
@@ -97,10 +102,15 @@ const Recruiter = () => {
       createdAt: Date.now(),
       applications: [],
     };
-    await addJobDetails(data);
+    const res = await addJobDetails(data);
     closeAddJobModal();
     clearModal();
     await fetchJobs(currentUser.userId);
+    if (res.error) {
+      toast.error(res.error);
+    } else {
+      toast.success("Job has been created 🤩");
+    }
   };
 
   const openAddJobModal = () => {
@@ -374,6 +384,17 @@ const Recruiter = () => {
           </form>
         </Box>
       </Modal>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };

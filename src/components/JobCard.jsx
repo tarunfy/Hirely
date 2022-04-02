@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
 import { JobContext } from "../contexts/JobContext";
 import { AuthContext } from "../contexts/AuthContext";
-import { Modal, Select, Chip, FormControl, Box, MenuItem } from "@mui/material";
+import { Link } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import moment from "moment";
+import { Modal, Select, Chip, FormControl, Box, MenuItem } from "@mui/material";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
@@ -11,7 +12,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import FeedIcon from "@mui/icons-material/Feed";
-import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -101,10 +103,15 @@ const JobCard = ({ job }) => {
       jobTags: tags,
       userId: currentUser.userId,
     };
-    await updateJob(jobId, data);
+    const res = await updateJob(jobId, data);
     clearModal();
     closeUpdateJobModal();
     await fetchJobs(currentUser.userId);
+    if (res.error) {
+      toast.error(res.error);
+    } else {
+      toast.success("Job has been updated 👻");
+    }
   };
 
   const openUpdateJobModal = async () => {
@@ -155,8 +162,13 @@ const JobCard = ({ job }) => {
   };
 
   const handleRemoveJob = async () => {
-    await removeJob(job.jobId);
-    await fetchJobs(currentUser.userId);
+    const res = await removeJob(job.jobId);
+    if (res.error) {
+      toast.error(res.error);
+    } else {
+      await fetchJobs(currentUser.userId);
+      toast.success("Job has been deleted 👻");
+    }
   };
 
   if (isLoading || isFetchingJobs) return <Spinner />;
@@ -420,6 +432,17 @@ const JobCard = ({ job }) => {
           </form>
         </Box>
       </Modal>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };
