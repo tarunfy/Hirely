@@ -31,13 +31,16 @@ const Applications = ({ match }) => {
     <>
       <Navbar />
       <div className="flex flex-col justify-start items-center relative pt-28 px-16  h-screen w-full overflow-y-scroll">
-        <Link to="/dashboard" className="absolute top-25 left-10 z-40">
+        <Link
+          to="/dashboard"
+          className="absolute top-25 left-10 z-40 hover:scale-95 transition-transform ease-in-out"
+        >
           <Button
             variant="outlined"
             startIcon={<ArrowBackOutlinedIcon />}
-            className="!border-[1px] !border-gray-600 hover:!bg-transparent !text-black"
+            className="!border-[1px] !normal-case !border-gray-600 hover:!bg-transparent !text-black"
           >
-            Go back
+            Home
           </Button>
         </Link>
         {applications?.length > 0 ? (

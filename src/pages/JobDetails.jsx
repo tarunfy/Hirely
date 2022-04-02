@@ -22,13 +22,16 @@ const JobDetails = ({ match }) => {
 
   return (
     <div className="bg-slate-50 relative px-10 py-20 h-screen w-full">
-      <Link to="/dashboard" className="absolute top-5 left-10">
+      <Link
+        to="/dashboard"
+        className="absolute top-5 left-10 hover:scale-95 transition-transform ease-in-out"
+      >
         <Button
           variant="outlined"
           startIcon={<ArrowBackOutlinedIcon />}
-          className="!border-[1px] !border-gray-600 hover:!bg-transparent !text-black"
+          className="!border-[1px] !normal-case !border-gray-600 hover:!bg-transparent !text-black"
         >
-          Go back
+          Home
         </Button>
       </Link>
 

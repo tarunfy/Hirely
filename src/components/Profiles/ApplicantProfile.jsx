@@ -154,13 +154,16 @@ const ApplicantProfile = () => {
 
   return (
     <div className="h-full w-full flex flex-col justify-start relative items-center">
-      <Link to="/dashboard" className="absolute top-0 left-0">
+      <Link
+        to="/dashboard"
+        className="absolute top-0 left-0 hover:scale-95 transition-transform ease-in-out"
+      >
         <Button
           variant="outlined"
           startIcon={<ArrowBackOutlinedIcon />}
-          className="!border-[1px] !border-gray-600 hover:!bg-transparent !text-black"
+          className="!border-[1px] !normal-case !border-gray-600 hover:!bg-transparent !text-black"
         >
-          Go back
+          Home
         </Button>
       </Link>
       <form

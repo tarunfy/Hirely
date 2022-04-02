@@ -25,13 +25,16 @@ const AppliedJobs = () => {
   return (
     <div className="relative">
       <NavigationBar />
-      <Link to="/dashboard" className="absolute top-24 left-10 z-40">
+      <Link
+        to="/dashboard"
+        className="absolute top-24 left-10 z-40 hover:scale-95 transition-transform ease-in-out"
+      >
         <Button
           variant="outlined"
           startIcon={<ArrowBackOutlinedIcon />}
-          className="!border-[1px] !border-gray-600 hover:!bg-transparent !text-black"
+          className="!border-[1px] !normal-case !border-gray-600 hover:!bg-transparent !text-black"
         >
-          Go back
+          Home
         </Button>
       </Link>
       {appliedJobs && appliedJobs.length > 0 ? (
