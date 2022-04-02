@@ -2,12 +2,12 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import { AuthContext } from "../contexts/AuthContext";
+import Navbar from "../components/Navbar";
 import { FaPencilAlt } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import web from "../assets/web.svg";
 import business from "../assets/business.svg";
 import beam from "../assets/beams.jpeg";
-import Navbar from "../components/Navbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -45,7 +45,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (role === "Recruiter") {
-      const error = await signup(email, password, {
+      const res = await signup(email, password, {
         role,
         fullName,
         company,
@@ -53,11 +53,11 @@ const Signup = () => {
         phoneNumber,
         profilePhoto: "",
       });
-      if (error) {
-        toast.error(error);
+      if (res.error) {
+        toast.error(res.error);
       }
     } else {
-      const error = await signup(email, password, {
+      const res = await signup(email, password, {
         role,
         fullName,
         gender,
@@ -68,8 +68,8 @@ const Signup = () => {
         about: "",
         resume: "",
       });
-      if (error) {
-        toast.error(error);
+      if (res.error) {
+        toast.error(res.error);
       }
     }
   };

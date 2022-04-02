@@ -18,9 +18,9 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const error = await login(email, password);
-    if (error) {
-      toast.error(error);
+    const res = await login(email, password);
+    if (res.error) {
+      toast.error(res.error);
     }
   };
   const handleClear = () => {

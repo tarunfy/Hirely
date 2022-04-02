@@ -1,4 +1,5 @@
 import { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { JobContext } from "../../contexts/JobContext";
 import { AuthContext } from "../../contexts/AuthContext";
 import Spinner from "../Spinner";
@@ -8,7 +9,6 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 import { Modal, Select, Chip, FormControl, Box, MenuItem } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Link } from "react-router-dom";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;

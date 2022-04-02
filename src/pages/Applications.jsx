@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
-import ApplicationCard from "../components/ApplicationCard";
-import Navbar from "../components/Navbar";
 import { JobContext } from "../contexts/JobContext";
 import { AuthContext } from "../contexts/AuthContext";
+import Navbar from "../components/Navbar";
 import Spinner from "../components/Spinner";
+import ApplicationCard from "../components/ApplicationCard";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
@@ -13,10 +13,10 @@ const Applications = ({ match }) => {
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
-    async function fetch() {
+    async function getJobs() {
       await fetchJobs(currentUser.userId);
     }
-    fetch();
+    getJobs();
   }, []);
 
   const applications =
@@ -40,7 +40,7 @@ const Applications = ({ match }) => {
             Go back
           </Button>
         </Link>
-        {applications.length > 0 ? (
+        {applications?.length > 0 ? (
           <div className="w-full z-10 p-20 relative grid grid-cols-3 gap-4">
             {applications.map((application, index) => (
               <ApplicationCard

@@ -52,7 +52,9 @@ export const AuthProvider = ({ children }) => {
       error = err.message;
     }
     setIsLoading(false);
-    return error;
+    return {
+      error,
+    };
   };
 
   const login = async (email, password) => {
@@ -64,7 +66,9 @@ export const AuthProvider = ({ children }) => {
       error = err.message;
     }
     setIsLoading(false);
-    return error;
+    return {
+      error,
+    };
   };
 
   const addWorkDetails = async (docId, data) => {
@@ -90,17 +94,21 @@ export const AuthProvider = ({ children }) => {
 
   const updateCurrentUser = async () => {
     setIsLoading(true);
+    let error = "";
     try {
       const res = await db.collection("users").doc(currentUser.userId).get();
       if (res.exists) {
         setCurrentUser(res.data());
       } else {
-        console.log("No such document!");
+        error = "No such document!";
       }
     } catch (err) {
-      console.log(err);
+      error = err.message;
     }
     setIsLoading(false);
+    return {
+      error,
+    };
   };
 
   const logout = () => {
@@ -109,14 +117,18 @@ export const AuthProvider = ({ children }) => {
 
   const updateUserProfile = async (data) => {
     setIsLoading(true);
+    let error = "";
     try {
       await db.collection("users").doc(currentUser.userId).update(data);
       const res = await db.collection("users").doc(currentUser.userId).get();
       setCurrentUser(res.data());
     } catch (err) {
-      console.log(err);
+      error = err.message;
     }
     setIsLoading(false);
+    return {
+      error,
+    };
   };
 
   return (

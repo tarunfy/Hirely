@@ -1,14 +1,14 @@
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import { useContext, useState, useEffect } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { Link } from "react-router-dom";
+import Spinner from "../Spinner";
 import { Avatar, Button, IconButton, Input } from "@mui/material";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
-import { useContext, useState, useEffect } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
-import Spinner from "../Spinner";
 import { ToastContainer, toast } from "react-toastify";
-import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 
 const RecruiterProfile = () => {
@@ -18,8 +18,7 @@ const RecruiterProfile = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [companyName, setCompanyName] = useState("");
 
-  const { currentUser, updateUserProfile, isLoading, setIsLoading } =
-    useContext(AuthContext);
+  const { currentUser, updateUserProfile, isLoading } = useContext(AuthContext);
 
   const imageHandler = (e) => {
     if (e.target.files[0].type.includes("image")) {
@@ -37,25 +36,29 @@ const RecruiterProfile = () => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
     setFullName(currentUser.fullName);
     setCompanyName(currentUser.company);
     setPhoneNumber(currentUser.phoneNumber);
     setDesignation(currentUser.designation);
     setProfilePhoto(currentUser.profilePhoto);
-    setIsLoading(false);
   }, []);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    await updateUserProfile({
+    const res = await updateUserProfile({
       fullName,
       company: companyName,
       designation,
       profilePhoto,
       phoneNumber,
     });
+    if (res.error) {
+      toast.error(res.error);
+    } else {
+      toast.success("Profile updated successfully 😎");
+    }
   };
+
   if (isLoading) return <Spinner />;
 
   return (

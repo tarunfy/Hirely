@@ -8,13 +8,14 @@ import { Button } from "@mui/material";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 
 const AppliedJobs = () => {
-  const [appliedJobss, setappliedJobss] = useState(null);
+  const [appliedJobs, setAppliedJobs] = useState(null);
+
   const { fetchAppliedJobs, isFetchingJobs } = useContext(JobContext);
 
   useEffect(() => {
     async function getAppliedJobs() {
-      const appliedJobs = await fetchAppliedJobs();
-      setappliedJobss(appliedJobs);
+      const jobs = await fetchAppliedJobs();
+      setAppliedJobs(jobs);
     }
     getAppliedJobs();
   }, []);
@@ -33,9 +34,9 @@ const AppliedJobs = () => {
           Go back
         </Button>
       </Link>
-      {appliedJobss && appliedJobss.length > 0 ? (
+      {appliedJobs && appliedJobs.length > 0 ? (
         <div className="grid grid-cols-3 gap-x-4 gap-y-5 pt-40 px-16 bg-slate-50 h-screen w-full">
-          {appliedJobss.map((job, index) => (
+          {appliedJobs.map((job, index) => (
             <AppliedJobCard key={index} job={job} />
           ))}
         </div>
