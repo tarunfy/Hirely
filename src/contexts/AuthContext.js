@@ -120,8 +120,6 @@ export const AuthProvider = ({ children }) => {
     let error = "";
     try {
       await db.collection("users").doc(currentUser.userId).update(data);
-      const res = await db.collection("users").doc(currentUser.userId).get();
-      setCurrentUser(res.data());
     } catch (err) {
       error = err.message;
     }

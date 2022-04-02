@@ -9,6 +9,8 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 import { Modal, Select, Chip, FormControl, Box, MenuItem } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -64,6 +66,7 @@ const Applicant = () => {
     fetchInterestedJobs,
     applyJob,
   } = useContext(JobContext);
+
   const { currentUser, updateCurrentUser } = useContext(AuthContext);
 
   const checkInterest = () => {
@@ -113,8 +116,12 @@ const Applicant = () => {
     await addInterests(interests);
     setInterests([]);
     setAddInterestsModal(false);
-    await updateCurrentUser();
-    setAddInterestsModal(false);
+    const res = await updateCurrentUser();
+    if (res.error) {
+      toast.error(res.error);
+    } else {
+      toast.success("Your job interests has been added 🥳");
+    }
   };
 
   const handleApplyJob = async (jobId) => {
@@ -262,6 +269,17 @@ const Applicant = () => {
           </form>
         </Box>
       </Modal>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };

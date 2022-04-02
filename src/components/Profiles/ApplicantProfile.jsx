@@ -74,7 +74,7 @@ const ApplicantProfile = () => {
   const [resume, setResume] = useState("");
   const [about, setAbout] = useState("");
 
-  const { currentUser, updateUserProfile, isLoading, setIsLoading } =
+  const { currentUser, updateUserProfile, isLoading, updateCurrentUser } =
     useContext(AuthContext);
 
   const imageHandler = (e) => {
@@ -118,7 +118,6 @@ const ApplicantProfile = () => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
     setFullName(currentUser.fullName);
     setDob(currentUser.dob);
     setPhoneNumber(currentUser.phoneNumber);
@@ -128,22 +127,27 @@ const ApplicantProfile = () => {
     setProfilePhoto(currentUser.profilePhoto);
     setResume(currentUser.resume);
     setAbout(currentUser.about);
-    setIsLoading(false);
   }, []);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    await updateUserProfile({
+    const res = await updateUserProfile({
       fullName,
       dob,
       experienceLevel,
       gender,
-      profilePhoto,
+      resume: resume ? resume : "",
+      profilePhoto: profilePhoto ? profilePhoto : "",
       phoneNumber,
       interests,
-      resume,
-      about,
+      about: about ? about : "",
     });
+    const data = await updateCurrentUser();
+    if (data.error || res.error) {
+      toast.error("Error updating the profile 😭");
+    } else {
+      toast.success("Profile updated successfully 😎");
+    }
   };
 
   if (isLoading) return <Spinner />;
@@ -163,8 +167,12 @@ const ApplicantProfile = () => {
         className="p-1 space-y-6 flex flex-col items-center"
         onSubmit={handleUpdate}
       >
-        <div className="border-2 relative border-gray-500 rounded-full">
-          <Avatar className="!h-32 !w-32" src={profilePhoto} />
+        <div className="border-2 relative  border-gray-500 rounded-full">
+          <Tippy content="Remove photo">
+            <div className="cursor-pointer" onClick={() => setProfilePhoto("")}>
+              <Avatar className="!h-32 !w-32 " src={profilePhoto} />
+            </div>
+          </Tippy>
           <label htmlFor="icon-button-file">
             <Input
               accept="image/*"
@@ -336,6 +344,7 @@ const ApplicantProfile = () => {
             <div>
               <textarea
                 name="about"
+                placeholder="About me"
                 className="!bg-white !font-xs p-2 text-base focus:!outline-secondary-400 !border !border-slate-500"
                 rows="3"
                 cols="40"
