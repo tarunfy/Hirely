@@ -175,7 +175,7 @@ const JobCard = ({ job }) => {
 
   return (
     <>
-      <li className="flex hover:shadow-inner relative justify-between items-stretch cursor-default p-5 duration-300 transition-all ease-in-out">
+      <li className="flex relative justify-between items-stretch cursor-default p-5">
         <div className="flex flex-col justify-between text-left">
           <div className="mb-4">
             <h1 className="text-2xl font-semibold text-stone-900">
