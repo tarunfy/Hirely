@@ -139,7 +139,7 @@ body {
 
 #login-container,
 #signup-container {
-  background-image: url("./assets/download.svg");
+  background-image: url("./assets/images/download.svg");
   background-repeat: repeat;
   background-position: bottom 1px center;
   mask-image: linear-gradient(to top, transparent, black);

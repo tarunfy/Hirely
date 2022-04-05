@@ -1,14 +1,12 @@
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import { Spinner, Navbar } from "../components";
 import { AuthContext } from "../contexts/AuthContext";
-import { FaPencilAlt } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
-import web from "../assets/web.svg";
-import business from "../assets/business.svg";
-import beam from "../assets/beams.jpeg";
+import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaPencilAlt } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import { web, business, beam } from "../assets";
 
 const Signup = () => {
   const [role, setRole] = useState("Recruiter");
