@@ -19,6 +19,7 @@ const Signup = () => {
   const [designation, setDesignation] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const { signup, isFetching, isLoading } = useContext(AuthContext);
 
   const isDisabled =
