@@ -1,10 +1,9 @@
 import { useContext, useState, useEffect } from "react";
 import { JobContext } from "../../contexts/JobContext";
 import { AuthContext } from "../../contexts/AuthContext";
-import JobCard from "../JobCard";
+import { JobCard, Spinner } from "../index";
 import AddIcon from "@mui/icons-material/Add";
 import { Modal, Select, Chip, FormControl, Box, MenuItem } from "@mui/material";
-import Spinner from "../Spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

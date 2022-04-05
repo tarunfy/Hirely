@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../contexts/AuthContext";
-import { JobContext } from "../contexts/JobContext";
+import { AuthContext } from "../../contexts/AuthContext";
+import { JobContext } from "../../contexts/JobContext";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";

@@ -1,7 +1,7 @@
-import { Avatar, Button, IconButton, Modal } from "@mui/material";
+import { Avatar, IconButton, Modal } from "@mui/material";
 import React, { useState, useContext, useEffect } from "react";
-import { JobContext } from "../contexts/JobContext";
-import Spinner from "./Spinner";
+import { JobContext } from "../../contexts/JobContext";
+import Spinner from "../Loader/Spinner";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";

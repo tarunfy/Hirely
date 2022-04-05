@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { JobContext } from "../../contexts/JobContext";
 import { AuthContext } from "../../contexts/AuthContext";
-import Spinner from "../Spinner";
+import { Spinner } from "../index";
 import moment from "moment";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";

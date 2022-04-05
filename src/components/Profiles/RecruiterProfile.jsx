@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
-import Spinner from "../Spinner";
+import { Spinner } from "../index";
 import { Avatar, Button, IconButton, Input } from "@mui/material";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";

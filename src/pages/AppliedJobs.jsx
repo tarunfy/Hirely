@@ -1,9 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Navbar, AppliedJobCard, Spinner } from "../components";
 import { JobContext } from "../contexts/JobContext";
-import NavigationBar from "../components/Navbar";
-import AppliedJobCard from "../components/AppliedJobCard";
-import Spinner from "../components/Spinner";
+import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 
@@ -24,7 +22,7 @@ const AppliedJobs = () => {
 
   return (
     <div className="relative">
-      <NavigationBar />
+      <Navbar />
       <Link
         to="/dashboard"
         className="absolute top-24 left-10 z-40 hover:scale-95 transition-transform ease-in-out"

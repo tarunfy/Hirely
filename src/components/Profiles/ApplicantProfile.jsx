@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import Spinner from "../Spinner";
+import { Spinner } from "../index";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";

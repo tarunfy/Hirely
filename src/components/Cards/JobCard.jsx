@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import { JobContext } from "../contexts/JobContext";
-import { AuthContext } from "../contexts/AuthContext";
+import { JobContext } from "../../contexts/JobContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
-import Spinner from "../components/Spinner";
+import Spinner from "../Loader/Spinner";
 import moment from "moment";
 import { Modal, Select, Chip, FormControl, Box, MenuItem } from "@mui/material";
 import Tippy from "@tippyjs/react";

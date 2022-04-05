@@ -1,8 +1,7 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import Spinner from "../components/Spinner";
+import { Spinner, Navbar } from "../components";
 import { AuthContext } from "../contexts/AuthContext";
-import Navbar from "../components/Navbar";
 import { FaPencilAlt } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import web from "../assets/web.svg";
