@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { Navbar, AppliedJobCard, Spinner } from "../components";
-import { JobContext } from "../contexts/JobContext";
+import { Navbar, AppliedJobCard, Spinner } from "../../components";
+import { JobContext } from "../../contexts/JobContext";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";

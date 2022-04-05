@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { IoArrowForwardCircle } from "react-icons/io5";
-import { Waves, candidate, recruiter, highlight } from "../assets";
+import { Waves, candidate, recruiter, highlight } from "../../assets";
 
 const Home = () => {
   return (

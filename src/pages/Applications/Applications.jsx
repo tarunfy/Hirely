@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
-import { Navbar, Spinner, ApplicationCard } from "../components";
-import { JobContext } from "../contexts/JobContext";
-import { AuthContext } from "../contexts/AuthContext";
+import { Navbar, Spinner, ApplicationCard } from "../../components";
+import { JobContext } from "../../contexts/JobContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";

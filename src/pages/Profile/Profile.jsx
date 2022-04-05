@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { Navbar, RecruiterProfile, ApplicantProfile } from "../components";
-import { AuthContext } from "../contexts/AuthContext";
+import { Navbar, RecruiterProfile, ApplicantProfile } from "../../components";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);

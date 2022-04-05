@@ -1,12 +1,12 @@
 import { useState, useContext } from "react";
-import { Spinner, Navbar } from "../components";
-import { AuthContext } from "../contexts/AuthContext";
+import { Spinner, Navbar } from "../../components";
+import { AuthContext } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RiLoginBoxLine } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
-import { startup, beam } from "../assets";
+import { startup, beam } from "../../assets";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
