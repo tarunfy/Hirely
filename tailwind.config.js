@@ -56,7 +56,7 @@ module.exports = {
       boxShadow: {
         material: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
         material2:
-          "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;",
+          "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
       },
     },
   },
