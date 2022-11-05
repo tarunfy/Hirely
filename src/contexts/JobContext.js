@@ -33,7 +33,6 @@ export const JobProvider = ({ children }) => {
       const snapshot = await db
         .collection("jobs")
         .where("userId", "==", userId)
-        .orderBy("createdAt")
         .get();
       if (snapshot.docs.length > 0) {
         setError("");
